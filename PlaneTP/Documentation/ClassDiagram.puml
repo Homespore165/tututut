@@ -1,0 +1,42 @@
+﻿@startuml
+class Scenario {
+	+ Plane[] planes
+	+ Aeroport[] aeroports 
+}
+
+class Client {
+	+ Destination[] path
+}
+
+class ClientSupport {
+}
+
+class ClientTransport {
+}
+
+class Fire {
+	+ int intensity
+}
+
+class Rescue {
+}
+
+class Recon {
+}
+
+class Cargo {
+}
+
+class Passengers {
+}
+
+Cargo <|-- ClientTransport
+Passengers <|-- ClientTransport
+Fire <|-- ClientSupport
+Rescue <|-- ClientSupport
+Recon <|-- ClientSupport
+
+ClientTransport <|-- Client
+ClientSupport <|-- Client
+
+@enduml
