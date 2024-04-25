@@ -1,0 +1,78 @@
+﻿@startuml
+class Scenario {
+	+ Plane[] planes
+	+ Airport[] airports 
+	+ ClientSupport[] clientSupports
+}
+
+abstract class Client {
+	+ Position[] path
+}
+
+abstract class ClientSupport {
+}
+
+abstract class ClientTransport {
+}
+
+class Fire {
+	+ int intensity
+}
+
+class Rescue {
+}
+
+class Recon {
+}
+
+class Cargo {
+}
+
+class Passengers {
+	+ int nbPassengers
+	+ Passengers Split(int nbPassengers)
+	+ Void Merge(Passengers passengers)
+}
+
+abstract class Plane {
+	+ Position position
+}
+
+class PlaneTransport {
+}
+
+class PlaneSupport {
+}
+
+class Airport {
+	+ Position position
+	+ Plane[] planes
+	+ ClientTransport[] clientTransports
+}
+
+PlaneTransport --|> Plane
+PlaneSupport --|> Plane
+PlaneCargo --|> PlaneTransport
+PlanePassengers --|> PlaneTransport
+PlaneFire --|> PlaneSupport
+PlaneRescue --|> PlaneSupport
+PlaneRecon --|> PlaneSupport
+Cargo --|> ClientTransport
+Passengers --|> ClientTransport
+Fire --|> ClientSupport
+Rescue --|> ClientSupport
+Recon --|> ClientSupport
+
+ClientTransport --|> Client
+ClientSupport --|> Client
+Airport *-- ClientTransport
+Scenario *-- ClientSupport
+Airport *-- Plane
+Airport o-- Scenario
+Scenario *-- Plane
+Scenario *-- Airport
+
+IXmlSerializable <|-- Scenario
+IXmlSerializable <|-- Plane
+IXmlSerializable <|-- Airport
+@enduml
