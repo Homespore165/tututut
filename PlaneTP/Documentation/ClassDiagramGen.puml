@@ -1,13 +1,15 @@
 ﻿@startuml
 
 rectangle vue {
-	class View { }
+	class View {
+		+Form form
+	}
 }
 
 rectangle Controlleur {
 class Controller {
-	+ Scenario scenario
-	+ View view
+	+ Scenario Scenario
+	+ View View
 	+ void CreateAirport(String name, int x, int y, int passengerTraffic, int cargoTraffic)
 	+ void EditAirport(int id, String name, int x, int y, int passengerTraffic, int cargoTraffic)
 	+ void DeleteAirport(int id)
@@ -20,7 +22,7 @@ class Controller {
 
 rectangle Model {
 class Scenario {
-	+ Airport[] airports 
+	+ Airport[] Airports 
 	+ int FrequencyFire
 	+ int FrequencyRescue
 	+ int FrequencyRecon
@@ -36,29 +38,30 @@ interface IXmlSerializable {
 }
 
 class Position {
-	+ int x
-	+ int y
+	+ int X
+	+ int Y
 }
 
-
 abstract class Plane {
-	+ String name
-	+ Position position
-	+ int speed
-	+ int maintenanceTime
+	+ String Name
+	+ Position Pos
+	+ int Speed
+	+ int MaintenanceTime
 }
 
 abstract class PlaneTransport {
+	+ int TimeToBoard
+	+ int TimeToDeboard
 }
 
 abstract class PlaneSupport {
 }
 
 class Airport {
-	+ String name
-	+ Plane[] planes
-	+ int passengerTraffic
-	+ int cargoTraffic
+	+ String Name
+	+ Plane[] Planes
+	+ int PassengerTraffic
+	+ int CargoTraffic
 }
 
 class PlaneCargo {}
@@ -67,8 +70,6 @@ class PlanePassengers{}
 class PlaneFire{}
 class PlaneRescue{}
 }
-
-
 
 PlaneTransport --|> Plane
 PlaneSupport --|> Plane
