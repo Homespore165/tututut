@@ -1,4 +1,10 @@
 ﻿@startuml
+
+rectangle vue {
+	class View { }
+}
+
+rectangle Controlleur {
 class Controller {
 	+ Scenario scenario
 	+ View view
@@ -10,7 +16,9 @@ class Controller {
 	+ void LoadScenario()
 	+ void ResetScenario()
 }
+}
 
+rectangle Model {
 class Scenario {
 	+ Airport[] airports 
 	+ int FrequencyFire
@@ -52,6 +60,15 @@ class Airport {
 	+ int passengerTraffic
 	+ int cargoTraffic
 }
+
+class PlaneCargo {}
+class PlaneRecon{}
+class PlanePassengers{}
+class PlaneFire{}
+class PlaneRescue{}
+}
+
+
 
 PlaneTransport --|> Plane
 PlaneSupport --|> Plane
