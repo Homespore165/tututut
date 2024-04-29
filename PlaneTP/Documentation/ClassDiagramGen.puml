@@ -10,13 +10,15 @@ rectangle Controlleur {
 class Controller {
 	+ Scenario Scenario
 	+ View View
-	+ void CreateAirport(String name, int x, int y, int passengerTraffic, int cargoTraffic)
+	+ void AddAirport(String name, int x, int y, int passengerTraffic, int cargoTraffic)
 	+ void EditAirport(int id, String name, int x, int y, int passengerTraffic, int cargoTraffic)
 	+ void DeleteAirport(int id)
-	+ void CreatePlane(String name, int x, int y, int speed, int maintenanceTime)
+	+ void AddPlane(String name, int x, int y, int speed, int maintenanceTime)
 	+ void SaveScenario()
 	+ void LoadScenario()
 	+ void ResetScenario()
+	+ String[] GetAirports()
+	+ String[] GetPlanes(int airop)
 }
 }
 
@@ -26,10 +28,10 @@ class Scenario {
 	+ int FrequencyFire
 	+ int FrequencyRescue
 	+ int FrequencyRecon
-	+ void CreateAirport(String name, int x, int y, int passengerTraffic, int cargoTraffic)
+	+ void AddAirport(String name, int x, int y, int passengerTraffic, int cargoTraffic)
 	+ void EditAirport(int id, String name, int x, int y, int passengerTraffic, int cargoTraffic)
 	+ void DeleteAirport(int id)
-	+ void CreatePlane(String name, int x, int y, int speed, int maintenanceTime)
+	+ void AddPlane(String name, int x, int y, int speed, int maintenanceTime)
 }
 
 interface IXmlSerializable {
@@ -62,6 +64,7 @@ class Airport {
 	+ Plane[] Planes
 	+ int PassengerTraffic
 	+ int CargoTraffic
+	+ void AddPlane(String name, int x, int y, int speed, int maintenanceTime)
 }
 
 class PlaneCargo {}

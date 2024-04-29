@@ -1,0 +1,18 @@
+﻿@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor Actor
+Actor -> Form : Sélectionne un aéroport
+Form -> Controller : GetPlanes()
+Controller -> Scenario : GetPlanes()
+Scenario -> Airport : GetPlanes()
+Airport -> Form : UpdatePlanes()
+Actor -> Form : Entre les informations de l'avion
+Form -> Controller : AddPlane()
+Controller -> Scenario : AddPlane()
+Scenario -> Airport : AddPlane()
+Airport -> Form : UpdatePlanes()
+
+@enduml
