@@ -1,54 +1,183 @@
 ﻿@startuml
+rectangle Modèle {
 class Scenario {
-+ Plane[] planes
-+ Airport[] airports 
-+ ClientSupport[] clientSupports
+    + Plane[] planes
+    + Airport[] airports 
+    + ClientSupport[] clientSupports
+
+    + int FrequencyFire
+	+ int FrequencyRescue
+	+ int FrequencyRecon
+
+    +void TimeStep(int t)
+    -void GenerateClientsSupport()
 }
 
+class Position {
+    +int x
+    +int y
+}
+
+
+
 abstract class Client {
-+ Position[] path
 }
 
 abstract class ClientSupport {
+    +Position Position
 }
 
 abstract class ClientTransport {
+    +Airport Destination
 }
 
-class Fire {
+class ClientFire {
 + int intensity
 }
 
-class Rescue {
+class ClientRescue {
 }
 
-class Recon {
+class ClientRecon {
 }
 
-class Cargo {
+class ClientCargo {
+    +float WeightInTons
 }
 
-class Passengers {
-+ int nbPassengers
-+ Passengers Split(int nbPassengers)
-+ Void Merge(Passengers passengers)
+class ClientPassengers {
+    + int NbPassengers
+    + Passengers Split(int nbPassengers)
+    + Void Merge(Passengers passengers)
 }
+
+
+interface IXmlSerializable {}
+
 
 abstract class Plane {
-+ Position position
+    + Position Position
+    + State State
+    + int TimeToMaintenance
+
+    +void EndState()
+    +void TimeStep(int t)
 }
 
-class PlaneTransport {
+abstract class PlaneTransport {
+    +int TimeToBoard
+    +int TimeToUnboard
 }
 
-class PlaneSupport {
+abstract class PlaneSupport {
 }
+
+class PlaneCargo {}
+class PlanePassengers {}
+class PlaneFire {}
+class PlaneRescue {}
+class PlaneRecon {}
+
 
 class Airport {
-+ Position position
-+ Plane[] planes
-+ ClientTransport[] clientTransports
+    + Position position
+    + Plane[] planes
+    + ClientTransport[] clientTransports
+
+    +void TimeStep(int t)
+    -void GenerateClientsTransport()
 }
+
+rectangle States {
+
+abstract class State {
+    -Plane parent
+    +void TimeStep(int t)
+}
+
+class Waiting {
+
+}
+
+class Maintenance {
+    +int TimeToCompletion
+}
+
+class Boarding {
+    +int TimeToCompletion
+}
+
+class Deboarding {
+    +int TimeToCompletion
+}
+
+abstract class Flying {
+    +Airport Source
+    +Position Destination
+    +Position Position
+
+    +void Fly()
+}
+
+class FlyingTransport {
+    +ClientTransport Client
+}
+
+abstract class FlyingSupport {
+    +ClientSupport Client
+}
+
+class FlyingRecon {
+
+}
+
+class FlyingRescue {
+
+}
+
+class FlyingFire {
+
+}
+
+'End of states
+}
+}
+'Fin du modèle
+
+rectangle Controlleur {
+    class Controller {
+        =Singleton
+        +SimForm View
+        +Scenario Scenario
+
+        +Controller getController()
+    }
+}
+
+rectangle Vue {
+    class SimForm {
+
+    }
+}
+
+Waiting --|> State
+Maintenance --|> State
+Boarding --|> State
+Deboarding --|> State
+Flying --|> State
+
+FlyingTransport --|> Flying
+FlyingSupport --|> Flying
+
+FlyingRecon --|> FlyingSupport
+FlyingRescue --|> FlyingSupport
+FlyingFire --|> FlyingSupport
+
+Flying "1" o------- "1" Airport
+Flying "1" *---- "1" Position
+FlyingTransport "1" o-- "1" ClientTransport
+
+'-------
 
 PlaneTransport --|> Plane
 PlaneSupport --|> Plane
@@ -57,22 +186,31 @@ PlanePassengers --|> PlaneTransport
 PlaneFire --|> PlaneSupport
 PlaneRescue --|> PlaneSupport
 PlaneRecon --|> PlaneSupport
-Cargo --|> ClientTransport
-Passengers --|> ClientTransport
-Fire --|> ClientSupport
-Rescue --|> ClientSupport
-Recon --|> ClientSupport
+ClientCargo --|> ClientTransport
+ClientPassengers --|> ClientTransport
+ClientFire --|> ClientSupport
+ClientRescue --|> ClientSupport
+ClientRecon --|> ClientSupport
+ClientSupport "1" --o "1" FlyingSupport
+ClientSupport "1" *-- "1" Position
+
+Plane "1" *-- "1" State
+State "1" o-- "1" Plane
 
 ClientTransport --|> Client
 ClientSupport --|> Client
-Airport *-- ClientTransport
-Scenario *-- ClientSupport
-Airport *-- Plane
-Airport o-- Scenario
-Scenario *-- Plane
-Scenario *-- Airport
+Airport "1" o-- "n" ClientTransport
+Scenario "1" *-- "n" ClientSupport
+Airport "1" *-- "n" Plane
+Airport "1" *------- "1" Position
+Scenario "1" *-- "n" Plane
+Scenario "1" *-- "n" Airport
 
-IXmlSerializable <|-- Scenario
-IXmlSerializable <|-- Plane
-IXmlSerializable <|-- Airport
+IXmlSerializable <|-. Scenario
+IXmlSerializable <|-. Plane
+IXmlSerializable <|-. Airport
+
+Controller "1" *-- "1" Scenario
+Controller "1" *-- "1" SimForm
+
 @enduml
