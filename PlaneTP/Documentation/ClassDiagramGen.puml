@@ -9,8 +9,10 @@ rectangle vue {
 
 rectangle Controlleur {
 class Controller {
+	=Singleton
 	+ Scenario Scenario
 	+ View View
+	+ Controller GetController()
 	+ void AddAirport(String name, int x, int y, int passengerTraffic, int cargoTraffic)
 	+ void EditAirport(int id, String name, int x, int y, int passengerTraffic, int cargoTraffic)
 	+ void DeleteAirport(int id)
@@ -89,6 +91,7 @@ Scenario "1" *-- "N" Airport
 Scenario "1" --* "1" Controller
 Controller "1" *-- "1" View
 View "1" o-- "1" Controller
+Controller "1" *-- "1" Controller
 
 IXmlSerializable <|-. Scenario
 IXmlSerializable <|-. Plane
