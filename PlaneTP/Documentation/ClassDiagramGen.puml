@@ -2,6 +2,7 @@
 
 rectangle vue {
 	class View {
+		-Controller _controller
 		+Form form
 	}
 }
@@ -87,6 +88,7 @@ Airport "1" *-- "N" Plane
 Scenario "1" *-- "N" Airport
 Scenario "1" --* "1" Controller
 Controller "1" *-- "1" View
+View "1" o-- "1" Controller
 
 IXmlSerializable <|-. Scenario
 IXmlSerializable <|-. Plane
