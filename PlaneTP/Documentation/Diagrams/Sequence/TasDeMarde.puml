@@ -1,0 +1,74 @@
+@startuml
+
+actor Toi
+activate Toi
+Toi -> Vue : Clique sur le bouton pour faire un tour de simulateur
+
+activate Vue
+Vue -> Controlleur : (Signal) SimStepBtnPress
+deactivate Vue
+
+activate Controlleur
+Controlleur -> Scenario : TimeStep()
+activate Scenario
+
+Scenario -> ClientFactory : GenerateClientsSupport()
+activate ClientFactory
+ClientFactory -> Scenario : GetRandomPostitionForEvent()
+activate Scenario
+
+Scenario -> Position ** : create
+activate Position
+return Position
+return Position
+
+ClientFactory -> ClientSupport ** : create
+activate ClientSupport
+
+return ClientSupport
+return ClientSupport
+
+Scenario -> Airport : TimeStep()
+activate Airport
+
+Airport -> ClientFactory : GenerateClientsTransport()
+activate ClientFactory
+ClientFactory -> Scenario : GetDestinationFromStartPoint()
+activate Scenario
+return Airport
+
+ClientFactory -> ClientTransport ** : create
+activate ClientTransport
+return ClientTransport
+return ClientTransport
+
+Airport -> Plane : TimeStep()
+note right : Les avions dans les aéroports
+activate Plane
+Plane -> State : TimeStep()
+activate State
+
+return 
+return 
+return 
+
+Scenario -> Plane : TimeStep()
+note right : Les avions dans le ciel
+activate Plane
+Plane -> State : timeStep()
+activate State
+
+return 
+return 
+return
+
+Controlleur -> Scenario : GetSerializedWorldMap()
+activate Scenario
+return Array[String]
+
+Controlleur -> Vue : UpdateWorldMap(Array[String])
+deactivate Controlleur
+activate Vue
+
+Vue -> Toi : Affiche la carte du monde mise à jour
+
