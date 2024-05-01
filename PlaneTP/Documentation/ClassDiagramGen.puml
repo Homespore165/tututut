@@ -86,7 +86,7 @@ Airport --|> Position
 Airport "1" *-- "N" Plane
 Scenario "1" *-- "N" Airport
 Scenario "1" --* "1" Controller
-Controller *-- View
+Controller "1" *-- "1" View
 
 IXmlSerializable <|-. Scenario
 IXmlSerializable <|-. Plane
