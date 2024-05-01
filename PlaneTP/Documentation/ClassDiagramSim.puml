@@ -5,20 +5,50 @@ class Scenario {
     + Airport[] airports 
     + ClientSupport[] clientSupports
 
-    + int FrequencyFire
-	+ int FrequencyRescue
-	+ int FrequencyRecon
+    -int FrequencyFire
+	-int FrequencyRescue
+	-int FrequencyRecon
+
+    -ClientSupportFactory factory
 
     +Event MapUpdate
 
     +void TimeStep(int t)
+    +Position GetMapSize()
     -void GenerateClientsSupport()
-
+    +Airport GetRandomAirportExluding(Airport airport)
 }
 
 class Position {
     +int x
     +int y
+}
+
+class ClientSupportFactory {
+    =Singleton
+    -Position mapSize
+    +void SetMapSize(Position size)
+    +ClientSupport createClientFire(int intensity)
+    +ClientSupport createClientRecon()
+    +ClientSupport createClientRescue()
+    +ClientSupportFactory getFactory()
+}
+class ClientTransportFactory {
+    =Singleton
+    +ClientTransport createClientPassengers()
+    +ClientTransport createClientCargo()
+    +ClientTransportFactory getFactory()
+}
+
+class PlaneFactory {
+    =Singleton
+    +Plane createPassengerPlane()
+    +Plane createCargoPlane()
+    +Plane createFirePlane()
+    +Plane createReconPlane()
+    +Plane createRescuePlane()
+    +PlaneFactory getFactory()
+
 }
 
 abstract class Client {
@@ -78,6 +108,7 @@ class PlaneRescue {}
 class PlaneRecon {}
 
 class Airport {
+    -Scenario scenario
     + Position position
     + Plane[] planes
     + ClientTransport[] clientTransports
@@ -149,12 +180,16 @@ rectangle Controlleur {
         +Scenario Scenario
 
         +Controller getController()
+        +void StepTimeButtonClick()
     }
 }
 
 rectangle Vue {
     class SimForm {
 
+        -Controlleur controller
+
+        +void OnMapUpdate()
     }
 }
 
@@ -199,10 +234,22 @@ ClientTransport --|> Client
 ClientSupport --|> Client
 Airport "1" o-- "n" ClientTransport
 Scenario "1" *-- "n" ClientSupport
+Airport "1" o-- "1" Scenario
 Airport "1" *-- "n" Plane
 Airport "1" *------- "1" Position
 Scenario "1" *-- "n" Plane
 Scenario "1" *-- "n" Airport
+
+'Singletons
+ClientSupportFactory "1" *-- "1" ClientSupportFactory
+ClientTransportFactory "1" *-- "1" ClientTransportFactory
+PlaneFactory "1" *-- "1" PlaneFactory
+Controller "1" *-- "1" Controller
+
+Airport --> PlaneFactory
+Airport --> ClientTransportFactory
+Scenario --> ClientSupportFactory
+
 
 IXmlSerializable <|-. Scenario
 IXmlSerializable <|-. Plane
@@ -210,5 +257,6 @@ IXmlSerializable <|-. Airport
 
 Controller "1" *-- "1" Scenario
 Controller "1" *-- "1" SimForm
+SimForm "1" o-- "1" Controller
 
 @enduml
