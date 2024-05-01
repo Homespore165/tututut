@@ -64,6 +64,7 @@ class Airport {
 	+ Plane[] Planes
 	+ int PassengerTraffic
 	+ int CargoTraffic
+	+ event OnPlaneUpdate
 	+ void AddPlane(String name, int x, int y, int speed, int maintenanceTime)
 }
 
@@ -82,9 +83,9 @@ PlaneFire --|> PlaneSupport
 PlaneRescue --|> PlaneSupport
 PlaneRecon --|> PlaneSupport
 Airport --|> Position
-Airport *-- Plane
+Airport "1" *-- "N" Plane
 Scenario "1" *-- "N" Airport
-Scenario --* Controller
+Scenario "1" --* "1" Controller
 Controller *-- View
 
 IXmlSerializable <|-. Scenario

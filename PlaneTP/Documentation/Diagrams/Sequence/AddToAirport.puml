@@ -6,13 +6,34 @@ autonumber
 actor Actor
 Actor -> Form : Sélectionne un aéroport
 Form -> Controller : GetPlanes()
+activate Form
 Controller -> Scenario : GetPlanes()
+activate Controller
 Scenario -> Airport : GetPlanes()
-Airport -> Form : UpdatePlanes()
+activate Scenario
+activate Airport
+Airport --> Form : <Event> OnPlaneUpdate
+deactivate Airport
+deactivate Scenario
+deactivate Controller
+deactivate Form
+Form -> Actor : Mise à jour de l'affichage
 Actor -> Form : Entre les informations de l'avion
 Form -> Controller : AddPlane()
+activate Form
 Controller -> Scenario : AddPlane()
+activate Controller
 Scenario -> Airport : AddPlane()
-Airport -> Form : UpdatePlanes()
+activate Scenario
+create Plane
+Airport -> Plane : new
+activate Airport
+Plane --> Airport
+deactivate Airport
+Airport --> Form : <Event> OnPlaneUpdate
+deactivate Form
+deactivate Controller
+deactivate Scenario
+Form -> Actor : Mise à jour de l'affichage
 
 @enduml
