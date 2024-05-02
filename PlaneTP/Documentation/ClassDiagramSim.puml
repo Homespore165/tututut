@@ -2,7 +2,7 @@
 rectangle Modèle {
 class Scenario {
     + Plane[] planes
-    + Airport[] airports 
+    + Airport[] airports
     + ClientSupport[] clientSupports
 
     -int FrequencyFire
@@ -33,8 +33,11 @@ class ClientSupportFactory {
     +ClientSupport createClientRescue()
     +ClientSupportFactory getFactory()
 }
+
 class ClientTransportFactory {
     =Singleton
+    -Airport nextClientAirport
+    +void setDestinationAirport(Airport airport)
     +ClientTransport createClientPassengers()
     +ClientTransport createClientCargo()
     +ClientTransportFactory getFactory()
@@ -48,7 +51,6 @@ class PlaneFactory {
     +Plane createReconPlane()
     +Plane createRescuePlane()
     +PlaneFactory getFactory()
-
 }
 
 abstract class Client {
@@ -145,7 +147,7 @@ abstract class Flying {
     +Position Destination
     +Position Position
 
-    +void Fly()
+    +void Fly(int t)
 }
 
 class FlyingTransport {
@@ -154,10 +156,11 @@ class FlyingTransport {
 
 abstract class FlyingSupport {
     +ClientSupport Client
+    -Position CalculatePath(int t)
 }
 
 class FlyingRecon {
-
+    -Position CalculateCircle(int t)
 }
 
 class FlyingRescue {
@@ -181,15 +184,17 @@ rectangle Controlleur {
 
         +Controller getController()
         +void StepTimeButtonClick()
+        -void LoadSavedScenario()
     }
 }
 
 rectangle Vue {
     class SimForm {
-
         -Controlleur controller
 
         +void OnMapUpdate()
+        -void drawCircle(int x, int y)
+        -void drawLine(int x1, int y1, int x2, int y2)
     }
 }
 
