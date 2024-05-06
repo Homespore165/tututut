@@ -19,7 +19,7 @@ public class Controller
 	private Controller()
 	{
 		_scenario = new Scenario();
-		_form = new Form1();
+		_form = new Form1(_instance);
 	}
 	
 	public void AddPlane(int airportId, string name, string type, int speed, int maintenanceTime, int boardingTime = 0, int unboardingTime = 0)
@@ -27,8 +27,8 @@ public class Controller
 		_scenario.AddPlane(airportId, name, type, speed, maintenanceTime, boardingTime, unboardingTime);
 	}
 
-	public void AddAirport()
+	public void AddAirport(string name, int x, int y, int passengerTraffic, int cargoTraffic)
 	{
-		throw new NotImplementedException();
+		_scenario.AddAirport(name, x, y, passengerTraffic, cargoTraffic);
 	}
 }

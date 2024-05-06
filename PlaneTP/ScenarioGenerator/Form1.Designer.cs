@@ -32,18 +32,14 @@ partial class Form1
         lvwAirport = new ListView();
         lblAirportName = new Label();
         lblAirportPositionX = new Label();
-        txbAirportPositionX = new TextBox();
-        txbAirportPositionY = new TextBox();
+        numAirportPositionX = new NumericUpDown();
+        numAirportPositionY = new NumericUpDown();
         lblAirportPositionY = new Label();
         txbAirportName = new TextBox();
-        lblAirportMinPassenger = new Label();
-        numAirportMinPassenger = new NumericUpDown();
-        numAirportMaxPassenger = new NumericUpDown();
-        lblAirportMaxPassenger = new Label();
-        numAirportMaxCargo = new NumericUpDown();
-        lblAirportMaxCargo = new Label();
-        numAirportMinCargo = new NumericUpDown();
-        lblAirportMinCargo = new Label();
+        numAirportPassengerTraffic = new NumericUpDown();
+        lblAirportPassengerTraffic = new Label();
+        numAirportCargoTraffic = new NumericUpDown();
+        lblAirportCargoTraffic = new Label();
         btnAddAirport = new Button();
         lvwAirplane = new ListView();
         btnEditAirport = new Button();
@@ -70,10 +66,8 @@ partial class Form1
         btnSave = new Button();
         btnLoad = new Button();
         btnEmpty = new Button();
-        ((System.ComponentModel.ISupportInitialize)numAirportMinPassenger).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)numAirportMaxPassenger).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)numAirportMaxCargo).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)numAirportMinCargo).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)numAirportPassengerTraffic).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)numAirportCargoTraffic).BeginInit();
         ((System.ComponentModel.ISupportInitialize)numPlaneSpeed).BeginInit();
         ((System.ComponentModel.ISupportInitialize)numPlaneBoardingTime).BeginInit();
         ((System.ComponentModel.ISupportInitialize)numPlaneUnboardingTime).BeginInit();
@@ -112,17 +106,17 @@ partial class Form1
         // 
         // txbAirportPositionX
         // 
-        txbAirportPositionX.Location = new Point(386, 200);
-        txbAirportPositionX.Name = "txbAirportPositionX";
-        txbAirportPositionX.Size = new Size(57, 31);
-        txbAirportPositionX.TabIndex = 4;
+        numAirportPositionX.Location = new Point(386, 200);
+        numAirportPositionX.Name = "numAirportPositionX";
+        numAirportPositionX.Size = new Size(57, 31);
+        numAirportPositionX.TabIndex = 4;
         // 
         // txbAirportPositionY
         // 
-        this.txbAirportPositionY.Location = new Point(555, 200);
-        this.txbAirportPositionY.Name = "txbAirportPositionY";
-        this.txbAirportPositionY.Size = new Size(48, 31);
-        this.txbAirportPositionY.TabIndex = 6;
+        this.numAirportPositionY.Location = new Point(555, 200);
+        this.numAirportPositionY.Name = "numAirportPositionY";
+        this.numAirportPositionY.Size = new Size(48, 31);
+        this.numAirportPositionY.TabIndex = 6;
         // 
         // lblAirportPositionY
         // 
@@ -140,69 +134,38 @@ partial class Form1
         txbAirportName.Size = new Size(150, 31);
         txbAirportName.TabIndex = 7;
         // 
-        // lblAirportMinPassenger
-        // 
-        lblAirportMinPassenger.AutoSize = true;
-        lblAirportMinPassenger.Location = new Point(609, 200);
-        lblAirportMinPassenger.Name = "lblAirportMinPassenger";
-        lblAirportMinPassenger.Size = new Size(130, 25);
-        lblAirportMinPassenger.TabIndex = 8;
-        lblAirportMinPassenger.Text = "MinPassenger :";
-        // 
-        // numAirportMinPassenger
-        // 
-        numAirportMinPassenger.Location = new Point(745, 200);
-        numAirportMinPassenger.Name = "numAirportMinPassenger";
-        numAirportMinPassenger.Size = new Size(72, 31);
-        numAirportMinPassenger.TabIndex = 9;
-        // 
         // numAirportMaxPassenger
         // 
-        numAirportMaxPassenger.Location = new Point(959, 200);
-        numAirportMaxPassenger.Name = "numAirportMaxPassenger";
-        numAirportMaxPassenger.Size = new Size(68, 31);
-        numAirportMaxPassenger.TabIndex = 11;
+        numAirportPassengerTraffic.Location = new Point(780, 200);
+        numAirportPassengerTraffic.Name = "numAirportPassengerTraffic";
+        numAirportPassengerTraffic.Size = new Size(68, 31);
+        numAirportPassengerTraffic.Maximum = Int32.MaxValue;
+        numAirportPassengerTraffic.TabIndex = 11;
         // 
-        // lblAirportMaxPassenger
+        // lblAirportPassengerTraffic
         // 
-        lblAirportMaxPassenger.AutoSize = true;
-        lblAirportMaxPassenger.Location = new Point(823, 200);
-        lblAirportMaxPassenger.Name = "lblAirportMaxPassenger";
-        lblAirportMaxPassenger.Size = new Size(133, 25);
-        lblAirportMaxPassenger.TabIndex = 10;
-        lblAirportMaxPassenger.Text = "MaxPassenger :";
-        // 
-        // numAirportMaxCargo
-        // 
-        numAirportMaxCargo.Location = new Point(1324, 200);
-        numAirportMaxCargo.Name = "numAirportMaxCargo";
-        numAirportMaxCargo.Size = new Size(68, 31);
-        numAirportMaxCargo.TabIndex = 15;
-        // 
-        // lblAirportMaxCargo
-        // 
-        lblAirportMaxCargo.AutoSize = true;
-        lblAirportMaxCargo.Location = new Point(1216, 200);
-        lblAirportMaxCargo.Name = "lblAirportMaxCargo";
-        lblAirportMaxCargo.Size = new Size(102, 25);
-        lblAirportMaxCargo.TabIndex = 14;
-        lblAirportMaxCargo.Text = "MaxCargo :";
+        lblAirportPassengerTraffic.AutoSize = true;
+        lblAirportPassengerTraffic.Location = new Point(620, 200);
+        lblAirportPassengerTraffic.Name = "lblAirportPassengerTraffic";
+        lblAirportPassengerTraffic.Size = new Size(102, 25);
+        lblAirportPassengerTraffic.TabIndex = 14;
+        lblAirportPassengerTraffic.Text = "Passenger Traffic :";
         // 
         // numAirportMinCargo
         // 
-        numAirportMinCargo.Location = new Point(1138, 200);
-        numAirportMinCargo.Name = "numAirportMinCargo";
-        numAirportMinCargo.Size = new Size(72, 31);
-        numAirportMinCargo.TabIndex = 13;
+        numAirportCargoTraffic.Location = new Point(980, 200);
+        numAirportCargoTraffic.Name = "numAirportCargoTraffic";
+        numAirportCargoTraffic.Size = new Size(72, 31);
+        numAirportCargoTraffic.TabIndex = 13;
         // 
         // lblAirportMinCargo
         // 
-        lblAirportMinCargo.AutoSize = true;
-        lblAirportMinCargo.Location = new Point(1033, 200);
-        lblAirportMinCargo.Name = "lblAirportMinCargo";
-        lblAirportMinCargo.Size = new Size(99, 25);
-        lblAirportMinCargo.TabIndex = 12;
-        lblAirportMinCargo.Text = "MinCargo :";
+        lblAirportCargoTraffic.AutoSize = true;
+        lblAirportCargoTraffic.Location = new Point(860, 200);
+        lblAirportCargoTraffic.Name = "lblAirportCargoTraffic";
+        lblAirportCargoTraffic.Size = new Size(99, 25);
+        lblAirportCargoTraffic.TabIndex = 12;
+        lblAirportCargoTraffic.Text = "Cargo Traffic :";
         // 
         // btnAddAirport
         // 
@@ -457,28 +420,22 @@ partial class Form1
         Controls.Add(btnEditAirport);
         Controls.Add(lvwAirplane);
         Controls.Add(btnAddAirport);
-        Controls.Add(numAirportMaxCargo);
-        Controls.Add(lblAirportMaxCargo);
-        Controls.Add(numAirportMinCargo);
-        Controls.Add(lblAirportMinCargo);
-        Controls.Add(numAirportMaxPassenger);
-        Controls.Add(lblAirportMaxPassenger);
-        Controls.Add(numAirportMinPassenger);
-        Controls.Add(lblAirportMinPassenger);
+        Controls.Add(lblAirportPassengerTraffic);
+        Controls.Add(numAirportCargoTraffic);
+        Controls.Add(lblAirportCargoTraffic);
+        Controls.Add(numAirportPassengerTraffic);
         Controls.Add(txbAirportName);
-        Controls.Add(this.txbAirportPositionY);
+        Controls.Add(numAirportPositionY);
         Controls.Add(lblAirportPositionY);
-        Controls.Add(txbAirportPositionX);
+        Controls.Add(numAirportPositionX);
         Controls.Add(lblAirportPositionX);
         Controls.Add(lblAirportName);
         Controls.Add(lvwAirport);
         Margin = new Padding(4, 5, 4, 5);
         Name = "Form1";
         Text = "Form1";
-        ((System.ComponentModel.ISupportInitialize)numAirportMinPassenger).EndInit();
-        ((System.ComponentModel.ISupportInitialize)numAirportMaxPassenger).EndInit();
-        ((System.ComponentModel.ISupportInitialize)numAirportMaxCargo).EndInit();
-        ((System.ComponentModel.ISupportInitialize)numAirportMinCargo).EndInit();
+        ((System.ComponentModel.ISupportInitialize)numAirportPassengerTraffic).EndInit();
+        ((System.ComponentModel.ISupportInitialize)numAirportCargoTraffic).EndInit();
         ((System.ComponentModel.ISupportInitialize)numPlaneSpeed).EndInit();
         ((System.ComponentModel.ISupportInitialize)numPlaneBoardingTime).EndInit();
         ((System.ComponentModel.ISupportInitialize)numPlaneUnboardingTime).EndInit();
@@ -495,18 +452,14 @@ partial class Form1
     private ListView lvwAirport;
     private Label lblAirportName;
     private Label lblAirportPositionX;
-    private TextBox txbAirportPositionX;
-    private TextBox txbAirportPositionY;
+    private NumericUpDown numAirportPositionX;
+    private NumericUpDown numAirportPositionY;
     private Label lblAirportPositionY;
     private TextBox txbAirportName;
-    private Label lblAirportMinPassenger;
-    private NumericUpDown numAirportMinPassenger;
-    private NumericUpDown numAirportMaxPassenger;
-    private Label lblAirportMaxPassenger;
-    private NumericUpDown numAirportMaxCargo;
-    private Label lblAirportMaxCargo;
-    private NumericUpDown numAirportMinCargo;
-    private Label lblAirportMinCargo;
+    private NumericUpDown numAirportPassengerTraffic;
+    private Label lblAirportPassengerTraffic;
+    private NumericUpDown numAirportCargoTraffic;
+    private Label lblAirportCargoTraffic;
     private Button btnAddAirport;
     private ListView lvwAirplane;
     private Button btnEditAirport;

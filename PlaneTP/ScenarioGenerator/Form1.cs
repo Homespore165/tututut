@@ -4,15 +4,20 @@ public partial class Form1 : Form
 {
     private Controller _controller;
     
-    public Form1()
+    public Form1(Controller controller)
     {
-        _controller = Controller.Instance;
+        _controller = controller;
         InitializeComponent();
     }
     
     private void btnAddAirport_Click(object sender, EventArgs e)
     {
-        _controller.AddAirport();
+        string name = txbAirportName.Text;
+        int x = (int)numAirportPositionX.Value;
+        int y = (int)numAirportPositionY.Value;
+        int minPassenger;
+
+        //_controller.AddAirport();
     }
     
     private void btnEditAirport_Click(object sender, EventArgs e)
