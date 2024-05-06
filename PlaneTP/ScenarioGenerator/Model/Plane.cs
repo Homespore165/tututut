@@ -6,6 +6,14 @@ namespace ScenarioGenerator.Model;
 
 public abstract class Plane : IXmlSerializable
 {
+	protected Plane(string name, Position position, int speed, int maintenanceTime)
+	{
+		_name = name;
+		_position = position;
+		_speed = speed;
+		_maintenanceTime = maintenanceTime;
+	}
+
 	private string _name;
 	public string Name
 	{

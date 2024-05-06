@@ -2,23 +2,23 @@
 
 public abstract class PlaneTransport : Plane
 {
-	private int _timeToBoard;
-	public int TimeToBoard
+	private int _boardingTime;
+	public int BoardingTime
 	{
-		get => _timeToBoard;
-		set => _timeToBoard = value;
+		get => _boardingTime;
+		set => _boardingTime = value;
 	}
 	
-	private int _timeToUnboard;
-	public int TimeToUnboard
+	private int _unboardTime;
+	public int UnboardTime
 	{
-		get => _timeToUnboard;
-		set => _timeToUnboard = value;
+		get => _unboardTime;
+		set => _unboardTime = value;
 	}
 	
-	public PlaneTransport(string name, int x, int y, int speed, int maintenanceTime, int timeToBoard, int timeToUnboard) : base(name, x, y, speed, maintenanceTime)
+	public PlaneTransport(string name, int x, int y, int speed, int maintenanceTime, int boardingTime, int unboardTime) : base(name, x, y, speed, maintenanceTime)
 	{
-		_timeToBoard = timeToBoard;
-		_timeToUnboard = timeToUnboard;
+		_boardingTime = boardingTime;
+		_unboardTime = unboardTime;
 	}
 }

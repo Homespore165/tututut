@@ -100,7 +100,6 @@ partial class Form1
         lblAirportName.Size = new Size(68, 25);
         lblAirportName.TabIndex = 2;
         lblAirportName.Text = "Name :";
-        lblAirportName.Click += label1_Click;
         // 
         // lblAirportPositionX
         // 
@@ -213,6 +212,7 @@ partial class Form1
         btnAddAirport.TabIndex = 16;
         btnAddAirport.Text = "Add";
         btnAddAirport.UseVisualStyleBackColor = true;
+        btnAddAirport.Click += btnAddAirport_Click;
         // 
         // lvwAirplane
         // 

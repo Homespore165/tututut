@@ -41,6 +41,24 @@ public class Airport : IXmlSerializable
 		set => _position = value;
 	}
 	
+	public Airport(String name, Position position, int passengerTraffic, int cargoTraffic)
+	{
+		_name = name;
+		_position = position;
+		_passengerTraffic = passengerTraffic;
+		_cargoTraffic = cargoTraffic;
+		_planes = new List<Plane>();
+	}
+
+	public Airport(String name, int x, int y, int passengerTraffic, int cargoTraffic)
+	{
+		_name = name;
+		_position = new Position(x, y);
+		_passengerTraffic = passengerTraffic;
+		_cargoTraffic = cargoTraffic;
+		_planes = new List<Plane>();
+	}
+	
 	public delegate void AirportEventHandler();
 	private event AirportEventHandler AirportChanged;
 	public event AirportEventHandler OnPlaneUpdate
@@ -49,9 +67,10 @@ public class Airport : IXmlSerializable
 		remove => AirportChanged -= value;
 	}
 	
-	public void AddPlane(int airportId, string name, int speed, int maintenanceTime)
+	public void AddPlane(string name, string type, int speed, int maintenanceTime, int boardingTime, int unboardingTime)
 	{
-		throw new NotImplementedException();
+		_planes.Add(PlaneFactory.Instance.CreatePlane(name, type, speed, maintenanceTime, boardingTime, unboardingTime));
+		AirportChanged?.Invoke();
 	}
 	
 	public XmlSchema? GetSchema()

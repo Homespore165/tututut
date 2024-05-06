@@ -57,22 +57,23 @@ public class Scenario : IXmlSerializable
 	
 	public void AddAirport(string name, int x, int y, int passengerTraffic, int cargoTraffic)
 	{
-		throw new NotImplementedException();
+		Airport airport = new Airport(name, x, y, passengerTraffic, cargoTraffic);
+		_airports.Add(airport);
 	}
 	
 	public void EditAirport(int id, string name, int x, int y, int passengerTraffic, int cargoTraffic)
 	{
-		throw new NotImplementedException();
+		_airports[id] =	new Airport(name, x, y, passengerTraffic, cargoTraffic);
 	}
 	
 	public void DeleteAirport(int id)
 	{
-		throw new NotImplementedException();
+		_airports.Remove(_airports[id]);
 	}
 	
-	public void AddPlane(int airportId, string name, int speed, int maintenanceTime)
+	public void AddPlane(int airportId, string name, string type, int speed, int maintenanceTime, int boardingTime = 0, int unboardingTime = 0)
 	{
-		throw new NotImplementedException();
+		_airports[airportId].AddPlane(name, type, speed, maintenanceTime, boardingTime, unboardingTime);
 	}
 	
 	public XmlSchema? GetSchema()
