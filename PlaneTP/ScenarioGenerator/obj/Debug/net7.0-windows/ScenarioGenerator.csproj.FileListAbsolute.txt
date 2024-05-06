@@ -1,0 +1,16 @@
+C:\Users\Xavier\Documents\School\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\ScenarioGenerator.Form1.resources
+C:\Users\Xavier\Documents\School\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\ScenarioGenerator.csproj.GenerateResource.cache
+C:\Users\Xavier\Documents\School\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\ScenarioGenerator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Xavier\Documents\School\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\ScenarioGenerator.AssemblyInfoInputs.cache
+C:\Users\Xavier\Documents\School\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\ScenarioGenerator.AssemblyInfo.cs
+C:\Users\Xavier\Documents\School\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\ScenarioGenerator.csproj.CoreCompileInputs.cache
+C:\Users\Xavier\Documents\School\tututut\PlaneTP\ScenarioGenerator\bin\Debug\net7.0-windows\ScenarioGenerator.exe
+C:\Users\Xavier\Documents\School\tututut\PlaneTP\ScenarioGenerator\bin\Debug\net7.0-windows\ScenarioGenerator.deps.json
+C:\Users\Xavier\Documents\School\tututut\PlaneTP\ScenarioGenerator\bin\Debug\net7.0-windows\ScenarioGenerator.runtimeconfig.json
+C:\Users\Xavier\Documents\School\tututut\PlaneTP\ScenarioGenerator\bin\Debug\net7.0-windows\ScenarioGenerator.dll
+C:\Users\Xavier\Documents\School\tututut\PlaneTP\ScenarioGenerator\bin\Debug\net7.0-windows\ScenarioGenerator.pdb
+C:\Users\Xavier\Documents\School\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\ScenarioGenerator.dll
+C:\Users\Xavier\Documents\School\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\refint\ScenarioGenerator.dll
+C:\Users\Xavier\Documents\School\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\ScenarioGenerator.pdb
+C:\Users\Xavier\Documents\School\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\ScenarioGenerator.genruntimeconfig.cache
+C:\Users\Xavier\Documents\School\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\ref\ScenarioGenerator.dll
