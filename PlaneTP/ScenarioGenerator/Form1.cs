@@ -13,40 +13,75 @@ public partial class Form1 : Form
     private void btnAddAirport_Click(object sender, EventArgs e)
     {
         string name = txbAirportName.Text;
-        int x = (int)numAirportPositionX.Value;
-        int y = (int)numAirportPositionY.Value;
-        int minPassenger;
-
-        //_controller.AddAirport();
+        if (name.Length > 0)
+        {
+            name = name.Trim().Replace(";", "");
+            int x = (int)numAirportPositionX.Value;
+            int y = (int)numAirportPositionY.Value;
+            int passengerTraffic = (int)numAirportPassengerTraffic.Value;
+            int cargoTraffic = (int)numAirportCargoTraffic.Value;
+            _controller.AddAirport(name, x, y, passengerTraffic, cargoTraffic);
+            //TODO: update using events
+            lvwAirport.Items.Add(new ListViewItem(name + ";" + x + ";" + y + ";" + passengerTraffic + ";" + cargoTraffic));
+        }
     }
     
     private void btnEditAirport_Click(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        if (lvwAirport.SelectedIndices.Count > 0)
+        {
+            int airportId = lvwAirport.SelectedIndices[0];
+            Console.WriteLine(airportId);
+            string name = txbAirportName.Text;
+            int x = (int)numAirportPositionX.Value;
+            int y = (int)numAirportPositionY.Value;
+            int passengerTraffic = (int)numAirportPassengerTraffic.Value;
+            int cargoTraffic = (int)numAirportCargoTraffic.Value;
+            _controller.EditAirport(airportId, name, x, y, passengerTraffic, cargoTraffic);
+            //TODO: update using events
+            lvwAirport.Items[airportId] = new ListViewItem(name + ";" + x + ";" + y + ";" + passengerTraffic + ";" + cargoTraffic);
+        }
     }
     
     private void btnDeleteAirport_Click(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        if (lvwAirport.SelectedIndices.Count > 0)
+        {
+            int airportId = lvwAirport.SelectedIndices[0];
+            _controller.DeleteAirport(airportId);
+            lvwAirport.Items.RemoveAt(airportId);
+        }
     }
     
     private void btnAddPlane_Click(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        if (lvwAirport.SelectedIndices.Count > 0 && cbxPlaneType.SelectedIndex >= 0)
+        {
+            int airportId = lvwAirport.SelectedIndices[0];
+            string name = txbPlaneName.Text;
+            string type = cbxPlaneType.Text;
+            int speed = (int)numPlaneSpeed.Value;
+            int maintenanceTime = (int)numPlaneMaintenanceTime.Value;
+            int boardingTime = (int)numPlaneBoardingTime.Value;
+            int unboardingTime = (int)numPlaneUnboardingTime.Value;
+            _controller.AddPlane(airportId, name, type, speed, maintenanceTime, boardingTime, unboardingTime);
+            //TODO: update using events
+            lvwAirplane.Items.Add(new ListViewItem(name + ";" + type + ";" + speed + ";" + maintenanceTime + ";" + boardingTime + ";" + unboardingTime));
+        }
     }
     
     private void btnSave_Click(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        _controller.SaveScenario();
     }
     
     private void btnLoad_Click(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        _controller.LoadScenario();
     }
     
     private void btnEmpty_Click(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        _controller.EmptyScenario();
     }
 }

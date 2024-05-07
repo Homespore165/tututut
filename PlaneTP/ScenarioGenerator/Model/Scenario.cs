@@ -88,6 +88,23 @@ public class Scenario : IXmlSerializable
 
 	public void WriteXml(XmlWriter writer)
 	{
-		throw new NotImplementedException();
+		writer.WriteStartElement("Scenario");
+		
+		writer.WriteElementString("FrequencyFire", FrequencyFire.ToString());
+		writer.WriteElementString("FrequencyRecon", FrequencyRecon.ToString());
+		writer.WriteElementString("FrequencyRescue", FrequencyRescue.ToString());
+		
+		writer.WriteStartElement("Airports");
+		
+		XmlSerializer serializer = new XmlSerializer(typeof(Airport));
+		foreach (Airport airport in _airports)
+			serializer.Serialize(writer, airport);
+		
+		writer.Close();
+	}
+
+	public void Save()
+	{
+		WriteXml(XmlWriter.Create("../../../scenario.xml"));
 	}
 }

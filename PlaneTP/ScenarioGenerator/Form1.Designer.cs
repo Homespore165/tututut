@@ -85,6 +85,10 @@ partial class Form1
         lvwAirport.Size = new Size(1343, 166);
         lvwAirport.TabIndex = 0;
         lvwAirport.UseCompatibleStateImageBehavior = false;
+        lvwAirport.MultiSelect = false;
+        lvwAirport.View = View.Details;
+        lvwAirport.Columns.Add("Airports", lvwAirport.Width - 4);
+        lvwAirport.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         // 
         // lblAirportName
         // 
@@ -185,6 +189,10 @@ partial class Form1
         lvwAirplane.Size = new Size(1343, 166);
         lvwAirplane.TabIndex = 18;
         lvwAirplane.UseCompatibleStateImageBehavior = false;
+        lvwAirplane.MultiSelect = false;
+        lvwAirplane.View = View.Details;
+        lvwAirplane.Columns.Add("Airplanes", lvwAirplane.Width - 4);
+        lvwAirplane.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         // 
         // btnEditAirport
         // 
@@ -194,6 +202,7 @@ partial class Form1
         btnEditAirport.TabIndex = 17;
         btnEditAirport.Text = "Edit";
         btnEditAirport.UseVisualStyleBackColor = true;
+        btnEditAirport.Click += btnEditAirport_Click;
         // 
         // btnRemoveAirport
         // 
@@ -203,6 +212,7 @@ partial class Form1
         btnRemoveAirport.TabIndex = 19;
         btnRemoveAirport.Text = "Remove";
         btnRemoveAirport.UseVisualStyleBackColor = true;
+        btnRemoveAirport.Click += btnDeleteAirport_Click;
         // 
         // txbPlaneName
         // 
@@ -296,6 +306,7 @@ partial class Form1
         btnPlaneAdd.TabIndex = 30;
         btnPlaneAdd.Text = "Add";
         btnPlaneAdd.UseVisualStyleBackColor = true;
+        btnPlaneAdd.Click += btnAddPlane_Click;
         // 
         // numPlaneMaintenanceTime
         // 
@@ -370,6 +381,7 @@ partial class Form1
         btnSave.TabIndex = 39;
         btnSave.Text = "Save";
         btnSave.UseVisualStyleBackColor = true;
+        btnSave.Click += btnSave_Click;
         // 
         // btnLoad
         // 
@@ -379,6 +391,7 @@ partial class Form1
         btnLoad.TabIndex = 40;
         btnLoad.Text = "Load";
         btnLoad.UseVisualStyleBackColor = true;
+        btnLoad.Click += btnLoad_Click;
         // 
         // btnEmpty
         // 
@@ -388,6 +401,7 @@ partial class Form1
         btnEmpty.TabIndex = 41;
         btnEmpty.Text = "Empty";
         btnEmpty.UseVisualStyleBackColor = true;
+        btnEmpty.Click += btnEmpty_Click;
         // 
         // Form1
         // 

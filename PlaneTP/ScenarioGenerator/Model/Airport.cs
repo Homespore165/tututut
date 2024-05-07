@@ -59,6 +59,8 @@ public class Airport : IXmlSerializable
 		_planes = new List<Plane>();
 	}
 	
+	private Airport() {}
+	
 	public delegate void AirportEventHandler();
 	private event AirportEventHandler AirportChanged;
 	public event AirportEventHandler OnPlaneUpdate
@@ -70,7 +72,7 @@ public class Airport : IXmlSerializable
 	public void AddPlane(string name, string type, int speed, int maintenanceTime, int boardingTime, int unboardingTime)
 	{
 		_planes.Add(PlaneFactory.Instance.CreatePlane(name, type, speed, maintenanceTime, boardingTime, unboardingTime));
-		AirportChanged?.Invoke();
+		Console.WriteLine(name);
 	}
 	
 	public XmlSchema? GetSchema()
@@ -84,6 +86,25 @@ public class Airport : IXmlSerializable
 	}
 
 	public void WriteXml(XmlWriter writer)
+	{
+		writer.WriteElementString("Name", Name);
+    
+		XmlSerializer positionSerializer = new XmlSerializer(typeof(Position));
+		positionSerializer.Serialize(writer, Position);
+
+		writer.WriteElementString("PassengerTraffic", PassengerTraffic.ToString());
+		writer.WriteElementString("CargoTraffic", CargoTraffic.ToString());
+
+		writer.WriteStartElement("Planes");
+		foreach (var p in _planes)
+		{
+			XmlSerializer planeSerializer = new XmlSerializer(p.GetType());
+			planeSerializer.Serialize(writer, p);
+		}
+		writer.WriteEndElement();
+	}
+
+	public override string? ToString()
 	{
 		throw new NotImplementedException();
 	}

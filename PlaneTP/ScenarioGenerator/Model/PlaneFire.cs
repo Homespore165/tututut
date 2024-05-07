@@ -7,4 +7,6 @@ public class PlaneFire : PlaneSupport
 	{
 		
 	}
+	
+	private PlaneFire() {}
 }

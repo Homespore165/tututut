@@ -6,4 +6,6 @@ public class PlaneRecon : PlaneSupport
 		maintenanceTime)
 	{
 	}
+	
+	public PlaneRecon() {}
 }

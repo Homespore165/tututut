@@ -6,4 +6,6 @@ public class PlaneCargo : PlaneTransport
 		: base(name, x, y, speed, maintenanceTime, boardingTime, unboardTime)
 	{
 	}
+	
+	private PlaneCargo() {}
 }

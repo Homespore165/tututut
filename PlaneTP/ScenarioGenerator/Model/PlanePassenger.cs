@@ -6,4 +6,6 @@ public class PlanePassenger : PlaneTransport
 		: base(name, x, y, speed, maintenanceTime, boardingTime, unboardTime)
 	{
 	}
+	
+	private PlanePassenger() {}
 }

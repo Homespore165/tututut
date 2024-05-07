@@ -49,6 +49,8 @@ public abstract class Plane : IXmlSerializable
 		_speed = speed;
 		_maintenanceTime = maintenanceTime;
 	}
+	
+	protected Plane() {}
 
 	public XmlSchema? GetSchema()
 	{
@@ -62,6 +64,12 @@ public abstract class Plane : IXmlSerializable
 
 	public void WriteXml(XmlWriter writer)
 	{
-		throw new NotImplementedException();
+		writer.WriteElementString("Name", _name);
+		
+		XmlSerializer positionSerializer = new XmlSerializer(typeof(Position));
+		positionSerializer.Serialize(writer, Position);
+		
+		writer.WriteElementString("Speed", _speed.ToString());
+		writer.WriteElementString("MaintenanceTime", _maintenanceTime.ToString());
 	}
 }

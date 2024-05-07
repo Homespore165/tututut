@@ -7,4 +7,6 @@ public class PlaneRescue : PlaneSupport
 	{
 		
 	}
+	
+	public PlaneRescue() {}
 }

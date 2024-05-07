@@ -1,6 +1,10 @@
-﻿namespace ScenarioGenerator.Model;
+﻿using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 
-public class Position
+namespace ScenarioGenerator.Model;
+
+public class Position : IXmlSerializable
 {
 	private int _x;
 	public int X
@@ -20,5 +24,23 @@ public class Position
 	{
 		_x = x;
 		_y = y;
+	}
+	
+	private Position() {}
+
+	public XmlSchema? GetSchema()
+	{
+		return null;
+	}
+
+	public void ReadXml(XmlReader reader)
+	{
+		throw new NotImplementedException();
+	}
+
+	public void WriteXml(XmlWriter writer)
+	{
+		writer.WriteElementString("X", X.ToString());
+		writer.WriteElementString("Y", Y.ToString());
 	}
 }

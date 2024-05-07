@@ -21,4 +21,6 @@ public abstract class PlaneTransport : Plane
 		_boardingTime = boardingTime;
 		_unboardTime = unboardTime;
 	}
+	
+	protected PlaneTransport() {}
 }
