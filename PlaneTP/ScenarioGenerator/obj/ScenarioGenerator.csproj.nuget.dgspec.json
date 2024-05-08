@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Xavier\\Documents\\School\\tututut\\PlaneTP\\ScenarioGenerator\\ScenarioGenerator.csproj": {}
+    "D:\\Projects\\tututut\\PlaneTP\\ScenarioGenerator\\ScenarioGenerator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Xavier\\Documents\\School\\tututut\\PlaneTP\\ScenarioGenerator\\ScenarioGenerator.csproj": {
+    "D:\\Projects\\tututut\\PlaneTP\\ScenarioGenerator\\ScenarioGenerator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Xavier\\Documents\\School\\tututut\\PlaneTP\\ScenarioGenerator\\ScenarioGenerator.csproj",
+        "projectUniqueName": "D:\\Projects\\tututut\\PlaneTP\\ScenarioGenerator\\ScenarioGenerator.csproj",
         "projectName": "ScenarioGenerator",
-        "projectPath": "C:\\Users\\Xavier\\Documents\\School\\tututut\\PlaneTP\\ScenarioGenerator\\ScenarioGenerator.csproj",
-        "packagesPath": "C:\\Users\\Xavier\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Xavier\\Documents\\School\\tututut\\PlaneTP\\ScenarioGenerator\\obj\\",
+        "projectPath": "D:\\Projects\\tututut\\PlaneTP\\ScenarioGenerator\\ScenarioGenerator.csproj",
+        "packagesPath": "C:\\Users\\xavar\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\tututut\\PlaneTP\\ScenarioGenerator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Xavier\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\xavar\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0-windows"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -58,7 +56,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\xavar\\.dotnet\\sdk\\7.0.407\\RuntimeIdentifierGraph.json"
         }
       }
     }

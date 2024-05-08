@@ -4,8 +4,10 @@ using System.Xml.Serialization;
 
 namespace ScenarioGenerator.Model;
 
+public delegate void OnAirportUpdate(string[] planes);
 public class Scenario : IXmlSerializable
 {
+	private event OnAirportUpdate OnAirportUpdate;
     private List<Airport> _airports;
     public List<Airport> Airports
     {
@@ -59,16 +61,19 @@ public class Scenario : IXmlSerializable
     {
         Airport airport = new Airport(name, x, y, passengerTraffic, cargoTraffic);
         _airports.Add(airport);
+        NotifyAirportChanged();
     }
 	
     public void EditAirport(int id, string name, int x, int y, int passengerTraffic, int cargoTraffic)
     {
         _airports[id] =	new Airport(name, x, y, passengerTraffic, cargoTraffic);
+        NotifyAirportChanged();
     }
 	
     public void DeleteAirport(int id)
     {
         _airports.Remove(_airports[id]);
+        NotifyAirportChanged();
     }
 	
     public void AddPlane(int airportId, string name, string type, int speed, int maintenanceTime, int boardingTime = 0, int unboardingTime = 0)
@@ -128,5 +133,15 @@ public class Scenario : IXmlSerializable
     {
         XmlReader reader = XmlReader.Create("../../../scenario.xml");
         ReadXml(reader);
+    }
+    
+	private void NotifyAirportChanged()
+    {
+        OnAirportUpdate?.Invoke(_airports.Select(a => a.ToString()).ToArray());
+    }
+
+    public void SubscribeAirportUpdate(Action<string[]> updateAirports)
+    {
+        OnAirportUpdate += new OnAirportUpdate(updateAirports);
     }
 }

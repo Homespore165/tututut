@@ -4,8 +4,10 @@ using System.Xml.Serialization;
 
 namespace ScenarioGenerator.Model;
 
+
 public class Airport : IXmlSerializable
 {
+	
 	private string _name;
 	public string Name
 	{
@@ -64,14 +66,6 @@ public class Airport : IXmlSerializable
 		_planes = new List<Plane>();
 	}
 	
-	public delegate void AirportEventHandler();
-	private event AirportEventHandler AirportChanged;
-	public event AirportEventHandler OnPlaneUpdate
-	{
-		add => AirportChanged += value;
-		remove => AirportChanged -= value;
-	}
-	
 	public void AddPlane(string name, string type, int speed, int maintenanceTime, int boardingTime, int unboardingTime)
 	{
 		_planes.Add(PlaneFactory.Instance.CreatePlane(name, type, speed, maintenanceTime, boardingTime, unboardingTime));
@@ -127,6 +121,8 @@ public class Airport : IXmlSerializable
 
 	public override string? ToString()
 	{
-		throw new NotImplementedException();
+		return _name + ";" + _position.X + ";" + _position.Y + ";" + _passengerTraffic + ";" + _cargoTraffic;
 	}
+	
+
 }

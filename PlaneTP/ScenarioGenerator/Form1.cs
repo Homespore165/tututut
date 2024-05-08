@@ -22,7 +22,6 @@ public partial class Form1 : Form
             int cargoTraffic = (int)numAirportCargoTraffic.Value;
             _controller.AddAirport(name, x, y, passengerTraffic, cargoTraffic);
             //TODO: update using events
-            lvwAirport.Items.Add(new ListViewItem(name + ";" + x + ";" + y + ";" + passengerTraffic + ";" + cargoTraffic));
         }
     }
     
@@ -39,7 +38,6 @@ public partial class Form1 : Form
             int cargoTraffic = (int)numAirportCargoTraffic.Value;
             _controller.EditAirport(airportId, name, x, y, passengerTraffic, cargoTraffic);
             //TODO: update using events
-            lvwAirport.Items[airportId] = new ListViewItem(name + ";" + x + ";" + y + ";" + passengerTraffic + ";" + cargoTraffic);
         }
     }
     
@@ -49,7 +47,6 @@ public partial class Form1 : Form
         {
             int airportId = lvwAirport.SelectedIndices[0];
             _controller.DeleteAirport(airportId);
-            lvwAirport.Items.RemoveAt(airportId);
         }
     }
     
@@ -66,7 +63,6 @@ public partial class Form1 : Form
             int unboardingTime = (int)numPlaneUnboardingTime.Value;
             _controller.AddPlane(airportId, name, type, speed, maintenanceTime, boardingTime, unboardingTime);
             //TODO: update using events
-            lvwAirplane.Items.Add(new ListViewItem(name + ";" + type + ";" + speed + ";" + maintenanceTime + ";" + boardingTime + ";" + unboardingTime));
         }
     }
     
@@ -83,5 +79,14 @@ public partial class Form1 : Form
     private void btnEmpty_Click(object sender, EventArgs e)
     {
         _controller.EmptyScenario();
+    }
+    
+    public void UpdateAirports(string[] airports)
+    {
+        lvwAirport.Items.Clear();
+        foreach (string airport in airports)
+        {
+            lvwAirport.Items.Add(airport);
+        }
     }
 }

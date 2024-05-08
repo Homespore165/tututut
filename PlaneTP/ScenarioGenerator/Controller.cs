@@ -10,8 +10,8 @@ public class Controller
 	
 	private Scenario _scenario;
 	
-	private Form _form;
-	public Form Form
+	private Form1 _form;
+	public Form1 Form
 	{
 		get => _form;
 		set => _form = value;
@@ -21,6 +21,7 @@ public class Controller
 	{
 		_scenario = new Scenario();
 		_form = new Form1(this);
+		_scenario.SubscribeAirportUpdate(_form.UpdateAirports);
 	}
 	
 	public void AddPlane(int airportId, string name, string type, int speed, int maintenanceTime, int boardingTime = 0, int unboardingTime = 0)
