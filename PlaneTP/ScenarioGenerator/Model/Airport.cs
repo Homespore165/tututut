@@ -58,8 +58,11 @@ public class Airport : IXmlSerializable
 		_cargoTraffic = cargoTraffic;
 		_planes = new List<Plane>();
 	}
-	
-	private Airport() {}
+
+	private Airport()
+	{
+		_planes = new List<Plane>();
+	}
 	
 	public delegate void AirportEventHandler();
 	private event AirportEventHandler AirportChanged;
@@ -72,7 +75,6 @@ public class Airport : IXmlSerializable
 	public void AddPlane(string name, string type, int speed, int maintenanceTime, int boardingTime, int unboardingTime)
 	{
 		_planes.Add(PlaneFactory.Instance.CreatePlane(name, type, speed, maintenanceTime, boardingTime, unboardingTime));
-		Console.WriteLine(name);
 	}
 	
 	public XmlSchema? GetSchema()
@@ -80,9 +82,59 @@ public class Airport : IXmlSerializable
 		return null;
 	}
 
+	// public void ReadXml(XmlReader reader)
+	// {
+	// 	reader.ReadStartElement();
+	//
+	// 	_name = reader.ReadElementString("Name");
+	//
+	// 	XmlSerializer positionSerializer = new XmlSerializer(typeof(Position));
+	// 	_position = (Position)positionSerializer.Deserialize(reader);
+	//
+	// 	_passengerTraffic = int.Parse(reader.ReadElementString("PassengerTraffic"));
+	// 	_cargoTraffic = int.Parse(reader.ReadElementString("CargoTraffic"));
+	//
+	// 	reader.ReadStartElement("Planes");
+	//
+	// 	while (reader.IsStartElement())
+	// 	{
+	// 		Console.WriteLine(reader.Value);
+	// 		string planeType = reader.Name.Replace("Plane", "");
+	// 		string planeName = reader.ReadElementString("Name");
+	// 		Position planePosition = (Position)positionSerializer.Deserialize(reader);
+	// 		int planeSpeed = int.Parse(reader.ReadElementString("Speed"));
+	// 		int planeMaintenanceTime = int.Parse(reader.ReadElementString("MaintenanceTime"));
+	// 		int boardingTime = reader.IsStartElement("BoardingTime") ? int.Parse(reader.ReadElementString("BoardingTime")) : 0;
+	// 		int unboardingTime = reader.IsStartElement("UnboardTime") ? int.Parse(reader.ReadElementString("UnboardTime")) : 0;
+	// 		_planes.Add(PlaneFactory.Instance.CreatePlane(planeName, planeType, planeSpeed, planeMaintenanceTime, boardingTime, unboardingTime));
+	// 	}
+	//
+	// 	reader.ReadEndElement();
+	// 	reader.ReadEndElement();
+	// }
+	
 	public void ReadXml(XmlReader reader)
 	{
-		throw new NotImplementedException();
+		reader.ReadStartElement();
+		_name = reader.ReadElementString("Name");
+		XmlSerializer positionSerializer = new XmlSerializer(typeof(Position));
+		_position = (Position)positionSerializer.Deserialize(reader);
+		_passengerTraffic = int.Parse(reader.ReadElementString("PassengerTraffic"));
+		_cargoTraffic = int.Parse(reader.ReadElementString("CargoTraffic"));
+		reader.ReadStartElement("Planes");
+		while (reader.NodeType != XmlNodeType.EndElement)
+		{
+			string planeType = reader.Name.Replace("Plane", "");
+			reader.Read();
+			string planeName = reader.ReadElementString("Name");
+			int planeSpeed = int.Parse(reader.ReadElementString("Speed"));
+			int planeMaintenanceTime = int.Parse(reader.ReadElementString("MaintenanceTime"));
+			int boardingTime = reader.IsStartElement("BoardingTime") ? int.Parse(reader.ReadElementString("BoardingTime")) : 0;
+			int unboardingTime = reader.IsStartElement("UnboardTime") ? int.Parse(reader.ReadElementString("UnboardTime")) : 0;
+			_planes.Add(PlaneFactory.Instance.CreatePlane(planeName, planeType, planeSpeed, planeMaintenanceTime, boardingTime, unboardingTime));
+			reader.ReadEndElement();
+		}
+		reader.ReadEndElement();
 	}
 
 	public void WriteXml(XmlWriter writer)

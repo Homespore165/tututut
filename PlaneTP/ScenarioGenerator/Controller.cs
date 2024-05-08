@@ -1,4 +1,5 @@
-﻿using ScenarioGenerator.Model;
+﻿using System.Xml;
+using ScenarioGenerator.Model;
 
 namespace ScenarioGenerator;
 
@@ -55,15 +56,5 @@ public class Controller
 	public void EmptyScenario()
 	{
 		_scenario = new Scenario();
-	}
-
-	public void Test()
-	{
-		AddAirport("abc", 1, 2, 3, 4);
-		AddAirport("def", 5, 6, 7, 8);
-		AddAirport("ghi", 5, 6, 7, 8);
-		AddPlane(0, "jkl", "Cargo", 6, 7, 8);
-		AddPlane(0, "jkl", "Cargo", 6, 7, 8);
-		_scenario.Save();
 	}
 }

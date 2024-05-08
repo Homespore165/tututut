@@ -11,7 +11,6 @@ static class Program
 		// To customize application configuration such as set high DPI settings or default font,
 		// see https://aka.ms/applicationconfiguration.
 		ApplicationConfiguration.Initialize();
-		//Application.Run(Controller.Instance.Form);
-		Controller.Instance.Test();
+		Application.Run(Controller.Instance.Form);
 	}
 }

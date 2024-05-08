@@ -35,7 +35,12 @@ public class Position : IXmlSerializable
 
 	public void ReadXml(XmlReader reader)
 	{
-		throw new NotImplementedException();
+		reader.ReadStartElement();
+
+		_x = int.Parse(reader.ReadElementString("X"));
+		_y = int.Parse(reader.ReadElementString("Y"));
+
+		reader.ReadEndElement(); 
 	}
 
 	public void WriteXml(XmlWriter writer)
