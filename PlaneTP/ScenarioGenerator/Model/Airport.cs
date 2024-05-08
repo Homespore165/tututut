@@ -140,4 +140,9 @@ public class Airport : IXmlSerializable
 	{
 		OnPlaneUpdate = null;
 	}
+
+	public string[] GetPlanes()
+	{
+		return _planes.Select(p => p.ToString()).ToArray();
+	}
 }

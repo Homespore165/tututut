@@ -60,4 +60,9 @@ public class Controller
 	{
 		_scenario = new Scenario();
 	}
+
+	public string[] GetPlanes(int airportId)
+	{
+		return _scenario.GetPlanes(airportId);
+	}
 }

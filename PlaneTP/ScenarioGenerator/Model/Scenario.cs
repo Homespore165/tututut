@@ -150,4 +150,9 @@ public class Scenario : IXmlSerializable
         _airports.ForEach(a => a.UnsubcribeAll());
         _airports.ForEach(a => a.SubscribePlaneChanged(updatePlanes));
     }
+
+    public string[] GetPlanes(int airportId)
+    {
+        return _airports[airportId].GetPlanes();
+    }
 }

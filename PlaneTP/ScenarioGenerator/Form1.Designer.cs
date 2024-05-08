@@ -89,6 +89,7 @@ partial class Form1
         lvwAirport.View = View.Details;
         lvwAirport.Columns.Add("Airports", lvwAirport.Width - 4);
         lvwAirport.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        lvwAirport.SelectedIndexChanged += lvwAirport_SelectedIndexChanged;
         // 
         // lblAirportName
         // 

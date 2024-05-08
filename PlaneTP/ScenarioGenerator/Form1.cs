@@ -79,6 +79,18 @@ public partial class Form1 : Form
         _controller.EmptyScenario();
     }
     
+    private void lvwAirport_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            UpdatePlanes(_controller.GetPlanes(lvwAirport.SelectedIndices[0]));
+        }
+        catch (Exception)
+        {
+            // ignored
+        }
+    }
+    
     public void UpdateAirports(string[] airports)
     {
         lvwAirport.Items.Clear();
@@ -90,7 +102,6 @@ public partial class Form1 : Form
     
     public void UpdatePlanes(string[] planes)
     {
-        Console.WriteLine("Updating planes");
         lvwAirplane.Items.Clear();
         foreach (string plane in planes)
         {
