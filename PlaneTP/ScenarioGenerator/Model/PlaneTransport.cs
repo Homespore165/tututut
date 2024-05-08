@@ -36,4 +36,9 @@ public abstract class PlaneTransport : Plane
 		writer.WriteElementString("BoardingTime", _boardingTime.ToString());
 		writer.WriteElementString("UnboardTime", _unboardTime.ToString());
 	}
+	
+	public override string? ToString()
+	{
+		return base.ToString() + ";" + _boardingTime + ";" + _unboardTime;
+	}
 }

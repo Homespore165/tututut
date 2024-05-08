@@ -22,6 +22,7 @@ public class Controller
 		_scenario = new Scenario();
 		_form = new Form1(this);
 		_scenario.SubscribeAirportUpdate(_form.UpdateAirports);
+		_scenario.SubscribePlaneUpdate(_form.UpdatePlanes);
 	}
 	
 	public void AddPlane(int airportId, string name, string type, int speed, int maintenanceTime, int boardingTime = 0, int unboardingTime = 0)
@@ -32,6 +33,7 @@ public class Controller
 	public void AddAirport(string name, int x, int y, int passengerTraffic, int cargoTraffic)
 	{
 		_scenario.AddAirport(name, x, y, passengerTraffic, cargoTraffic);
+		_scenario.SubscribePlaneUpdate(_form.UpdatePlanes);
 	}
 
 	public void EditAirport(int airportId, string name, int x, int y, int passengerTraffic, int cargoTraffic)

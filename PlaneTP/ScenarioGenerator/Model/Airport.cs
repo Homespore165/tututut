@@ -4,10 +4,10 @@ using System.Xml.Serialization;
 
 namespace ScenarioGenerator.Model;
 
-
+public delegate void OnPlaneUpdate(string[] planes);
 public class Airport : IXmlSerializable
 {
-	
+	private event OnPlaneUpdate OnPlaneUpdate;
 	private string _name;
 	public string Name
 	{
@@ -69,6 +69,8 @@ public class Airport : IXmlSerializable
 	public void AddPlane(string name, string type, int speed, int maintenanceTime, int boardingTime, int unboardingTime)
 	{
 		_planes.Add(PlaneFactory.Instance.CreatePlane(name, type, speed, maintenanceTime, boardingTime, unboardingTime));
+		_planes.ForEach(p => Console.WriteLine(p.ToString()));
+		NotifyPlaneChanged();
 	}
 	
 	public XmlSchema? GetSchema()
@@ -124,5 +126,18 @@ public class Airport : IXmlSerializable
 		return _name + ";" + _position.X + ";" + _position.Y + ";" + _passengerTraffic + ";" + _cargoTraffic;
 	}
 	
+	private void NotifyPlaneChanged()
+	{
+		OnPlaneUpdate?.Invoke(_planes.Select(p => p.ToString()).ToArray());
+	}
+	
+	public void SubscribePlaneChanged(Action<string[]> updatePlanes)
+	{
+		OnPlaneUpdate += new OnPlaneUpdate(updatePlanes);
+	}
 
+	public void UnsubcribeAll()
+	{
+		OnPlaneUpdate = null;
+	}
 }

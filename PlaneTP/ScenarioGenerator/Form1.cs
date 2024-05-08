@@ -21,7 +21,6 @@ public partial class Form1 : Form
             int passengerTraffic = (int)numAirportPassengerTraffic.Value;
             int cargoTraffic = (int)numAirportCargoTraffic.Value;
             _controller.AddAirport(name, x, y, passengerTraffic, cargoTraffic);
-            //TODO: update using events
         }
     }
     
@@ -37,7 +36,6 @@ public partial class Form1 : Form
             int passengerTraffic = (int)numAirportPassengerTraffic.Value;
             int cargoTraffic = (int)numAirportCargoTraffic.Value;
             _controller.EditAirport(airportId, name, x, y, passengerTraffic, cargoTraffic);
-            //TODO: update using events
         }
     }
     
@@ -87,6 +85,16 @@ public partial class Form1 : Form
         foreach (string airport in airports)
         {
             lvwAirport.Items.Add(airport);
+        }
+    }
+    
+    public void UpdatePlanes(string[] planes)
+    {
+        Console.WriteLine("Updating planes");
+        lvwAirplane.Items.Clear();
+        foreach (string plane in planes)
+        {
+            lvwAirplane.Items.Add(plane);
         }
     }
 }

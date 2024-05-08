@@ -144,4 +144,10 @@ public class Scenario : IXmlSerializable
     {
         OnAirportUpdate += new OnAirportUpdate(updateAirports);
     }
+
+    public void SubscribePlaneUpdate(Action<string[]> updatePlanes)
+    {
+        _airports.ForEach(a => a.UnsubcribeAll());
+        _airports.ForEach(a => a.SubscribePlaneChanged(updatePlanes));
+    }
 }

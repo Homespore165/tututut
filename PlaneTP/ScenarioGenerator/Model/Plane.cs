@@ -60,4 +60,9 @@ public abstract class Plane : IXmlSerializable
 		writer.WriteElementString("Speed", _speed.ToString());
 		writer.WriteElementString("MaintenanceTime", _maintenanceTime.ToString());
 	}
+	
+	public override string? ToString()
+	{
+		return _name + ";" + _speed + ";" + _maintenanceTime;
+	}
 }
