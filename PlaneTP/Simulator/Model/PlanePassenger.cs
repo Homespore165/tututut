@@ -1,4 +1,4 @@
-﻿namespace ScenarioGenerator.Model;
+﻿namespace Simulator.Model;
 
 public class PlanePassenger : PlaneTransport
 {

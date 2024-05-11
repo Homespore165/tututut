@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simulator.Model
+namespace Simulator.Model;
+
+public class FlyingRecon : FlyingSupport
 {
-    internal class FlyingRecon
-    {
+    public FlyingRecon() { }
+
+    private Position CalculateCircle(int t) {
+        Position test = new Position(0, 0);
+        return test;
     }
 }

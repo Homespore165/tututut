@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simulator.Model
+namespace Simulator.Model;
+
+public class Maintenance : State
 {
-    internal class Maintenance
-    {
-    }
+    int timeToCompletion;
+    public Maintenance() { } 
 }

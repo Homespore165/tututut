@@ -2,7 +2,7 @@
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace ScenarioGenerator.Model;
+namespace Simulator.Model;
 
 public abstract class Plane : IXmlSerializable
 {

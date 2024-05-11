@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simulator.Model
+namespace Simulator.Model;
+
+public class Boarding : State
 {
-    internal class Boarding
-    {
-    }
+    int timeToCompletion;
+    public Boarding() { }
 }

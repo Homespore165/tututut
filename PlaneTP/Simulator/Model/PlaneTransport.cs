@@ -1,7 +1,7 @@
 ﻿using System.Xml;
 using System.Xml.Serialization;
 
-namespace ScenarioGenerator.Model;
+namespace Simulator.Model;
 
 public abstract class PlaneTransport : Plane
 {
