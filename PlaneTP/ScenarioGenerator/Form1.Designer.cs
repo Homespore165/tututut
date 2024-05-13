@@ -49,9 +49,9 @@ partial class Form1
         lvwAirplane = new ListView();
         planeName = new ColumnHeader();
         speed = new ColumnHeader();
+        maintenanceTime = new ColumnHeader();
         boardingTime = new ColumnHeader();
         unboardingTime = new ColumnHeader();
-        maintenanceTime = new ColumnHeader();
         btnEditAirport = new Button();
         btnRemoveAirport = new Button();
         txbPlaneName = new TextBox();
@@ -251,6 +251,12 @@ partial class Form1
         // 
         speed.Text = "Speed";
         // 
+        // maintenanceTime
+        // 
+        maintenanceTime.DisplayIndex = 4;
+        maintenanceTime.Text = "Maintenance Time";
+        maintenanceTime.Width = 120;
+        // 
         // boardingTime
         // 
         boardingTime.DisplayIndex = 2;
@@ -262,12 +268,6 @@ partial class Form1
         unboardingTime.DisplayIndex = 3;
         unboardingTime.Text = "Unboarding Time";
         unboardingTime.Width = 120;
-        // 
-        // maintenanceTime
-        // 
-        maintenanceTime.DisplayIndex = 4;
-        maintenanceTime.Text = "Maintenance Time";
-        maintenanceTime.Width = 120;
         // 
         // btnEditAirport
         // 
@@ -556,7 +556,7 @@ partial class Form1
         Controls.Add(lblAirportName);
         Controls.Add(lvwAirport);
         Name = "Form1";
-        Text = "Form1";
+        Text = "Scenario Generator";
         ((System.ComponentModel.ISupportInitialize)numAirportPositionX).EndInit();
         ((System.ComponentModel.ISupportInitialize)numAirportPositionY).EndInit();
         ((System.ComponentModel.ISupportInitialize)numAirportPassengerTraffic).EndInit();

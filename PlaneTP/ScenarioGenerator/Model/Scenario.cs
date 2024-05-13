@@ -72,6 +72,7 @@ public class Scenario : IXmlSerializable
 	
     public void DeleteAirport(int id)
     {
+        _airports[id].ClearPlanes();
         _airports.Remove(_airports[id]);
         NotifyAirportChanged();
     }

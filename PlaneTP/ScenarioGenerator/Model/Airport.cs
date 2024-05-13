@@ -102,6 +102,12 @@ public class Airport : IXmlSerializable
 		reader.ReadEndElement();
 	}
 
+	public void ClearPlanes()
+	{
+		_planes.Clear();
+		NotifyPlaneChanged();
+	}
+
 	public void WriteXml(XmlWriter writer)
 	{
 		writer.WriteElementString("Name", Name);
