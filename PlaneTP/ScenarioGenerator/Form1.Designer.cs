@@ -66,6 +66,9 @@ partial class Form1
         btnSave = new Button();
         btnLoad = new Button();
         btnEmpty = new Button();
+        coordsPickerBtn = new Button();
+        ((System.ComponentModel.ISupportInitialize)numAirportPositionX).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)numAirportPositionY).BeginInit();
         ((System.ComponentModel.ISupportInitialize)numAirportPassengerTraffic).BeginInit();
         ((System.ComponentModel.ISupportInitialize)numAirportCargoTraffic).BeginInit();
         ((System.ComponentModel.ISupportInitialize)numPlaneSpeed).BeginInit();
@@ -79,104 +82,114 @@ partial class Form1
         // 
         // lvwAirport
         // 
-        lvwAirport.Location = new Point(49, 26);
-        lvwAirport.Margin = new Padding(4, 5, 4, 5);
+        lvwAirport.Location = new Point(34, 16);
+        lvwAirport.MultiSelect = false;
         lvwAirport.Name = "lvwAirport";
-        lvwAirport.Size = new Size(1343, 166);
+        lvwAirport.Size = new Size(941, 101);
         lvwAirport.TabIndex = 0;
         lvwAirport.UseCompatibleStateImageBehavior = false;
-        lvwAirport.MultiSelect = false;
         lvwAirport.View = View.Details;
-        lvwAirport.Columns.Add("Airports", lvwAirport.Width - 4);
-        lvwAirport.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         lvwAirport.SelectedIndexChanged += lvwAirport_SelectedIndexChanged;
         // 
         // lblAirportName
         // 
         lblAirportName.AutoSize = true;
-        lblAirportName.Location = new Point(49, 200);
+        lblAirportName.Location = new Point(34, 120);
+        lblAirportName.Margin = new Padding(2, 0, 2, 0);
         lblAirportName.Name = "lblAirportName";
-        lblAirportName.Size = new Size(68, 25);
+        lblAirportName.Size = new Size(45, 15);
         lblAirportName.TabIndex = 2;
         lblAirportName.Text = "Name :";
         // 
         // lblAirportPositionX
         // 
         lblAirportPositionX.AutoSize = true;
-        lblAirportPositionX.Location = new Point(279, 200);
+        lblAirportPositionX.Location = new Point(259, 120);
+        lblAirportPositionX.Margin = new Padding(2, 0, 2, 0);
         lblAirportPositionX.Name = "lblAirportPositionX";
-        lblAirportPositionX.Size = new Size(100, 25);
+        lblAirportPositionX.Size = new Size(66, 15);
         lblAirportPositionX.TabIndex = 3;
         lblAirportPositionX.Text = "Position X :";
         // 
-        // txbAirportPositionX
+        // numAirportPositionX
         // 
-        numAirportPositionX.Location = new Point(386, 200);
+        numAirportPositionX.Location = new Point(323, 120);
+        numAirportPositionX.Margin = new Padding(2);
+        numAirportPositionX.Maximum = new decimal(new int[] { 786, 0, 0, 0 });
         numAirportPositionX.Name = "numAirportPositionX";
-        numAirportPositionX.Size = new Size(57, 31);
+        numAirportPositionX.Size = new Size(51, 23);
         numAirportPositionX.TabIndex = 4;
         // 
-        // txbAirportPositionY
+        // numAirportPositionY
         // 
-        this.numAirportPositionY.Location = new Point(555, 200);
-        this.numAirportPositionY.Name = "numAirportPositionY";
-        this.numAirportPositionY.Size = new Size(48, 31);
-        this.numAirportPositionY.TabIndex = 6;
+        numAirportPositionY.Location = new Point(441, 120);
+        numAirportPositionY.Margin = new Padding(2);
+        numAirportPositionY.Maximum = new decimal(new int[] { 395, 0, 0, 0 });
+        numAirportPositionY.Name = "numAirportPositionY";
+        numAirportPositionY.Size = new Size(45, 23);
+        numAirportPositionY.TabIndex = 6;
         // 
         // lblAirportPositionY
         // 
         lblAirportPositionY.AutoSize = true;
-        lblAirportPositionY.Location = new Point(449, 200);
+        lblAirportPositionY.Location = new Point(378, 120);
+        lblAirportPositionY.Margin = new Padding(2, 0, 2, 0);
         lblAirportPositionY.Name = "lblAirportPositionY";
-        lblAirportPositionY.Size = new Size(99, 25);
+        lblAirportPositionY.Size = new Size(66, 15);
         lblAirportPositionY.TabIndex = 5;
         lblAirportPositionY.Text = "Position Y :";
         // 
         // txbAirportName
         // 
-        txbAirportName.Location = new Point(123, 200);
+        txbAirportName.Location = new Point(86, 120);
+        txbAirportName.Margin = new Padding(2);
         txbAirportName.Name = "txbAirportName";
-        txbAirportName.Size = new Size(150, 31);
+        txbAirportName.Size = new Size(106, 23);
         txbAirportName.TabIndex = 7;
         // 
-        // numAirportMaxPassenger
+        // numAirportPassengerTraffic
         // 
-        numAirportPassengerTraffic.Location = new Point(780, 200);
+        numAirportPassengerTraffic.Location = new Point(781, 120);
+        numAirportPassengerTraffic.Margin = new Padding(2);
+        numAirportPassengerTraffic.Maximum = new decimal(new int[] { int.MaxValue, 0, 0, 0 });
         numAirportPassengerTraffic.Name = "numAirportPassengerTraffic";
-        numAirportPassengerTraffic.Size = new Size(68, 31);
-        numAirportPassengerTraffic.Maximum = Int32.MaxValue;
+        numAirportPassengerTraffic.Size = new Size(48, 23);
         numAirportPassengerTraffic.TabIndex = 11;
         // 
         // lblAirportPassengerTraffic
         // 
         lblAirportPassengerTraffic.AutoSize = true;
-        lblAirportPassengerTraffic.Location = new Point(620, 200);
+        lblAirportPassengerTraffic.Location = new Point(669, 120);
+        lblAirportPassengerTraffic.Margin = new Padding(2, 0, 2, 0);
         lblAirportPassengerTraffic.Name = "lblAirportPassengerTraffic";
-        lblAirportPassengerTraffic.Size = new Size(102, 25);
+        lblAirportPassengerTraffic.Size = new Size(101, 15);
         lblAirportPassengerTraffic.TabIndex = 14;
         lblAirportPassengerTraffic.Text = "Passenger Traffic :";
         // 
-        // numAirportMinCargo
+        // numAirportCargoTraffic
         // 
-        numAirportCargoTraffic.Location = new Point(980, 200);
+        numAirportCargoTraffic.Location = new Point(921, 120);
+        numAirportCargoTraffic.Margin = new Padding(2);
         numAirportCargoTraffic.Name = "numAirportCargoTraffic";
-        numAirportCargoTraffic.Size = new Size(72, 31);
+        numAirportCargoTraffic.Size = new Size(50, 23);
         numAirportCargoTraffic.TabIndex = 13;
         // 
-        // lblAirportMinCargo
+        // lblAirportCargoTraffic
         // 
         lblAirportCargoTraffic.AutoSize = true;
-        lblAirportCargoTraffic.Location = new Point(860, 200);
+        lblAirportCargoTraffic.Location = new Point(837, 120);
+        lblAirportCargoTraffic.Margin = new Padding(2, 0, 2, 0);
         lblAirportCargoTraffic.Name = "lblAirportCargoTraffic";
-        lblAirportCargoTraffic.Size = new Size(99, 25);
+        lblAirportCargoTraffic.Size = new Size(80, 15);
         lblAirportCargoTraffic.TabIndex = 12;
         lblAirportCargoTraffic.Text = "Cargo Traffic :";
         // 
         // btnAddAirport
         // 
-        btnAddAirport.Location = new Point(49, 237);
+        btnAddAirport.Location = new Point(34, 142);
+        btnAddAirport.Margin = new Padding(2);
         btnAddAirport.Name = "btnAddAirport";
-        btnAddAirport.Size = new Size(1343, 34);
+        btnAddAirport.Size = new Size(940, 20);
         btnAddAirport.TabIndex = 16;
         btnAddAirport.Text = "Add";
         btnAddAirport.UseVisualStyleBackColor = true;
@@ -184,22 +197,20 @@ partial class Form1
         // 
         // lvwAirplane
         // 
-        lvwAirplane.Location = new Point(49, 359);
-        lvwAirplane.Margin = new Padding(4, 5, 4, 5);
+        lvwAirplane.Location = new Point(34, 215);
+        lvwAirplane.MultiSelect = false;
         lvwAirplane.Name = "lvwAirplane";
-        lvwAirplane.Size = new Size(1343, 166);
+        lvwAirplane.Size = new Size(941, 101);
         lvwAirplane.TabIndex = 18;
         lvwAirplane.UseCompatibleStateImageBehavior = false;
-        lvwAirplane.MultiSelect = false;
         lvwAirplane.View = View.Details;
-        lvwAirplane.Columns.Add("Airplanes", lvwAirplane.Width - 4);
-        lvwAirplane.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         // 
         // btnEditAirport
         // 
-        btnEditAirport.Location = new Point(49, 277);
+        btnEditAirport.Location = new Point(34, 166);
+        btnEditAirport.Margin = new Padding(2);
         btnEditAirport.Name = "btnEditAirport";
-        btnEditAirport.Size = new Size(1343, 34);
+        btnEditAirport.Size = new Size(940, 20);
         btnEditAirport.TabIndex = 17;
         btnEditAirport.Text = "Edit";
         btnEditAirport.UseVisualStyleBackColor = true;
@@ -207,9 +218,10 @@ partial class Form1
         // 
         // btnRemoveAirport
         // 
-        btnRemoveAirport.Location = new Point(49, 317);
+        btnRemoveAirport.Location = new Point(34, 190);
+        btnRemoveAirport.Margin = new Padding(2);
         btnRemoveAirport.Name = "btnRemoveAirport";
-        btnRemoveAirport.Size = new Size(1343, 34);
+        btnRemoveAirport.Size = new Size(940, 20);
         btnRemoveAirport.TabIndex = 19;
         btnRemoveAirport.Text = "Remove";
         btnRemoveAirport.UseVisualStyleBackColor = true;
@@ -217,26 +229,29 @@ partial class Form1
         // 
         // txbPlaneName
         // 
-        txbPlaneName.Location = new Point(123, 530);
+        txbPlaneName.Location = new Point(86, 318);
+        txbPlaneName.Margin = new Padding(2);
         txbPlaneName.Name = "txbPlaneName";
-        txbPlaneName.Size = new Size(150, 31);
+        txbPlaneName.Size = new Size(106, 23);
         txbPlaneName.TabIndex = 21;
         // 
         // lblPlaneName
         // 
         lblPlaneName.AutoSize = true;
-        lblPlaneName.Location = new Point(49, 530);
+        lblPlaneName.Location = new Point(34, 318);
+        lblPlaneName.Margin = new Padding(2, 0, 2, 0);
         lblPlaneName.Name = "lblPlaneName";
-        lblPlaneName.Size = new Size(68, 25);
+        lblPlaneName.Size = new Size(45, 15);
         lblPlaneName.TabIndex = 20;
         lblPlaneName.Text = "Name :";
         // 
         // lblPlaneType
         // 
         lblPlaneType.AutoSize = true;
-        lblPlaneType.Location = new Point(279, 530);
+        lblPlaneType.Location = new Point(195, 318);
+        lblPlaneType.Margin = new Padding(2, 0, 2, 0);
         lblPlaneType.Name = "lblPlaneType";
-        lblPlaneType.Size = new Size(58, 25);
+        lblPlaneType.Size = new Size(37, 15);
         lblPlaneType.TabIndex = 22;
         lblPlaneType.Text = "Type :";
         // 
@@ -244,66 +259,74 @@ partial class Form1
         // 
         cbxPlaneType.FormattingEnabled = true;
         cbxPlaneType.Items.AddRange(new object[] { "Passenger", "Cargo", "Fire", "Recon", "Rescue" });
-        cbxPlaneType.Location = new Point(343, 530);
+        cbxPlaneType.Location = new Point(240, 318);
+        cbxPlaneType.Margin = new Padding(2);
         cbxPlaneType.Name = "cbxPlaneType";
-        cbxPlaneType.Size = new Size(182, 33);
+        cbxPlaneType.Size = new Size(129, 23);
         cbxPlaneType.TabIndex = 23;
         // 
         // numPlaneSpeed
         // 
-        numPlaneSpeed.Location = new Point(609, 530);
+        numPlaneSpeed.Location = new Point(426, 318);
+        numPlaneSpeed.Margin = new Padding(2);
         numPlaneSpeed.Name = "numPlaneSpeed";
-        numPlaneSpeed.Size = new Size(72, 31);
+        numPlaneSpeed.Size = new Size(50, 23);
         numPlaneSpeed.TabIndex = 25;
         // 
         // lblPlaneSpeed
         // 
         lblPlaneSpeed.AutoSize = true;
-        lblPlaneSpeed.Location = new Point(531, 530);
+        lblPlaneSpeed.Location = new Point(372, 318);
+        lblPlaneSpeed.Margin = new Padding(2, 0, 2, 0);
         lblPlaneSpeed.Name = "lblPlaneSpeed";
-        lblPlaneSpeed.Size = new Size(71, 25);
+        lblPlaneSpeed.Size = new Size(45, 15);
         lblPlaneSpeed.TabIndex = 24;
         lblPlaneSpeed.Text = "Speed :";
         // 
         // numPlaneBoardingTime
         // 
-        numPlaneBoardingTime.Location = new Point(824, 530);
+        numPlaneBoardingTime.Location = new Point(577, 318);
+        numPlaneBoardingTime.Margin = new Padding(2);
         numPlaneBoardingTime.Name = "numPlaneBoardingTime";
-        numPlaneBoardingTime.Size = new Size(72, 31);
+        numPlaneBoardingTime.Size = new Size(50, 23);
         numPlaneBoardingTime.TabIndex = 27;
         // 
         // lblPlaneBoardingTime
         // 
         lblPlaneBoardingTime.AutoSize = true;
-        lblPlaneBoardingTime.Location = new Point(687, 530);
+        lblPlaneBoardingTime.Location = new Point(481, 318);
+        lblPlaneBoardingTime.Margin = new Padding(2, 0, 2, 0);
         lblPlaneBoardingTime.Name = "lblPlaneBoardingTime";
-        lblPlaneBoardingTime.Size = new Size(131, 25);
+        lblPlaneBoardingTime.Size = new Size(87, 15);
         lblPlaneBoardingTime.TabIndex = 26;
         lblPlaneBoardingTime.Text = "BoardingTime :";
         lblPlaneBoardingTime.UseMnemonic = false;
         // 
         // numPlaneUnboardingTime
         // 
-        numPlaneUnboardingTime.Location = new Point(1062, 530);
+        numPlaneUnboardingTime.Location = new Point(743, 318);
+        numPlaneUnboardingTime.Margin = new Padding(2);
         numPlaneUnboardingTime.Name = "numPlaneUnboardingTime";
-        numPlaneUnboardingTime.Size = new Size(72, 31);
+        numPlaneUnboardingTime.Size = new Size(50, 23);
         numPlaneUnboardingTime.TabIndex = 29;
         // 
         // lblPlaneUnboardingTime
         // 
         lblPlaneUnboardingTime.AutoSize = true;
-        lblPlaneUnboardingTime.Location = new Point(902, 530);
+        lblPlaneUnboardingTime.Location = new Point(631, 318);
+        lblPlaneUnboardingTime.Margin = new Padding(2, 0, 2, 0);
         lblPlaneUnboardingTime.Name = "lblPlaneUnboardingTime";
-        lblPlaneUnboardingTime.Size = new Size(154, 25);
+        lblPlaneUnboardingTime.Size = new Size(102, 15);
         lblPlaneUnboardingTime.TabIndex = 28;
         lblPlaneUnboardingTime.Text = "UnboardingTime :";
         lblPlaneUnboardingTime.UseMnemonic = false;
         // 
         // btnPlaneAdd
         // 
-        btnPlaneAdd.Location = new Point(49, 569);
+        btnPlaneAdd.Location = new Point(34, 341);
+        btnPlaneAdd.Margin = new Padding(2);
         btnPlaneAdd.Name = "btnPlaneAdd";
-        btnPlaneAdd.Size = new Size(1343, 34);
+        btnPlaneAdd.Size = new Size(940, 20);
         btnPlaneAdd.TabIndex = 30;
         btnPlaneAdd.Text = "Add";
         btnPlaneAdd.UseVisualStyleBackColor = true;
@@ -311,17 +334,19 @@ partial class Form1
         // 
         // numPlaneMaintenanceTime
         // 
-        numPlaneMaintenanceTime.Location = new Point(1305, 531);
+        numPlaneMaintenanceTime.Location = new Point(914, 319);
+        numPlaneMaintenanceTime.Margin = new Padding(2);
         numPlaneMaintenanceTime.Name = "numPlaneMaintenanceTime";
-        numPlaneMaintenanceTime.Size = new Size(72, 31);
+        numPlaneMaintenanceTime.Size = new Size(50, 23);
         numPlaneMaintenanceTime.TabIndex = 32;
         // 
         // lblPlaneMaintenanceTime
         // 
         lblPlaneMaintenanceTime.AutoSize = true;
-        lblPlaneMaintenanceTime.Location = new Point(1140, 530);
+        lblPlaneMaintenanceTime.Location = new Point(798, 318);
+        lblPlaneMaintenanceTime.Margin = new Padding(2, 0, 2, 0);
         lblPlaneMaintenanceTime.Name = "lblPlaneMaintenanceTime";
-        lblPlaneMaintenanceTime.Size = new Size(159, 25);
+        lblPlaneMaintenanceTime.Size = new Size(108, 15);
         lblPlaneMaintenanceTime.TabIndex = 31;
         lblPlaneMaintenanceTime.Text = "MaintenanceTime :";
         lblPlaneMaintenanceTime.UseMnemonic = false;
@@ -329,56 +354,63 @@ partial class Form1
         // lblFrequencyFire
         // 
         lblFrequencyFire.AutoSize = true;
-        lblFrequencyFire.Location = new Point(49, 615);
+        lblFrequencyFire.Location = new Point(34, 369);
+        lblFrequencyFire.Margin = new Padding(2, 0, 2, 0);
         lblFrequencyFire.Name = "lblFrequencyFire";
-        lblFrequencyFire.Size = new Size(130, 25);
+        lblFrequencyFire.Size = new Size(87, 15);
         lblFrequencyFire.TabIndex = 33;
         lblFrequencyFire.Text = "FrequencyFire :";
         // 
         // numFrequencyFire
         // 
-        numFrequencyFire.Location = new Point(185, 615);
+        numFrequencyFire.Location = new Point(130, 369);
+        numFrequencyFire.Margin = new Padding(2);
         numFrequencyFire.Name = "numFrequencyFire";
-        numFrequencyFire.Size = new Size(72, 31);
+        numFrequencyFire.Size = new Size(50, 23);
         numFrequencyFire.TabIndex = 34;
         // 
         // numFrequencyRecon
         // 
-        numFrequencyRecon.Location = new Point(435, 615);
+        numFrequencyRecon.Location = new Point(304, 369);
+        numFrequencyRecon.Margin = new Padding(2);
         numFrequencyRecon.Name = "numFrequencyRecon";
-        numFrequencyRecon.Size = new Size(72, 31);
+        numFrequencyRecon.Size = new Size(50, 23);
         numFrequencyRecon.TabIndex = 36;
         // 
         // lblFrequencyRecon
         // 
         lblFrequencyRecon.AutoSize = true;
-        lblFrequencyRecon.Location = new Point(279, 615);
+        lblFrequencyRecon.Location = new Point(195, 369);
+        lblFrequencyRecon.Margin = new Padding(2, 0, 2, 0);
         lblFrequencyRecon.Name = "lblFrequencyRecon";
-        lblFrequencyRecon.Size = new Size(150, 25);
+        lblFrequencyRecon.Size = new Size(101, 15);
         lblFrequencyRecon.TabIndex = 35;
         lblFrequencyRecon.Text = "FrequencyRecon :";
         // 
         // numFrequencyRescue
         // 
-        numFrequencyRescue.Location = new Point(675, 615);
+        numFrequencyRescue.Location = new Point(472, 369);
+        numFrequencyRescue.Margin = new Padding(2);
         numFrequencyRescue.Name = "numFrequencyRescue";
-        numFrequencyRescue.Size = new Size(72, 31);
+        numFrequencyRescue.Size = new Size(50, 23);
         numFrequencyRescue.TabIndex = 38;
         // 
         // lblFrequencyRescue
         // 
         lblFrequencyRescue.AutoSize = true;
-        lblFrequencyRescue.Location = new Point(513, 615);
+        lblFrequencyRescue.Location = new Point(359, 369);
+        lblFrequencyRescue.Margin = new Padding(2, 0, 2, 0);
         lblFrequencyRescue.Name = "lblFrequencyRescue";
-        lblFrequencyRescue.Size = new Size(156, 25);
+        lblFrequencyRescue.Size = new Size(105, 15);
         lblFrequencyRescue.TabIndex = 37;
         lblFrequencyRescue.Text = "FrequencyRescue :";
         // 
         // btnSave
         // 
-        btnSave.Location = new Point(49, 652);
+        btnSave.Location = new Point(34, 391);
+        btnSave.Margin = new Padding(2);
         btnSave.Name = "btnSave";
-        btnSave.Size = new Size(1343, 34);
+        btnSave.Size = new Size(940, 20);
         btnSave.TabIndex = 39;
         btnSave.Text = "Save";
         btnSave.UseVisualStyleBackColor = true;
@@ -386,9 +418,10 @@ partial class Form1
         // 
         // btnLoad
         // 
-        btnLoad.Location = new Point(49, 692);
+        btnLoad.Location = new Point(34, 415);
+        btnLoad.Margin = new Padding(2);
         btnLoad.Name = "btnLoad";
-        btnLoad.Size = new Size(1343, 34);
+        btnLoad.Size = new Size(940, 20);
         btnLoad.TabIndex = 40;
         btnLoad.Text = "Load";
         btnLoad.UseVisualStyleBackColor = true;
@@ -396,19 +429,31 @@ partial class Form1
         // 
         // btnEmpty
         // 
-        btnEmpty.Location = new Point(49, 732);
+        btnEmpty.Location = new Point(34, 439);
+        btnEmpty.Margin = new Padding(2);
         btnEmpty.Name = "btnEmpty";
-        btnEmpty.Size = new Size(1343, 34);
+        btnEmpty.Size = new Size(940, 20);
         btnEmpty.TabIndex = 41;
         btnEmpty.Text = "Empty";
         btnEmpty.UseVisualStyleBackColor = true;
         btnEmpty.Click += btnEmpty_Click;
         // 
+        // coordsPickerBtn
+        // 
+        coordsPickerBtn.Location = new Point(491, 118);
+        coordsPickerBtn.Name = "coordsPickerBtn";
+        coordsPickerBtn.Size = new Size(145, 23);
+        coordsPickerBtn.TabIndex = 42;
+        coordsPickerBtn.Text = "Open coordinate picker";
+        coordsPickerBtn.UseVisualStyleBackColor = true;
+        coordsPickerBtn.Click += coordsPickerBtn_Click;
+        // 
         // Form1
         // 
-        AutoScaleDimensions = new SizeF(10F, 25F);
+        AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(1436, 800);
+        ClientSize = new Size(1005, 480);
+        Controls.Add(coordsPickerBtn);
         Controls.Add(btnEmpty);
         Controls.Add(btnLoad);
         Controls.Add(btnSave);
@@ -446,9 +491,10 @@ partial class Form1
         Controls.Add(lblAirportPositionX);
         Controls.Add(lblAirportName);
         Controls.Add(lvwAirport);
-        Margin = new Padding(4, 5, 4, 5);
         Name = "Form1";
         Text = "Form1";
+        ((System.ComponentModel.ISupportInitialize)numAirportPositionX).EndInit();
+        ((System.ComponentModel.ISupportInitialize)numAirportPositionY).EndInit();
         ((System.ComponentModel.ISupportInitialize)numAirportPassengerTraffic).EndInit();
         ((System.ComponentModel.ISupportInitialize)numAirportCargoTraffic).EndInit();
         ((System.ComponentModel.ISupportInitialize)numPlaneSpeed).EndInit();
@@ -501,4 +547,5 @@ partial class Form1
     private Button btnSave;
     private Button btnLoad;
     private Button btnEmpty;
+    private Button coordsPickerBtn;
 }

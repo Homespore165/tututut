@@ -3,13 +3,13 @@ namespace ScenarioGenerator;
 public partial class Form1 : Form
 {
     private Controller _controller;
-    
+
     public Form1(Controller controller)
     {
         _controller = controller;
         InitializeComponent();
     }
-    
+
     private void btnAddAirport_Click(object sender, EventArgs e)
     {
         string name = txbAirportName.Text;
@@ -23,7 +23,7 @@ public partial class Form1 : Form
             _controller.AddAirport(name, x, y, passengerTraffic, cargoTraffic);
         }
     }
-    
+
     private void btnEditAirport_Click(object sender, EventArgs e)
     {
         if (lvwAirport.SelectedIndices.Count > 0)
@@ -38,7 +38,7 @@ public partial class Form1 : Form
             _controller.EditAirport(airportId, name, x, y, passengerTraffic, cargoTraffic);
         }
     }
-    
+
     private void btnDeleteAirport_Click(object sender, EventArgs e)
     {
         if (lvwAirport.SelectedIndices.Count > 0)
@@ -47,7 +47,7 @@ public partial class Form1 : Form
             _controller.DeleteAirport(airportId);
         }
     }
-    
+
     private void btnAddPlane_Click(object sender, EventArgs e)
     {
         if (lvwAirport.SelectedIndices.Count > 0 && cbxPlaneType.SelectedIndex >= 0)
@@ -63,22 +63,22 @@ public partial class Form1 : Form
             //TODO: update using events
         }
     }
-    
+
     private void btnSave_Click(object sender, EventArgs e)
     {
         _controller.SaveScenario();
     }
-    
+
     private void btnLoad_Click(object sender, EventArgs e)
     {
         _controller.LoadScenario();
     }
-    
+
     private void btnEmpty_Click(object sender, EventArgs e)
     {
         _controller.EmptyScenario();
     }
-    
+
     private void lvwAirport_SelectedIndexChanged(object sender, EventArgs e)
     {
         try
@@ -90,7 +90,7 @@ public partial class Form1 : Form
             // ignored
         }
     }
-    
+
     public void UpdateAirports(string[] airports)
     {
         lvwAirport.Items.Clear();
@@ -99,7 +99,7 @@ public partial class Form1 : Form
             lvwAirport.Items.Add(airport);
         }
     }
-    
+
     public void UpdatePlanes(string[] planes)
     {
         lvwAirplane.Items.Clear();
@@ -107,5 +107,15 @@ public partial class Form1 : Form
         {
             lvwAirplane.Items.Add(plane);
         }
+    }
+
+    private void coordsPickerBtn_Click(object sender, EventArgs e)
+    {
+        CoordsPickerForm coordsPicker = new CoordsPickerForm();
+
+        coordsPicker.ShowDialog();
+
+        numAirportPositionX.Value = coordsPicker.ChosenCoordinates.X;
+        numAirportPositionY.Value = coordsPicker.ChosenCoordinates.Y;
     }
 }
