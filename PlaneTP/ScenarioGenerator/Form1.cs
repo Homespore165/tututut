@@ -114,6 +114,12 @@ public partial class Form1 : Form
         }
     }
 
+    public void OnEmptyScenario()
+    {
+        UpdateAirports(new string[0]);
+        UpdatePlanes(new string[0]);
+    }
+
     private void coordsPickerBtn_Click(object sender, EventArgs e)
     {
         CoordsPickerForm coordsPicker = new CoordsPickerForm();

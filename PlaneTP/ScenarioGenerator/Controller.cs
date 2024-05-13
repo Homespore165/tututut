@@ -3,11 +3,14 @@ using ScenarioGenerator.Model;
 
 namespace ScenarioGenerator;
 
+public delegate void EmptyScenario();
 public class Controller
 {
 	private static Controller _instance;
 	public static Controller Instance => _instance ??= new Controller();
 	
+	private event EmptyScenario _emptyScenarioEvent;
+
 	private Scenario _scenario;
 	
 	private Form1 _form;
@@ -19,8 +22,10 @@ public class Controller
 		
 	private Controller()
 	{
-		_scenario = new Scenario();
 		_form = new Form1(this);
+		_emptyScenarioEvent += _form.OnEmptyScenario;
+
+		_scenario = new Scenario();
 		_scenario.SubscribeAirportUpdate(_form.UpdateAirports);
 		_scenario.SubscribePlaneUpdate(_form.UpdatePlanes);
 	}
@@ -58,8 +63,11 @@ public class Controller
 	
 	public void EmptyScenario()
 	{
+		_emptyScenarioEvent?.Invoke();
 		_scenario = new Scenario();
-	}
+        _scenario.SubscribeAirportUpdate(_form.UpdateAirports);
+        _scenario.SubscribePlaneUpdate(_form.UpdatePlanes);
+    }
 
 	public string[] GetPlanes(int airportId)
 	{

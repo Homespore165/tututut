@@ -134,7 +134,7 @@ public class Scenario : IXmlSerializable
         XmlReader reader = XmlReader.Create("../../../scenario.xml");
         ReadXml(reader);
     }
-    
+
 	private void NotifyAirportChanged()
     {
         OnAirportUpdate?.Invoke(_airports.Select(a => a.ToString()).ToArray());
