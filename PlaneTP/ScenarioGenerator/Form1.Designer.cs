@@ -30,6 +30,11 @@ partial class Form1
     private void InitializeComponent()
     {
         lvwAirport = new ListView();
+        airportName = new ColumnHeader();
+        xPos = new ColumnHeader();
+        yPos = new ColumnHeader();
+        passengerTraffic = new ColumnHeader();
+        cargoTraffic = new ColumnHeader();
         lblAirportName = new Label();
         lblAirportPositionX = new Label();
         numAirportPositionX = new NumericUpDown();
@@ -42,6 +47,11 @@ partial class Form1
         lblAirportCargoTraffic = new Label();
         btnAddAirport = new Button();
         lvwAirplane = new ListView();
+        planeName = new ColumnHeader();
+        speed = new ColumnHeader();
+        boardingTime = new ColumnHeader();
+        unboardingTime = new ColumnHeader();
+        maintenanceTime = new ColumnHeader();
         btnEditAirport = new Button();
         btnRemoveAirport = new Button();
         txbPlaneName = new TextBox();
@@ -82,6 +92,7 @@ partial class Form1
         // 
         // lvwAirport
         // 
+        lvwAirport.Columns.AddRange(new ColumnHeader[] { airportName, xPos, yPos, passengerTraffic, cargoTraffic });
         lvwAirport.Location = new Point(34, 16);
         lvwAirport.MultiSelect = false;
         lvwAirport.Name = "lvwAirport";
@@ -90,6 +101,31 @@ partial class Form1
         lvwAirport.UseCompatibleStateImageBehavior = false;
         lvwAirport.View = View.Details;
         lvwAirport.SelectedIndexChanged += lvwAirport_SelectedIndexChanged;
+        // 
+        // airportName
+        // 
+        airportName.Text = "Airport Name";
+        airportName.Width = 100;
+        // 
+        // xPos
+        // 
+        xPos.Text = "X position";
+        xPos.Width = 70;
+        // 
+        // yPos
+        // 
+        yPos.Text = "Y position";
+        yPos.Width = 70;
+        // 
+        // passengerTraffic
+        // 
+        passengerTraffic.Text = "Passenger Traffic";
+        passengerTraffic.Width = 100;
+        // 
+        // cargoTraffic
+        // 
+        cargoTraffic.Text = "Cargo Traffic";
+        cargoTraffic.Width = 100;
         // 
         // lblAirportName
         // 
@@ -197,6 +233,7 @@ partial class Form1
         // 
         // lvwAirplane
         // 
+        lvwAirplane.Columns.AddRange(new ColumnHeader[] { planeName, speed, maintenanceTime, boardingTime, unboardingTime });
         lvwAirplane.Location = new Point(34, 215);
         lvwAirplane.MultiSelect = false;
         lvwAirplane.Name = "lvwAirplane";
@@ -204,6 +241,33 @@ partial class Form1
         lvwAirplane.TabIndex = 18;
         lvwAirplane.UseCompatibleStateImageBehavior = false;
         lvwAirplane.View = View.Details;
+        // 
+        // planeName
+        // 
+        planeName.Text = "Plane Name";
+        planeName.Width = 100;
+        // 
+        // speed
+        // 
+        speed.Text = "Speed";
+        // 
+        // boardingTime
+        // 
+        boardingTime.DisplayIndex = 2;
+        boardingTime.Text = "Boarding Time";
+        boardingTime.Width = 120;
+        // 
+        // unboardingTime
+        // 
+        unboardingTime.DisplayIndex = 3;
+        unboardingTime.Text = "Unboarding Time";
+        unboardingTime.Width = 120;
+        // 
+        // maintenanceTime
+        // 
+        maintenanceTime.DisplayIndex = 4;
+        maintenanceTime.Text = "Maintenance Time";
+        maintenanceTime.Width = 120;
         // 
         // btnEditAirport
         // 
@@ -548,4 +612,14 @@ partial class Form1
     private Button btnLoad;
     private Button btnEmpty;
     private Button coordsPickerBtn;
+    private ColumnHeader airportName;
+    private ColumnHeader xPos;
+    private ColumnHeader yPos;
+    private ColumnHeader passengerTraffic;
+    private ColumnHeader cargoTraffic;
+    private ColumnHeader planeName;
+    private ColumnHeader speed;
+    private ColumnHeader boardingTime;
+    private ColumnHeader unboardingTime;
+    private ColumnHeader maintenanceTime;
 }

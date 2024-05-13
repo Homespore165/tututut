@@ -7,4 +7,9 @@ public abstract class PlaneSupport : Plane
 	}
 	
 	protected PlaneSupport() {}
+
+    public override string? ToString()
+    {
+		return base.ToString() + "; ; ";
+    }
 }

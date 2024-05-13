@@ -94,9 +94,11 @@ public partial class Form1 : Form
     public void UpdateAirports(string[] airports)
     {
         lvwAirport.Items.Clear();
+
         foreach (string airport in airports)
         {
-            lvwAirport.Items.Add(airport);
+            ListViewItem airportItem = new ListViewItem(airport.Split(";"));
+            lvwAirport.Items.Add(airportItem);
         }
     }
 
@@ -105,7 +107,10 @@ public partial class Form1 : Form
         lvwAirplane.Items.Clear();
         foreach (string plane in planes)
         {
-            lvwAirplane.Items.Add(plane);
+            string[] planeValues = plane.Split(";");
+
+            ListViewItem planeItem = new ListViewItem(planeValues);
+            lvwAirplane.Items.Add(planeItem);
         }
     }
 
