@@ -126,7 +126,17 @@ public partial class Form1 : Form
 
         coordsPicker.ShowDialog();
 
-        numAirportPositionX.Value = coordsPicker.ChosenCoordinates.X;
-        numAirportPositionY.Value = coordsPicker.ChosenCoordinates.Y;
+        if (coordsPicker.ChosenCoordinates.X < 4)
+            numAirportPositionX.Value = 5;
+        else if (coordsPicker.ChosenCoordinates.X > 786)
+            numAirportPositionX.Value = 780;
+        else 
+            numAirportPositionX.Value = coordsPicker.ChosenCoordinates.X;
+        if (coordsPicker.ChosenCoordinates.Y < 30)
+            numAirportPositionY.Value = 30;
+        else if (coordsPicker.ChosenCoordinates.Y > 418)
+            numAirportPositionY.Value = 418;
+        else
+            numAirportPositionY.Value = coordsPicker.ChosenCoordinates.Y;
     }
 }
