@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Simulator.Model;
+public abstract class Client
 {
-    public class Client
-    {
-    }
 }

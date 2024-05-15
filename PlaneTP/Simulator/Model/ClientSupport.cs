@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Simulator.Model
 {
-    internal class ClientSupport
+    public abstract class ClientSupport : Client
     {
     }
 }

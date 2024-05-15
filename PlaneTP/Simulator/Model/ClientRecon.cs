@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Simulator.Model
 {
-    internal class ClientRecon
+    public class ClientRecon : ClientSupport
     {
     }
 }

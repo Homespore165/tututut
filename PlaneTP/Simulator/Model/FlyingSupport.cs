@@ -9,6 +9,10 @@ namespace Simulator.Model;
 public abstract class FlyingSupport
 {
     ClientSupport clientSupport;
-    Position CalculatePath(int t) 
-    {}
+
+    Position CalculatePath(int t)
+    {
+        Position test = new Position(0,0);
+        return test;
+    }
 }

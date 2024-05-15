@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simulator.Model;
+namespace Simulator.Model
 {
-    internal class ClientPassengers
+    public class ClientPassengers : ClientTransport
     {
     }
 }
