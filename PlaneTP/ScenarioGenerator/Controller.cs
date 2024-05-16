@@ -7,7 +7,7 @@ public delegate void EmptyScenario();
 public class Controller
 {
 	private static Controller _instance;
-	public static Controller Instance => _instance ??= new Controller();
+	public static Controller Instance => _instance ??= new Controller(); // Implementation de singleton. Pas thread-safe
 	
 	private event EmptyScenario _emptyScenarioEvent;
 

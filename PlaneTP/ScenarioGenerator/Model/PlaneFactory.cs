@@ -3,11 +3,9 @@
 public class PlaneFactory
 {
     private static PlaneFactory _instance;
-    public static PlaneFactory Instance => _instance ??= new PlaneFactory();
+    public static PlaneFactory Instance => _instance ??= new PlaneFactory(); // Implementation de singleton. Pas thread-safe.
     
-    private PlaneFactory()
-    {
-    }
+    private PlaneFactory() {}
 
     public Plane CreatePlane(string name, string type, int speed, int maintenanceTime, int boardingTime = 0, int unboardingTime = 0)
     {
