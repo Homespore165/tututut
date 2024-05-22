@@ -65,6 +65,7 @@ public partial class Form1 : Form
 
     private void btnSave_Click(object sender, EventArgs e)
     {
+        _controller.SaveFrequencies((int)numFrequencyFire.Value, (int)numFrequencyRescue.Value, (int)numFrequencyRecon.Value);
         _controller.SaveScenario();
     }
 

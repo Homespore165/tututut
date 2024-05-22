@@ -56,6 +56,13 @@ public class Controller
 		_scenario.Save();
 	}
 
+	public void SaveFrequencies(int fire, int rescue, int recon)
+	{
+		_scenario.FrequencyFire = fire;
+		_scenario.FrequencyRecon = recon;
+		_scenario.FrequencyRescue = rescue;
+	}
+
 	public void LoadScenario()
 	{
 		throw new NotImplementedException();
