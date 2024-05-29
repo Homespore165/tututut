@@ -9,4 +9,8 @@ namespace Simulator.Model;
 public class FlyingFire : FlyingSupport
 {
     public FlyingFire() { }
+    public override string ToString()
+    {
+        return "The plane is flying";
+    }
 }

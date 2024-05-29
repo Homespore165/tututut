@@ -65,7 +65,7 @@ public class Controller
 
 	public void LoadScenario()
 	{
-		throw new NotImplementedException();
+		_scenario.Load();
 	}
 	
 	public void EmptyScenario()

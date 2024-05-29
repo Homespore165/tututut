@@ -10,4 +10,9 @@ public class FlyingTransport : Flying
 {
    ClientTransport client; 
    public FlyingTransport() { }
+   
+   public override string ToString()
+   {
+      return "The plane is flying";
+   }
 }

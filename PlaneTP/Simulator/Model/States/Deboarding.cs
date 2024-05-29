@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Simulator.Model;
 
-public class Maintenance : State
+public class Deboarding : State
 {
     int timeToCompletion;
-    public Maintenance() { } 
+    public Deboarding() { }
+    public override string ToString()
+    {
+        return "The plane is deboarding";
+    }
 }

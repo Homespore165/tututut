@@ -1,4 +1,6 @@
-﻿namespace ScenarioGenerator.Model;
+﻿using System.Xml.Serialization;
+
+namespace ScenarioGenerator.Model;
 
 public class PlaneCargo : PlaneTransport
 {

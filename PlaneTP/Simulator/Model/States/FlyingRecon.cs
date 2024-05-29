@@ -14,4 +14,9 @@ public class FlyingRecon : FlyingSupport
         Position test = new Position(0, 0);
         return test;
     }
+    
+    public override string ToString()
+    {
+        return "The plane is flying";
+    }
 }

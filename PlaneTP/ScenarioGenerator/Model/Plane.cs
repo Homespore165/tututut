@@ -48,15 +48,13 @@ public abstract class Plane : IXmlSerializable
 		return null;
 	}
 
-	public void ReadXml(XmlReader reader)
+	public virtual void ReadXml(XmlReader reader)
 	{
-		throw new NotImplementedException();
 	}
 
 	public virtual void WriteXml(XmlWriter writer)
 	{
 		writer.WriteElementString("Name", _name);
-		
 		writer.WriteElementString("Speed", _speed.ToString());
 		writer.WriteElementString("MaintenanceTime", _maintenanceTime.ToString());
 	}

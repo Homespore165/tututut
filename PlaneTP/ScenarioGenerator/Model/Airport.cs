@@ -87,10 +87,10 @@ public class Airport : IXmlSerializable
 		_passengerTraffic = int.Parse(reader.ReadElementString("PassengerTraffic"));
 		_cargoTraffic = int.Parse(reader.ReadElementString("CargoTraffic"));
 		reader.ReadStartElement("Planes");
-		while (reader.NodeType != XmlNodeType.EndElement)
+		while (reader.IsStartElement())
 		{
-			string planeType = reader.Name.Replace("Plane", "");
-			reader.Read();
+			string planeType = reader.Name.Substring("Plane".Length);
+			reader.ReadStartElement();
 			string planeName = reader.ReadElementString("Name");
 			int planeSpeed = int.Parse(reader.ReadElementString("Speed"));
 			int planeMaintenanceTime = int.Parse(reader.ReadElementString("MaintenanceTime"));
