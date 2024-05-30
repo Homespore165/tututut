@@ -49,8 +49,7 @@ public abstract class Plane : IXmlSerializable
 	}
 
 	public virtual void ReadXml(XmlReader reader)
-	{
-	}
+	{}
 
 	public virtual void WriteXml(XmlWriter writer)
 	{
