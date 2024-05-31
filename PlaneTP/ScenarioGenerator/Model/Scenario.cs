@@ -138,36 +138,60 @@ public class Scenario : IXmlSerializable
         XmlReader reader = XmlReader.Create("../../../scenario.xml");
         ReadXml(reader);
     }
-
+    /// <summary>
+    /// Gestion de l'événement modification d'un aéroport 
+    /// </summary>
+    /// <param name="updateAirports">événement</param>
 	private void NotifyAirportChanged()
     {
         OnAirportUpdate?.Invoke(_airports.Select(a => a.ToString()).ToArray());
     }
-
+    /// <summary>
+    /// S'abonner à l'événement modification d'un aéroport
+    /// </summary>
+    /// <param name="updateAirports">événement</param>
     public void SubscribeAirportUpdate(Action<string[]> updateAirports)
     {
         OnAirportUpdate += new OnAirportUpdate(updateAirports);
     }
-
+    /// <summary>
+    ///  S'abonner à l'événement modification d'un avion
+    /// </summary>
+    /// <param name="updatePlanes">événement</param>
     public void SubscribePlaneUpdate(Action<string[]> updatePlanes)
     {
         _airports.ForEach(a => a.UnsubcribeAll());
         _airports.ForEach(a => a.SubscribePlaneChanged(updatePlanes));
     }
-
+    /// <summary>
+    /// Retourne les avions d'un aéroport sélectionné
+    /// </summary>
+    /// <param name="airportId">L'aéroport sélectionné</param>
+    /// <returns>Les avions de cet aéroport</returns>
     public string[] GetPlanes(int airportId)
     {
         return _airports[airportId].GetPlanes();
     }
-    
+    /// <summary>
+    /// Retourne la valeur de la fréquance d'événement d'incendie après le chargement d'un scénario
+    /// </summary>
+    /// <returns></returns>
     public int GetFire()
     {
         return _frequencyFire;
     }
+    /// <summary>
+    /// Retourne la valeur de la fréquance d'événement de sauvetage après le chargement d'un scénario
+    /// </summary>
+    /// <returns>la valeur de la fréquance d'événement</returns>
     public int GetRescue()
     {
         return _frequencyRescue;
     }
+    /// <summary>
+    /// Retourne la valeur de la fréquance d'événement de reconnaissance après le chargement d'un scénario
+    /// </summary>
+    /// <returns>la valeur de la fréquance d'événement</returns>
     public int GetRecon()
     {
         return _frequencyRecon;
