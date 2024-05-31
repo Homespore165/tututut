@@ -148,4 +148,45 @@ public class Scenario : IXmlSerializable
     {
         return _airports[airportId].GetPlanes();
     }
+
+    private void GenerateFire()
+    {
+        Random r = new Random();
+        if (r.Next(0, 100) < _frequencyFire)
+        {
+            int intensity = r.Next(0, 6);
+            Position p = new Position(r.Next(0, 1000), r.Next(0, 500));
+            ClientFire client = new ClientFire(p, intensity);
+            _clientsSupport.Add(client);
+        }
+    }
+    
+    private void GenerateRecon()
+    {
+        Random r = new Random();
+        if (r.Next(0, 100) < _frequencyRecon)
+        {
+            Position p = new Position(r.Next(0, 1000), r.Next(0, 500));
+            ClientRecon client = new ClientRecon(p);
+            _clientsSupport.Add(client);
+        }
+    }
+    
+    private void GenerateRescue()
+    {
+        Random r = new Random();
+        if (r.Next(0, 100) < _frequencyRescue)
+        {
+            Position p = new Position(r.Next(0, 1000), r.Next(0, 500));
+            ClientRescue client = new ClientRescue(p);
+            _clientsSupport.Add(client);
+        }
+    }
+    
+    public void GenerateClients()
+    {
+        GenerateFire();
+        GenerateRecon();
+        GenerateRescue();
+    }
 }

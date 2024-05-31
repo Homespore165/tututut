@@ -16,7 +16,7 @@ public class ClientSupportFactory
     public ClientSupport CreateClientSupport(string type)
     {
         Random r = new Random();
-        Position position = new Position(r.Next(_size.X), r.Next(_size.Y));
+        Position position = new Position(r.Next(_size.X + 1), r.Next(_size.Y + 1));
         return (type switch
         {
             "Fire" => new ClientFire(position, r.Next(5)),

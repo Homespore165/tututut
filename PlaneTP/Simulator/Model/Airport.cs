@@ -131,7 +131,7 @@ public class Airport : IXmlSerializable
 	private void GeneratePassenger()
 	{
 		Random r = new Random();
-		if (r.Next(100) < _passengerTraffic)
+		if (r.Next(0, 101) < _passengerTraffic)
 		{
 			_clientsTransport.Add(new ClientPassenger());
 		}
@@ -140,9 +140,15 @@ public class Airport : IXmlSerializable
 	private void GenerateCargo()
 	{
 		Random r = new Random();
-		if (r.Next(100) < _cargoTraffic)
+		if (r.Next(0, 101) < _cargoTraffic)
 		{
 			_clientsTransport.Add(new ClientCargo());
 		}
+	}
+	
+	private void GenerateClient()
+	{
+		GeneratePassenger();
+		GenerateCargo();
 	}
 }
