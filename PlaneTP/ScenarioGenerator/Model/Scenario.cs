@@ -151,7 +151,6 @@ public class Scenario : IXmlSerializable
         }
         reader.Close();
         NotifyAirportChanged();
-        
     }
     /// <summary>
     /// Enregistrer le scénario actuel en XML
