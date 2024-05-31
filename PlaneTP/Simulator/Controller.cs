@@ -9,8 +9,8 @@ public class Controller
     
     private Scenario _scenario;
     
-    private Form1 _form;
-    public Form1 Form
+    private SimForm _form;
+    public SimForm Form
     {
         get => _form;
         set => _form = value;
@@ -18,7 +18,7 @@ public class Controller
     
     private Controller()
     {
-        _form = new Form1(this);
+        _form = new SimForm();
         LoadSavedScenario();
         
         //TODO: subscribe to events

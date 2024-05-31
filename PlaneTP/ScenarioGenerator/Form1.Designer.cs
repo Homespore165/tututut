@@ -152,7 +152,7 @@ partial class Form1
         // 
         numAirportPositionX.Location = new Point(323, 120);
         numAirportPositionX.Margin = new Padding(2);
-        numAirportPositionX.Maximum = new decimal(new int[] { 786, 0, 0, 0 });
+        numAirportPositionX.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
         numAirportPositionX.Name = "numAirportPositionX";
         numAirportPositionX.Size = new Size(51, 23);
         numAirportPositionX.TabIndex = 4;
@@ -161,7 +161,7 @@ partial class Form1
         // 
         numAirportPositionY.Location = new Point(441, 120);
         numAirportPositionY.Margin = new Padding(2);
-        numAirportPositionY.Maximum = new decimal(new int[] { 420, 0, 0, 0 });
+        numAirportPositionY.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
         numAirportPositionY.Name = "numAirportPositionY";
         numAirportPositionY.Size = new Size(45, 23);
         numAirportPositionY.TabIndex = 6;
@@ -248,9 +248,9 @@ partial class Form1
         // 
         planeName.Text = "Plane Name";
         planeName.Width = 100;
-        //
+        // 
         // planeType
-        //
+        // 
         planeType.Text = "Type";
         planeType.Width = 100;
         // 
@@ -260,19 +260,16 @@ partial class Form1
         // 
         // maintenanceTime
         // 
-        maintenanceTime.DisplayIndex = 4;
         maintenanceTime.Text = "Maintenance Time";
         maintenanceTime.Width = 120;
         // 
         // boardingTime
         // 
-        boardingTime.DisplayIndex = 2;
         boardingTime.Text = "Boarding Time";
         boardingTime.Width = 120;
         // 
         // unboardingTime
         // 
-        unboardingTime.DisplayIndex = 3;
         unboardingTime.Text = "Unboarding Time";
         unboardingTime.Width = 120;
         // 

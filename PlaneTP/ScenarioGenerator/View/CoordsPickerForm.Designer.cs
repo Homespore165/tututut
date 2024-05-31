@@ -41,8 +41,8 @@
             worldMap.Image = Properties.Resources.world_map;
             worldMap.Location = new Point(2, 1);
             worldMap.Name = "worldMap";
-            worldMap.Size = new Size(786, 395);
-            worldMap.SizeMode = PictureBoxSizeMode.Zoom;
+            worldMap.Size = new Size(1000, 500);
+            worldMap.SizeMode = PictureBoxSizeMode.StretchImage;
             worldMap.TabIndex = 0;
             worldMap.TabStop = false;
             worldMap.Click += worldMap_Click;
@@ -51,7 +51,7 @@
             // coordsLabel
             // 
             coordsLabel.AutoSize = true;
-            coordsLabel.Location = new Point(202, 415);
+            coordsLabel.Location = new Point(341, 527);
             coordsLabel.Name = "coordsLabel";
             coordsLabel.Size = new Size(131, 15);
             coordsLabel.TabIndex = 1;
@@ -60,7 +60,7 @@
             // posLabel
             // 
             posLabel.AutoSize = true;
-            posLabel.Location = new Point(447, 415);
+            posLabel.Location = new Point(602, 527);
             posLabel.Name = "posLabel";
             posLabel.Size = new Size(88, 15);
             posLabel.TabIndex = 2;
@@ -69,7 +69,7 @@
             // debugLabel
             // 
             debugLabel.AutoSize = true;
-            debugLabel.Location = new Point(2, 434);
+            debugLabel.Location = new Point(12, 541);
             debugLabel.Name = "debugLabel";
             debugLabel.Size = new Size(57, 15);
             debugLabel.TabIndex = 3;
@@ -77,7 +77,7 @@
             // 
             // closeBtn
             // 
-            closeBtn.Location = new Point(683, 411);
+            closeBtn.Location = new Point(855, 519);
             closeBtn.Name = "closeBtn";
             closeBtn.Size = new Size(75, 23);
             closeBtn.TabIndex = 4;
@@ -89,7 +89,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(789, 450);
+            ClientSize = new Size(1005, 565);
             Controls.Add(closeBtn);
             Controls.Add(debugLabel);
             Controls.Add(posLabel);

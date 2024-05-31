@@ -156,17 +156,7 @@ public partial class Form1 : Form
 
         coordsPicker.ShowDialog();
 
-        numAirportPositionX.Value = coordsPicker.ChosenCoordinates.X switch
-        {
-            < 4 => 5,
-            > 786 => 780,
-            _ => coordsPicker.ChosenCoordinates.X
-        };
-        numAirportPositionY.Value = coordsPicker.ChosenCoordinates.Y switch
-        {
-            < 30 => 30,
-            > 418 => 418,
-            _ => coordsPicker.ChosenCoordinates.Y
-        };
+        numAirportPositionX.Value = (int)Math.Clamp(coordsPicker.ChosenCoordinates.X, 0, numAirportPositionX.Maximum);
+        numAirportPositionY.Value = (int)Math.Clamp(coordsPicker.ChosenCoordinates.X, 0, numAirportPositionY.Maximum);
     }
 }
