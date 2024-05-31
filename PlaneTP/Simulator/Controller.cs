@@ -1,11 +1,19 @@
 ﻿using Simulator.Model;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Simulator;
 
 public class Controller
 {
-    private static Controller _instance;
-    public static Controller Instance => _instance ??= new Controller(); // Implementation de singleton. Pas thread-safe
+    private static Controller _instance = null;
+    public static Controller Instance { get { 
+            if (_instance is null)
+            {
+                new Controller();
+            }
+            return _instance;
+        }
+    }
     
     private Scenario _scenario;
     
@@ -18,6 +26,9 @@ public class Controller
     
     private Controller()
     {
+        _instance = this;
+
+
         _form = new SimForm();
         LoadSavedScenario();
         
