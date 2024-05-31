@@ -7,7 +7,6 @@ namespace Simulator.Model;
 public delegate void OnPlaneUpdate(string[] planes);
 public class Airport : IXmlSerializable
 {
-	private event OnPlaneUpdate OnPlaneUpdate;
 	private string _name;
 	public string Name
 	{
@@ -43,6 +42,10 @@ public class Airport : IXmlSerializable
 		set => _position = value;
 	}
 	
+	private List<ClientTransport> _clientsTransport;
+	public List<ClientCargo> ClientsCargo => _clientsTransport.OfType<ClientCargo>().ToList();
+	public List<ClientPassenger> ClientsPassenger => _clientsTransport.OfType<ClientPassenger>().ToList();
+
 	public Airport(String name, Position position, int passengerTraffic, int cargoTraffic)
 	{
 		_name = name;
@@ -70,7 +73,6 @@ public class Airport : IXmlSerializable
 	{
 		_planes.Add(PlaneFactory.Instance.CreatePlane(name, type, speed, maintenanceTime, boardingTime, unboardingTime));
 		_planes.ForEach(p => Console.WriteLine(p.ToString()));
-		NotifyPlaneChanged();
 	}
 	
 	public XmlSchema? GetSchema()
@@ -121,23 +123,32 @@ public class Airport : IXmlSerializable
 		writer.WriteEndElement();
 	}
 	
-	private void NotifyPlaneChanged()
-	{
-		OnPlaneUpdate?.Invoke(_planes.Select(p => p.ToString()).ToArray());
-	}
-	
-	public void SubscribePlaneChanged(Action<string[]> updatePlanes)
-	{
-		OnPlaneUpdate += new OnPlaneUpdate(updatePlanes);
-	}
-
-	public void UnsubcribeAll()
-	{
-		OnPlaneUpdate = null;
-	}
-
 	public string[] GetPlanes()
 	{
 		return _planes.Select(p => p.ToString()).ToArray();
+	}
+
+	private void GeneratePassenger()
+	{
+		Random r = new Random();
+		if (r.Next(0, 101) < _passengerTraffic)
+		{
+			_clientsTransport.Add(new ClientPassenger());
+		}
+	}
+	
+	private void GenerateCargo()
+	{
+		Random r = new Random();
+		if (r.Next(0, 101) < _cargoTraffic)
+		{
+			_clientsTransport.Add(new ClientCargo());
+		}
+	}
+	
+	private void GenerateClient()
+	{
+		GeneratePassenger();
+		GenerateCargo();
 	}
 }
