@@ -154,6 +154,7 @@ public class Scenario : IXmlSerializable
     {
         OnAirportUpdate += new OnAirportUpdate(updateAirports);
     }
+    
     /// <summary>
     ///  S'abonner à l'événement modification d'un avion
     /// </summary>
