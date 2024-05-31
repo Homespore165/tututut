@@ -4,8 +4,15 @@ using System.Xml.Serialization;
 
 namespace ScenarioGenerator.Model;
 
-public abstract class Plane : IXmlSerializable
+public abstract class Plane
 {
+	/// <summary>
+	/// Constructeur
+	/// </summary>
+	/// <param name="position">Position de l'avion</param>
+	/// <param name="name">Nom de l'avion</param>
+	/// <param name="speed">Vitesse</param>
+	/// <param name="maintenanceTime">Temps de maintenance</param>
 	protected Plane(string name, Position position, int speed, int maintenanceTime)
 	{
 		_name = name;
@@ -33,7 +40,12 @@ public abstract class Plane : IXmlSerializable
 		get => _maintenanceTime;
 		set => _maintenanceTime = value;
 	}
-
+	/// <summary>
+	/// Constructeur
+	/// </summary>
+	/// <param name="name">Nom de l'avion</param>
+	/// <param name="speed">Vitesse</param>
+	/// <param name="maintenanceTime">Temps de maintenance</param>
 	public Plane(string name, int speed, int maintenanceTime)
 	{
 		_name = name;
@@ -47,17 +59,20 @@ public abstract class Plane : IXmlSerializable
 	{
 		return null;
 	}
-
-	public virtual void ReadXml(XmlReader reader)
-	{}
-
+	/// <summary>
+	///  Enregistrer un avion en XML
+	/// </summary>
+	/// <param name="writer">le fichier XML</param>
 	public virtual void WriteXml(XmlWriter writer)
 	{
 		writer.WriteElementString("Name", _name);
 		writer.WriteElementString("Speed", _speed.ToString());
 		writer.WriteElementString("MaintenanceTime", _maintenanceTime.ToString());
 	}
-	
+	/// <summary>
+	/// Sérialise l'objet en String
+	/// </summary>
+	/// <returns>une string signifiant l'avion</returns>
 	public override string? ToString()
 	{
 		return _name + ";" + GetType().Name.Remove(0, 5) + ";" + _speed + ";" + _maintenanceTime;

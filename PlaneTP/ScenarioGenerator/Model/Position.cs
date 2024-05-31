@@ -19,7 +19,11 @@ public class Position : IXmlSerializable
 		get => _y;
 		set => _y = value;
 	}
-	
+	/// <summary>
+	/// Constructeur
+	/// </summary>
+	/// <param name="x">position en X</param>
+	/// <param name="y">position en Y</param>
 	public Position(int x, int y)
 	{
 		_x = x;
@@ -32,7 +36,10 @@ public class Position : IXmlSerializable
 	{
 		return null;
 	}
-
+    /// <summary>
+    /// Lire une position à partir d'un fichier XML
+    /// </summary>
+    /// <param name="reader"></param>
 	public void ReadXml(XmlReader reader)
 	{
 		reader.ReadStartElement();
@@ -42,7 +49,10 @@ public class Position : IXmlSerializable
 
 		reader.ReadEndElement(); 
 	}
-
+	/// <summary>
+	///  Enregistrer une position en XML
+	/// </summary>
+	/// <param name="writer">le fichier XML</param>
 	public void WriteXml(XmlWriter writer)
 	{
 		writer.WriteElementString("X", X.ToString());
