@@ -26,6 +26,10 @@ public class Scenario : IXmlSerializable
         get => _clientsSupport;
         set => _clientsSupport = value;
     }
+    public List<ClientFire> ClientsFire => _clientsSupport.OfType<ClientFire>().ToList();
+    public List<ClientRecon> ClientsRecon => _clientsSupport.OfType<ClientRecon>().ToList();
+    public List<ClientRescue> ClientsRescue => _clientsSupport.OfType<ClientRescue>().ToList();
+
 
     private int _frequencyFire;
     public int FrequencyFire
@@ -47,7 +51,7 @@ public class Scenario : IXmlSerializable
         get => _frequencyRescue;
         set => _frequencyRescue = value;
     }
-	
+    
     public Scenario()
     {
         _airports = new List<Airport>();
@@ -104,18 +108,17 @@ public class Scenario : IXmlSerializable
         _frequencyFire = int.Parse(reader.ReadElementString("FrequencyFire"));
         _frequencyRecon = int.Parse(reader.ReadElementString("FrequencyRecon"));
         _frequencyRescue = int.Parse(reader.ReadElementString("FrequencyRescue"));
-
-        reader.ReadStartElement("Airports");
-
+        
         XmlSerializer serializer = new XmlSerializer(typeof(Airport));
-        while (reader.NodeType != XmlNodeType.EndElement)
+        while (reader.Read())
         {
-            Airport airport = (Airport)serializer.Deserialize(reader);
-            _airports.Add(airport);
+            if (reader.NodeType == XmlNodeType.Element && reader.Name == "Airport")
+            {
+                Airport airport = (Airport)serializer.Deserialize(reader.ReadSubtree());
+                _airports.Add(airport);
+            }
         }
-
         reader.Close();
-        _airports.Remove(_airports.Last()); // For some reason, the first airport is duplicated at the end
     }
 
     public void WriteXml(XmlWriter writer)
@@ -137,12 +140,53 @@ public class Scenario : IXmlSerializable
 
     public void Load()
     {
-        XmlReader reader = XmlReader.Create("../../../../ScenarioGenerator/scenario.xml");
+        XmlReader reader = XmlReader.Create("../../../../ScenarioGenerator/Scenario.xml");
         ReadXml(reader);
     }
 
     public string[] GetPlanes(int airportId)
     {
         return _airports[airportId].GetPlanes();
+    }
+
+    private void GenerateFire()
+    {
+        Random r = new Random();
+        if (r.Next(0, 100) < _frequencyFire)
+        {
+            int intensity = r.Next(0, 6);
+            Position p = new Position(r.Next(0, 1000), r.Next(0, 500));
+            ClientFire client = new ClientFire(p, intensity);
+            _clientsSupport.Add(client);
+        }
+    }
+    
+    private void GenerateRecon()
+    {
+        Random r = new Random();
+        if (r.Next(0, 100) < _frequencyRecon)
+        {
+            Position p = new Position(r.Next(0, 1000), r.Next(0, 500));
+            ClientRecon client = new ClientRecon(p);
+            _clientsSupport.Add(client);
+        }
+    }
+    
+    private void GenerateRescue()
+    {
+        Random r = new Random();
+        if (r.Next(0, 100) < _frequencyRescue)
+        {
+            Position p = new Position(r.Next(0, 1000), r.Next(0, 500));
+            ClientRescue client = new ClientRescue(p);
+            _clientsSupport.Add(client);
+        }
+    }
+    
+    public void GenerateClients()
+    {
+        GenerateFire();
+        GenerateRecon();
+        GenerateRescue();
     }
 }

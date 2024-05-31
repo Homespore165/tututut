@@ -6,7 +6,14 @@ public class PlaneFactory
     public static PlaneFactory Instance => _instance ??= new PlaneFactory(); // Implementation de singleton. Pas thread-safe.
     
     private PlaneFactory() {}
-
+    /// <summary>
+    /// Constructeur d'avion
+    /// </summary>
+    /// <param name="name">Nom de l'avion</param>
+    /// <param name="speed">Vitesse</param>
+    /// <param name="maintenanceTime">Temps de maintenance</param>
+    /// <param name="boardingTime">Temps d'embarquement</param>
+    /// <param name="unboardingTime">Temps de débarquement</param>
     public Plane CreatePlane(string name, string type, int speed, int maintenanceTime, int boardingTime = 0, int unboardingTime = 0)
     {
         return type switch

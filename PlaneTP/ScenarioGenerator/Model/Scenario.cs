@@ -35,7 +35,9 @@ public class Scenario : IXmlSerializable
         get => _frequencyRescue;
         set => _frequencyRescue = value;
     }
-	
+	/// <summary>
+	/// Constructeur
+	/// </summary>
     public Scenario()
     {
         _airports = new List<Airport>();
@@ -43,7 +45,12 @@ public class Scenario : IXmlSerializable
         _frequencyRecon = 0;
         _frequencyRescue = 0;
     }
-	
+	/// <summary>
+	/// Constructeur
+	/// </summary>
+	/// <param name="frequencyFire">Indicateur de la fréquance d'événement</param>
+	/// <param name="frequencyRecon">Indicateur de la fréquance d'événement</param>
+	/// <param name="frequencyRescue">Indicateur de la fréquance d'événement</param>
     public Scenario(int frequencyFire, int frequencyRecon, int frequencyRescue)
     {
         _airports = new List<Airport>();
@@ -51,19 +58,37 @@ public class Scenario : IXmlSerializable
         _frequencyRecon = frequencyRecon;
         _frequencyRescue = frequencyRescue;
     }
-	
+	/// <summary>
+	/// Ajouter un aéroport déja créer
+	/// </summary>
+	/// <param name="airport">un aéroport</param>
     public void AddAirport(Airport airport)
     {
         _airports.Add(airport);
     }
-	
+    /// <summary>
+    /// Ajouter un aéroport
+    /// </summary>
+    /// <param name="name">Nom</param>
+    /// <param name="x">position en X</param>
+    /// <param name="y">position en Y</param>
+    /// <param name="passengerTraffic">Indicateur de traffic humain</param>
+    /// <param name="cargoTraffic">Indicateur de traffic postal</param>
     public void AddAirport(string name, int x, int y, int passengerTraffic, int cargoTraffic)
     {
         Airport airport = new Airport(name, x, y, passengerTraffic, cargoTraffic);
         _airports.Add(airport);
         NotifyAirportChanged();
     }
-	
+	/// <summary>
+	/// Modifier un aéroport
+	/// </summary>
+	/// <param name="id">Id de l'aéroport</param>
+	/// <param name="name">Nom</param>
+	/// <param name="x">position en X</param>
+	/// <param name="y">position en Y</param>
+	/// <param name="passengerTraffic">Indicateur de traffic humain</param>
+	/// <param name="cargoTraffic">Indicateur de traffic postal</param>
     public void EditAirport(int id, string name, int x, int y, int passengerTraffic, int cargoTraffic)
     {
         List<Plane> p = _airports[id].Planes;
@@ -71,24 +96,41 @@ public class Scenario : IXmlSerializable
         _airports[id].Planes = p;
         NotifyAirportChanged();
     }
-	
+	/// <summary>
+	/// Supprimer un aéroport
+	/// </summary>
+	/// <param name="id">Id de l'aéroport</param>
     public void DeleteAirport(int id)
     {
         _airports[id].ClearPlanes();
         _airports.Remove(_airports[id]);
         NotifyAirportChanged();
     }
-	
+	/// <summary>
+	/// Ajouter un avion dans un aéroport
+	/// </summary>
+	/// <param name="airportId">Id de l'aéroport</param>
+	/// <param name="name">nom de l'avion</param>
+	/// <param name="type">type de l'avion</param>
+	/// <param name="speed">vitesse de l'avion</param>
+	/// <param name="maintenanceTime">temps de maintenance de l'avion</param>
+	/// <param name="boardingTime">temps d'embarquement de l'avion</param>
+	/// <param name="unboardingTime">temps de débarquement de l'avion</param>
     public void AddPlane(int airportId, string name, string type, int speed, int maintenanceTime, int boardingTime = 0, int unboardingTime = 0)
     {
         _airports[airportId].AddPlane(name, type, speed, maintenanceTime, boardingTime, unboardingTime);
     }
-	
+	/// <summary>
+	/// </summary>
+	/// <returns></returns>
     public XmlSchema? GetSchema()
     {
         return null;
     }
-
+    /// <summary>
+    /// Lire le XML du scénario enregistré
+    /// </summary>
+    /// <param name="writer">le fichier à lire</param>
     public void ReadXml(XmlReader reader)
     {
         reader.ReadStartElement();
@@ -108,9 +150,11 @@ public class Scenario : IXmlSerializable
         }
         reader.Close();
         NotifyAirportChanged();
-        
     }
-
+    /// <summary>
+    /// Enregistrer le scénario actuel en XML
+    /// </summary>
+    /// <param name="writer">Le fichier à enregistrer </param>
     public void WriteXml(XmlWriter writer)
     {
         writer.WriteStartElement("Scenario");
@@ -127,12 +171,16 @@ public class Scenario : IXmlSerializable
 		
         writer.Close();
     }
-
+    /// <summary>
+    /// Enregistrer le scénario actuel
+    /// </summary>
     public void Save()
     {
         WriteXml(XmlWriter.Create("../../../scenario.xml"));
     }
-
+    /// <summary>
+    /// Remplir le générateur à l'aide du scénario déja enregistré
+    /// </summary>
     public void Load()
     {
         XmlReader reader = XmlReader.Create("../../../scenario.xml");

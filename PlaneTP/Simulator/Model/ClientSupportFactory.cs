@@ -4,8 +4,7 @@ namespace Simulator.Model;
 public class ClientSupportFactory
 {
     private static ClientSupportFactory _instance;
-    //TODO: confirmer la taille de la carte
-    public static ClientSupportFactory Instance => _instance ??= new ClientSupportFactory(new Position(2000,1000)); // Implementation de singleton. Pas thread-safe
+    public static ClientSupportFactory Instance => _instance ??= new ClientSupportFactory(new Position(1000,500)); // Implementation de singleton. Pas thread-safe
     private Position _size;
     
     
@@ -17,7 +16,7 @@ public class ClientSupportFactory
     public ClientSupport CreateClientSupport(string type)
     {
         Random r = new Random();
-        Position position = new Position(r.Next(_size.X), r.Next(_size.Y));
+        Position position = new Position(r.Next(_size.X + 1), r.Next(_size.Y + 1));
         return (type switch
         {
             "Fire" => new ClientFire(position, r.Next(5)),
