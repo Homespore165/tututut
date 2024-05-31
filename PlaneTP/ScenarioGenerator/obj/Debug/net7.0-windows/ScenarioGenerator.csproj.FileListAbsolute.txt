@@ -30,3 +30,5 @@ D:\Projects\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\refint\Sc
 D:\Projects\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\ScenarioGenerator.pdb
 D:\Projects\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\ScenarioGenerator.genruntimeconfig.cache
 D:\Projects\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\ref\ScenarioGenerator.dll
+D:\Projects\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\ScenarioGenerator.Properties.Resources.resources
+D:\Projects\tututut\PlaneTP\ScenarioGenerator\obj\Debug\net7.0-windows\ScenarioGenerator.CoordsPickerForm.resources

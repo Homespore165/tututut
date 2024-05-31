@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Simulator.Model;
 
-namespace Simulator.Model
+public class ClientRecon : ClientSupport
 {
-    public class ClientRecon : ClientSupport
+    public ClientRecon(Position position) : base(position)
     {
     }
 }
+

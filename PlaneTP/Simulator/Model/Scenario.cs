@@ -4,15 +4,27 @@ using System.Xml.Serialization;
 
 namespace Simulator.Model;
 
-public delegate void OnAirportUpdate(string[] planes);
 public class Scenario : IXmlSerializable
 {
-	private event OnAirportUpdate OnAirportUpdate;
+    private List<Plane> _planes;
+    public List<Plane> Planes
+    {
+        get => _planes;
+        set => _planes = value;
+    }
+    
     private List<Airport> _airports;
     public List<Airport> Airports
     {
         get => _airports;
         set => _airports = value;
+    }
+    
+    private List<ClientSupport> _clientsSupport;
+    public List<ClientSupport> ClientsSupport
+    {
+        get => _clientsSupport;
+        set => _clientsSupport = value;
     }
 
     private int _frequencyFire;
@@ -46,7 +58,9 @@ public class Scenario : IXmlSerializable
 	
     public Scenario(int frequencyFire, int frequencyRecon, int frequencyRescue)
     {
+        _planes = new List<Plane>();
         _airports = new List<Airport>();
+        _clientsSupport = new List<ClientSupport>();
         _frequencyFire = frequencyFire;
         _frequencyRecon = frequencyRecon;
         _frequencyRescue = frequencyRescue;
@@ -61,19 +75,16 @@ public class Scenario : IXmlSerializable
     {
         Airport airport = new Airport(name, x, y, passengerTraffic, cargoTraffic);
         _airports.Add(airport);
-        NotifyAirportChanged();
     }
 	
     public void EditAirport(int id, string name, int x, int y, int passengerTraffic, int cargoTraffic)
     {
         _airports[id] =	new Airport(name, x, y, passengerTraffic, cargoTraffic);
-        NotifyAirportChanged();
     }
 	
     public void DeleteAirport(int id)
     {
         _airports.Remove(_airports[id]);
-        NotifyAirportChanged();
     }
 	
     public void AddPlane(int airportId, string name, string type, int speed, int maintenanceTime, int boardingTime = 0, int unboardingTime = 0)
@@ -124,31 +135,10 @@ public class Scenario : IXmlSerializable
         writer.Close();
     }
 
-    public void Save()
-    {
-        WriteXml(XmlWriter.Create("../../../scenario.xml"));
-    }
-
     public void Load()
     {
-        XmlReader reader = XmlReader.Create("../../../scenario.xml");
+        XmlReader reader = XmlReader.Create("../../../../ScenarioGenerator/scenario.xml");
         ReadXml(reader);
-    }
-    
-	private void NotifyAirportChanged()
-    {
-        OnAirportUpdate?.Invoke(_airports.Select(a => a.ToString()).ToArray());
-    }
-
-    public void SubscribeAirportUpdate(Action<string[]> updateAirports)
-    {
-        OnAirportUpdate += new OnAirportUpdate(updateAirports);
-    }
-
-    public void SubscribePlaneUpdate(Action<string[]> updatePlanes)
-    {
-        _airports.ForEach(a => a.UnsubcribeAll());
-        _airports.ForEach(a => a.SubscribePlaneChanged(updatePlanes));
     }
 
     public string[] GetPlanes(int airportId)

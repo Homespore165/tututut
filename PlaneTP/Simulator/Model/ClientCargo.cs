@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Simulator.Model
+﻿namespace Simulator.Model;
+public class ClientCargo : ClientTransport
 {
-    public class ClientCargo : ClientTransport
-    {
-    }
 }

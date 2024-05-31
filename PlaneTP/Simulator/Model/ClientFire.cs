@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Simulator.Model;
 
-namespace Simulator.Model
+public class ClientFire : ClientSupport
 {
-    public class ClientFire : ClientSupport
+    public int Intensity { get; set; }
+    
+    public ClientFire(Position position, int intensity) : base(position)
     {
+        Intensity = intensity;
     }
 }

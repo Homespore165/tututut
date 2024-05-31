@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Simulator.Model
+﻿namespace Simulator.Model;
+public  class ClientRescue : ClientSupport
 {
-    public  class ClientRescue : ClientSupport
+    public ClientRescue(Position position) : base(position)
     {
     }
 }
