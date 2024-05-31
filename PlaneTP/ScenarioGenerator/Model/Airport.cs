@@ -42,7 +42,13 @@ public class Airport : IXmlSerializable
 		get => _position;
 		set => _position = value;
 	}
-	
+	/// <summary>
+	/// Constructeur
+	/// </summary>
+	/// <param name="name">nom de l'aéroport</param>
+	/// <param name="position">position de l'aéroport</param>
+	/// <param name="passengerTraffic"></param>
+	/// <param name="cargoTraffic"></param>
 	public Airport(String name, Position position, int passengerTraffic, int cargoTraffic)
 	{
 		_name = name;
@@ -51,7 +57,14 @@ public class Airport : IXmlSerializable
 		_cargoTraffic = cargoTraffic;
 		_planes = new List<Plane>();
 	}
-
+	/// <summary>
+	/// Constructeur
+	/// </summary>
+	/// <param name="name">nom de l'aéroport</param>
+	/// <param name="x">position en X</param>
+	/// <param name="y">position en Y</param>
+	/// <param name="passengerTraffic"></param>
+	/// <param name="cargoTraffic"></param>
 	public Airport(String name, int x, int y, int passengerTraffic, int cargoTraffic)
 	{
 		_name = name;
@@ -60,12 +73,22 @@ public class Airport : IXmlSerializable
 		_cargoTraffic = cargoTraffic;
 		_planes = new List<Plane>();
 	}
-
+	/// <summary>
+	/// Constructeur
+	/// </summary>
 	private Airport()
 	{
 		_planes = new List<Plane>();
 	}
-	
+	/// <summary>
+	/// Ajouter un avion à l'aéroport
+	/// </summary>
+	/// <param name="name">Nom de l'avion</param>
+	/// <param name="speed">Vitesse</param>
+	/// <param name="maintenanceTime">Temps de maintenance</param>
+	/// <param name="boardingTime">Temps d'embarquement</param>
+	/// <param name="unboardingTime">Temps de débarquement</param>
+	/// <param name="type">Type de l'avion</param>
 	public void AddPlane(string name, string type, int speed, int maintenanceTime, int boardingTime, int unboardingTime)
 	{
 		_planes.Add(PlaneFactory.Instance.CreatePlane(name, type, speed, maintenanceTime, boardingTime, unboardingTime));
@@ -77,7 +100,10 @@ public class Airport : IXmlSerializable
 	{
 		return null;
 	}
-	
+	/// <summary>
+	/// Charger les aéroports d'un fichier XML
+	/// </summary>
+	/// <param name="reader">le fichier XML</param>
 	public void ReadXml(XmlReader reader)
 	{
 		reader.ReadStartElement();
@@ -101,13 +127,18 @@ public class Airport : IXmlSerializable
 		}
 		reader.ReadEndElement();
 	}
-
+	/// <summary>
+	/// Vider la liste de mes avions
+	/// </summary>
 	public void ClearPlanes()
 	{
 		_planes.Clear();
 		NotifyPlaneChanged();
 	}
-
+	/// <summary>
+	///  Enregistrer un aéroport en XML
+	/// </summary>
+	/// <param name="writer">le fichier XML</param>
 	public void WriteXml(XmlWriter writer)
 	{
 		writer.WriteElementString("Name", Name);
@@ -126,28 +157,40 @@ public class Airport : IXmlSerializable
 		}
 		writer.WriteEndElement();
 	}
-
+	/// <summary>
+	/// Sérialise l'objet en String
+	/// </summary>
+	/// <returns>une string signifiant l'aéroport</returns>
 	public override string? ToString()
 	{
 		return _name + ";" + _position.X + ";" + _position.Y + ";" + _passengerTraffic + ";" + _cargoTraffic;
 	}
-	
+	/// <summary>
+	/// Gestion de l'événement : OnPlaneUpdate
+	/// </summary>
 	private void NotifyPlaneChanged()
 	{
 		OnPlaneUpdate?.Invoke(_planes.Select(p => p.ToString()).ToArray());
 		Console.WriteLine("test");
 	}
-	
+	/// <summary>
+	/// Méthode d'abonnement à l'événement : OnPlaneUpdate
+	/// </summary>
 	public void SubscribePlaneChanged(Action<string[]> updatePlanes)
 	{
 		OnPlaneUpdate += new OnPlaneUpdate(updatePlanes);
 	}
-
+	/// <summary>
+	/// Méthode de désabonnement à l'événement : OnPlaneUpdate
+	/// </summary>
 	public void UnsubcribeAll()
 	{
 		OnPlaneUpdate = null;
 	}
-
+	/// <summary>
+	/// Sérialise ses avions en String
+	/// </summary>
+	/// <returns>une string</returns>
 	public string[] GetPlanes()
 	{
 		return _planes.Select(p => p.ToString()).ToArray();
