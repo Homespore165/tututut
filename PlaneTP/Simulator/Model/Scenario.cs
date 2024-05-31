@@ -26,6 +26,10 @@ public class Scenario : IXmlSerializable
         get => _clientsSupport;
         set => _clientsSupport = value;
     }
+    public List<ClientFire> ClientsFire => _clientsSupport.OfType<ClientFire>().ToList();
+    public List<ClientRecon> ClientsRecon => _clientsSupport.OfType<ClientRecon>().ToList();
+    public List<ClientRescue> ClientsRescue => _clientsSupport.OfType<ClientRescue>().ToList();
+
 
     private int _frequencyFire;
     public int FrequencyFire
@@ -47,7 +51,7 @@ public class Scenario : IXmlSerializable
         get => _frequencyRescue;
         set => _frequencyRescue = value;
     }
-	
+    
     public Scenario()
     {
         _airports = new List<Airport>();

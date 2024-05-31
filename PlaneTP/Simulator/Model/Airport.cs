@@ -43,16 +43,9 @@ public class Airport : IXmlSerializable
 	}
 	
 	private List<ClientTransport> _clientsTransport;
-	public List<ClientTransport> ClientsCargo
-	{
-		get => _clientsTransport.Where(c => c is ClientCargo).ToList();
-	}
-	
-	public List<ClientTransport> ClientsPassenger
-	{
-		get => _clientsTransport.Where(c => c is ClientPassenger).ToList();
-	}
-	
+	public List<ClientCargo> ClientsCargo => _clientsTransport.OfType<ClientCargo>().ToList();
+	public List<ClientPassenger> ClientsPassenger => _clientsTransport.OfType<ClientPassenger>().ToList();
+
 	public Airport(String name, Position position, int passengerTraffic, int cargoTraffic)
 	{
 		_name = name;
