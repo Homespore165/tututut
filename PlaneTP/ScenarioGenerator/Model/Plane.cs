@@ -75,6 +75,6 @@ public abstract class Plane
 	/// <returns>une string signifiant l'avion</returns>
 	public override string? ToString()
 	{
-		return _name + ";" + GetType().Name + ";" + _speed + ";" + _maintenanceTime;
+		return _name + ";" + GetType().Name.Remove(0, 5) + ";" + _speed + ";" + _maintenanceTime;
 	}
 }

@@ -120,11 +120,6 @@ public class Airport : IXmlSerializable
 		}
 		writer.WriteEndElement();
 	}
-
-	public override string? ToString()
-	{
-		return _name + ";" + _position.X + ";" + _position.Y + ";" + _passengerTraffic + ";" + _cargoTraffic;
-	}
 	
 	private void NotifyPlaneChanged()
 	{

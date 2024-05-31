@@ -104,18 +104,17 @@ public class Scenario : IXmlSerializable
         _frequencyFire = int.Parse(reader.ReadElementString("FrequencyFire"));
         _frequencyRecon = int.Parse(reader.ReadElementString("FrequencyRecon"));
         _frequencyRescue = int.Parse(reader.ReadElementString("FrequencyRescue"));
-
-        reader.ReadStartElement("Airports");
-
+        
         XmlSerializer serializer = new XmlSerializer(typeof(Airport));
-        while (reader.NodeType != XmlNodeType.EndElement)
+        while (reader.Read())
         {
-            Airport airport = (Airport)serializer.Deserialize(reader);
-            _airports.Add(airport);
+            if (reader.NodeType == XmlNodeType.Element && reader.Name == "Airport")
+            {
+                Airport airport = (Airport)serializer.Deserialize(reader.ReadSubtree());
+                _airports.Add(airport);
+            }
         }
-
         reader.Close();
-        _airports.Remove(_airports.Last()); // For some reason, the first airport is duplicated at the end
     }
 
     public void WriteXml(XmlWriter writer)
@@ -137,7 +136,7 @@ public class Scenario : IXmlSerializable
 
     public void Load()
     {
-        XmlReader reader = XmlReader.Create("../../../../ScenarioGenerator/scenario.xml");
+        XmlReader reader = XmlReader.Create("../../../../ScenarioGenerator/Scenario.xml");
         ReadXml(reader);
     }
 
