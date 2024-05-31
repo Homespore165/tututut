@@ -10,7 +10,7 @@ public class PlaneFire : PlaneSupport
 	/// <param name="y">position en Y</param>
 	/// <param name="speed">Vitesse</param>
 	/// <param name="maintenanceTime">Temps de maintenance</param>
-	public PlaneFire(string name, int x, int y, int speed, int maintenanceTime) : base(name, x, y, speed,
+	public PlaneFire(string name, int speed, int maintenanceTime) : base(name, speed,
 		maintenanceTime)
 	{
 		

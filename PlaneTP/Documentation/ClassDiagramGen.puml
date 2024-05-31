@@ -10,36 +10,51 @@ rectangle vue {
 rectangle Controlleur {
 class Controller {
 	=Singleton
+	- Controlleur instance
 	+ Scenario Scenario
-	+ View View
+	+ Form1 form1
 	+ Controller GetController()
 	+ void AddAirport(String name, int x, int y, int passengerTraffic, int cargoTraffic)
-	+ void EditAirport(int id, String name, int x, int y, int passengerTraffic, int cargoTraffic)
-	+ void DeleteAirport(int id)
-	+ void AddPlane(String name, int x, int y, int speed, int maintenanceTime)
+	+ void EditAirport(int airportId, String name, int x, int y, int passengerTraffic, int cargoTraffic)
+	+ void DeleteAirport(int airportId)
+	+ void AddPlane(int airportId, string name, string type, int speed, int maintenanceTime, int boardingTime, int unboardingTime)
 	+ void SaveScenario()
 	+ void LoadScenario()
-	+ void ResetScenario()
+	+ void EmptyScenario()
+	+ void SaveFrequencies(int fire, int rescue, int recon)
 	+ String[] GetAirports()
-	+ String[] GetPlanes(int airop)
+	+ String[] GetPlanes(int airportId)
+	+ int GetFire()
+	+ int GetRescue()
+	+ int GetRecon()
 }
 }
 
 rectangle Model {
 class Scenario {
-	+ Airport[] Airports 
+    + event OnAirportUpdate
+	+ List<Airport> Airports 
 	+ int FrequencyFire
 	+ int FrequencyRescue
 	+ int FrequencyRecon
 	+ void AddAirport(String name, int x, int y, int passengerTraffic, int cargoTraffic)
+	+ void AddAirport(Airport airport)
 	+ void EditAirport(int id, String name, int x, int y, int passengerTraffic, int cargoTraffic)
 	+ void DeleteAirport(int id)
-	+ void AddPlane(String name, int x, int y, int speed, int maintenanceTime)
+	+ void AddPlane(int airportId, string name, string type, int speed, int maintenanceTime, int boardingTime, int unboardingTime)
+	+ void Load()
+	+ void NotifyAirportChanged()
+	+ void SubscribeAirportUpdate(Action<string[]> updateAirports)
+	+ void SubscribePlaneUpdate(Action<string[]> updatePlanes)
+	+ string[] GetPlanes(int airportId)
+	+ int GetFire()
+	+ int GetRescue()
+	+ int GetRecon()
 }
 
 interface IXmlSerializable {
-	+ void WriteXml()
-	+ void ReadXml()
+	+ void WriteXml(XmlWriter writer)
+	+ void ReadXml(XmlReader reader)
 }
 
 class Position {
@@ -49,26 +64,32 @@ class Position {
 
 abstract class Plane {
 	+ String Name
-	+ Position Pos
 	+ int Speed
 	+ int MaintenanceTime
+	+ string ToString()
 }
 
 abstract class PlaneTransport {
-	+ int TimeToBoard
-	+ int TimeToDeboard
+	+ int boardingTime
+	+ int unboardTime
 }
 
-abstract class PlaneSupport {
-}
+abstract class PlaneSupport {}
 
 class Airport {
 	+ String Name
-	+ Plane[] Planes
+	+ List<Plane> Planes
 	+ int PassengerTraffic
 	+ int CargoTraffic
 	+ event OnPlaneUpdate
-	+ void AddPlane(String name, int x, int y, int speed, int maintenanceTime)
+	+ void AddPlane(string name, string type, int speed, int maintenanceTime, int boardingTime, int unboardingTime)
+	+ void ClearPlanes()
+	+ string ToString()
+	- void NotifyPlaneChanged()
+	+ public void SubscribePlaneChanged(Action<string[]> updatePlanes)
+    + void SubscribePlaneChanged(Action<string[]> updatePlanes)
+    + void UnsubcribeAll()
+    + string[] GetPlanes()
 }
 
 class PlaneCargo {}

@@ -18,11 +18,11 @@ public class PlaneFactory
     {
         return type switch
         {
-            "Passenger" => new PlanePassenger(name, 0, 0, speed, maintenanceTime, boardingTime, unboardingTime),
-            "Cargo" => new PlaneCargo(name, 0, 0, speed, maintenanceTime, boardingTime, unboardingTime),
-            "Fire" => new PlaneFire(name, 0, 0, speed, maintenanceTime),
-            "Recon" => new PlaneRecon(name, 0, 0, speed, maintenanceTime),
-            "Rescue" => new PlaneRescue(name, 0, 0, speed, maintenanceTime),
+            "Passenger" => new PlanePassenger(name, speed, maintenanceTime, boardingTime, unboardingTime),
+            "Cargo" => new PlaneCargo(name, speed, maintenanceTime, boardingTime, unboardingTime),
+            "Fire" => new PlaneFire(name, speed, maintenanceTime),
+            "Recon" => new PlaneRecon(name, speed, maintenanceTime),
+            "Rescue" => new PlaneRescue(name, speed, maintenanceTime),
             _ => throw new ArgumentException("Invalid plane type")
         };
     }

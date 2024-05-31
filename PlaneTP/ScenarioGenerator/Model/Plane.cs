@@ -13,7 +13,7 @@ public abstract class Plane
 	/// <param name="name">Nom de l'avion</param>
 	/// <param name="speed">Vitesse</param>
 	/// <param name="maintenanceTime">Temps de maintenance</param>
-	protected Plane(string name, Position position, int speed, int maintenanceTime)
+	protected Plane(string name, int speed, int maintenanceTime)
 	{
 		_name = name;
 		_speed = speed;
@@ -40,19 +40,6 @@ public abstract class Plane
 		get => _maintenanceTime;
 		set => _maintenanceTime = value;
 	}
-	/// <summary>
-	/// Constructeur
-	/// </summary>
-	/// <param name="name">Nom de l'avion</param>
-	/// <param name="speed">Vitesse</param>
-	/// <param name="maintenanceTime">Temps de maintenance</param>
-	public Plane(string name, int speed, int maintenanceTime)
-	{
-		_name = name;
-		_speed = speed;
-		_maintenanceTime = maintenanceTime;
-	}
-	
 	protected Plane() {}
 
 	public XmlSchema? GetSchema()

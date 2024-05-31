@@ -12,10 +12,8 @@ public class PlanePassenger : PlaneTransport
 	/// <param name="maintenanceTime">Temps de maintenance</param>
 	/// <param name="boardingTime">Temps d'embarquement</param>
 	/// <param name="unboardTime">Temps de débarquement</param>
-	public PlanePassenger(string name, int x, int y, int speed, int maintenanceTime, int boardingTime, int unboardTime)
-		: base(name, x, y, speed, maintenanceTime, boardingTime, unboardTime)
-	{
-	}
+	public PlanePassenger(string name, int speed, int maintenanceTime, int boardingTime, int unboardTime)
+		: base(name, speed, maintenanceTime, boardingTime, unboardTime) {}
 	
 	private PlanePassenger() {}
 }

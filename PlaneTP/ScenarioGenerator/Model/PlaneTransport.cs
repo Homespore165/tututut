@@ -28,7 +28,7 @@ public abstract class PlaneTransport : Plane
 	/// <param name="maintenanceTime">Temps de maintenance</param>
 	/// <param name="boardingTime">Temps d'embarquement</param>
 	/// <param name="unboardTime">Temps de débarquement</param>
-	public PlaneTransport(string name, int x, int y, int speed, int maintenanceTime, int boardingTime, int unboardTime) : base(name, speed, maintenanceTime)
+	public PlaneTransport(string name, int speed, int maintenanceTime, int boardingTime, int unboardTime) : base(name, speed, maintenanceTime)
 	{
 		_boardingTime = boardingTime;
 		_unboardTime = unboardTime;

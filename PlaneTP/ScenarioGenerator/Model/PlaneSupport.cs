@@ -10,7 +10,7 @@ public abstract class PlaneSupport : Plane
 	/// <param name="y">position en Y</param>
 	/// <param name="speed">Vitesse</param>
 	/// <param name="maintenanceTime">Temps de maintenance</param>
-	public PlaneSupport(string name, int x, int y, int speed, int maintenanceTime) : base(name, speed, maintenanceTime)
+	public PlaneSupport(string name, int speed, int maintenanceTime) : base(name, speed, maintenanceTime)
 	{
 	}
 	
