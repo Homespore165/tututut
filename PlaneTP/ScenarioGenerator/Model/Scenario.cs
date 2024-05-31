@@ -121,7 +121,6 @@ public class Scenario : IXmlSerializable
         _airports[airportId].AddPlane(name, type, speed, maintenanceTime, boardingTime, unboardingTime);
     }
 	/// <summary>
-	/// :TODO idk man
 	/// </summary>
 	/// <returns></returns>
     public XmlSchema? GetSchema()
