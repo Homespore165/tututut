@@ -28,7 +28,6 @@ public class Controller
     {
         _instance = this;
 
-
         _form = new SimForm();
         LoadSavedScenario();
         
