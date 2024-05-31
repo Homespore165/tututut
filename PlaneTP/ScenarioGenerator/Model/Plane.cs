@@ -60,6 +60,6 @@ public abstract class Plane : IXmlSerializable
 	
 	public override string? ToString()
 	{
-		return _name + ";" + _speed + ";" + _maintenanceTime;
+		return _name + ";" + GetType().Name + ";" + _speed + ";" + _maintenanceTime;
 	}
 }

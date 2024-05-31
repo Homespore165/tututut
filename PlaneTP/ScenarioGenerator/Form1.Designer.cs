@@ -48,6 +48,7 @@ partial class Form1
         btnAddAirport = new Button();
         lvwAirplane = new ListView();
         planeName = new ColumnHeader();
+        planeType = new ColumnHeader();
         speed = new ColumnHeader();
         maintenanceTime = new ColumnHeader();
         boardingTime = new ColumnHeader();
@@ -233,7 +234,7 @@ partial class Form1
         // 
         // lvwAirplane
         // 
-        lvwAirplane.Columns.AddRange(new ColumnHeader[] { planeName, speed, maintenanceTime, boardingTime, unboardingTime });
+        lvwAirplane.Columns.AddRange(new ColumnHeader[] { planeName, planeType, speed, maintenanceTime, boardingTime, unboardingTime });
         lvwAirplane.Location = new Point(34, 215);
         lvwAirplane.MultiSelect = false;
         lvwAirplane.Name = "lvwAirplane";
@@ -246,6 +247,11 @@ partial class Form1
         // 
         planeName.Text = "Plane Name";
         planeName.Width = 100;
+        //
+        // planeType
+        //
+        planeType.Text = "Type";
+        planeType.Width = 100;
         // 
         // speed
         // 
@@ -618,6 +624,7 @@ partial class Form1
     private ColumnHeader passengerTraffic;
     private ColumnHeader cargoTraffic;
     private ColumnHeader planeName;
+    private ColumnHeader planeType;
     private ColumnHeader speed;
     private ColumnHeader boardingTime;
     private ColumnHeader unboardingTime;

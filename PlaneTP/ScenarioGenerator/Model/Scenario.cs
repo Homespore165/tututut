@@ -66,7 +66,9 @@ public class Scenario : IXmlSerializable
 	
     public void EditAirport(int id, string name, int x, int y, int passengerTraffic, int cargoTraffic)
     {
+        List<Plane> p = _airports[id].Planes;
         _airports[id] =	new Airport(name, x, y, passengerTraffic, cargoTraffic);
+        _airports[id].Planes = p;
         NotifyAirportChanged();
     }
 	
