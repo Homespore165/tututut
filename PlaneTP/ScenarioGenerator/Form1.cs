@@ -60,6 +60,7 @@ public partial class Form1 : Form
             int boardingTime = (int)numPlaneBoardingTime.Value;
             int unboardingTime = (int)numPlaneUnboardingTime.Value;
             _controller.AddPlane(airportId, name, type, speed, maintenanceTime, boardingTime, unboardingTime);
+            UpdatePlanes(_controller.GetPlanes(airportId));
         }
     }
 
@@ -88,11 +89,33 @@ public partial class Form1 : Form
         try
         {
             UpdatePlanes(_controller.GetPlanes(lvwAirport.SelectedIndices[0]));
+            txbAirportName.Text = lvwAirport.SelectedItems[0].SubItems[0].Text;
+            numAirportPositionX.Value = int.Parse(lvwAirport.SelectedItems[0].SubItems[1].Text);
+            numAirportPositionY.Value = int.Parse(lvwAirport.SelectedItems[0].SubItems[2].Text);
+            numAirportPassengerTraffic.Value = int.Parse(lvwAirport.SelectedItems[0].SubItems[3].Text);
+            numAirportCargoTraffic.Value = int.Parse(lvwAirport.SelectedItems[0].SubItems[4].Text);
         }
         catch (Exception)
         {
             // ignored
         }
+    }
+
+    private void lvwAirplane_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            txbPlaneName.Text = lvwAirplane.SelectedItems[0].SubItems[0].Text;
+            cbxPlaneType.Text = lvwAirplane.SelectedItems[0].SubItems[1].Text;
+            numPlaneSpeed.Value = int.Parse(lvwAirplane.SelectedItems[0].SubItems[2].Text);
+            numPlaneMaintenanceTime.Value = int.Parse(lvwAirplane.SelectedItems[0].SubItems[3].Text);
+            numPlaneBoardingTime.Value = int.Parse(lvwAirplane.SelectedItems[0].SubItems[4].Text);
+            numPlaneUnboardingTime.Value = int.Parse(lvwAirplane.SelectedItems[0].SubItems[5].Text);    
+        } catch (Exception)
+        {
+            // ignored
+        }
+        
     }
 
     public void UpdateAirports(string[] airports)
@@ -133,17 +156,17 @@ public partial class Form1 : Form
 
         coordsPicker.ShowDialog();
 
-        if (coordsPicker.ChosenCoordinates.X < 4)
-            numAirportPositionX.Value = 5;
-        else if (coordsPicker.ChosenCoordinates.X > 786)
-            numAirportPositionX.Value = 780;
-        else 
-            numAirportPositionX.Value = coordsPicker.ChosenCoordinates.X;
-        if (coordsPicker.ChosenCoordinates.Y < 30)
-            numAirportPositionY.Value = 30;
-        else if (coordsPicker.ChosenCoordinates.Y > 418)
-            numAirportPositionY.Value = 418;
-        else
-            numAirportPositionY.Value = coordsPicker.ChosenCoordinates.Y;
+        numAirportPositionX.Value = coordsPicker.ChosenCoordinates.X switch
+        {
+            < 4 => 5,
+            > 786 => 780,
+            _ => coordsPicker.ChosenCoordinates.X
+        };
+        numAirportPositionY.Value = coordsPicker.ChosenCoordinates.Y switch
+        {
+            < 30 => 30,
+            > 418 => 418,
+            _ => coordsPicker.ChosenCoordinates.Y
+        };
     }
 }

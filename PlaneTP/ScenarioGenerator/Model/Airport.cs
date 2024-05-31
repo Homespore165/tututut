@@ -135,6 +135,7 @@ public class Airport : IXmlSerializable
 	private void NotifyPlaneChanged()
 	{
 		OnPlaneUpdate?.Invoke(_planes.Select(p => p.ToString()).ToArray());
+		Console.WriteLine("test");
 	}
 	
 	public void SubscribePlaneChanged(Action<string[]> updatePlanes)

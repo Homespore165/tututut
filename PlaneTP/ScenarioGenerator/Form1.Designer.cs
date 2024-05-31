@@ -242,6 +242,7 @@ partial class Form1
         lvwAirplane.TabIndex = 18;
         lvwAirplane.UseCompatibleStateImageBehavior = false;
         lvwAirplane.View = View.Details;
+        lvwAirplane.SelectedIndexChanged += lvwAirplane_SelectedIndexChanged;
         // 
         // planeName
         // 
