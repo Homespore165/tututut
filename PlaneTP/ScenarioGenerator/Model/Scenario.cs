@@ -106,6 +106,7 @@ public class Scenario : IXmlSerializable
         }
         reader.Close();
         NotifyAirportChanged();
+        
     }
 
     public void WriteXml(XmlWriter writer)
@@ -155,5 +156,18 @@ public class Scenario : IXmlSerializable
     public string[] GetPlanes(int airportId)
     {
         return _airports[airportId].GetPlanes();
+    }
+    
+    public int GetFire()
+    {
+        return _frequencyFire;
+    }
+    public int GetRescue()
+    {
+        return _frequencyRescue;
+    }
+    public int GetRecon()
+    {
+        return _frequencyRecon;
     }
 }

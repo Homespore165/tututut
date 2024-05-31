@@ -65,6 +65,7 @@ public class Controller
 
 	public void LoadScenario()
 	{
+		this.EmptyScenario();
 		_scenario.Load();
 	}
 	
@@ -79,5 +80,18 @@ public class Controller
 	public string[] GetPlanes(int airportId)
 	{
 		return _scenario.GetPlanes(airportId);
+	}
+	
+	public int GetFire()
+	{
+		return _scenario.GetFire();
+	}
+	public int GetRecon()
+	{
+		return _scenario.GetRecon();
+	}
+	public int GetRescue()
+	{
+		return _scenario.GetRescue();
 	}
 }

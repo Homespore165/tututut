@@ -72,6 +72,9 @@ public partial class Form1 : Form
     private void btnLoad_Click(object sender, EventArgs e)
     {
         _controller.LoadScenario();
+        numFrequencyFire.Value = _controller.GetFire();
+        numFrequencyRecon.Value = _controller.GetRecon();
+        numFrequencyRescue.Value = _controller.GetRescue();
     }
 
     private void btnEmpty_Click(object sender, EventArgs e)
@@ -118,6 +121,9 @@ public partial class Form1 : Form
     {
         UpdateAirports(new string[0]);
         UpdatePlanes(new string[0]);
+        numFrequencyFire.Value = 0;
+        numFrequencyRescue.Value = 0;
+        numFrequencyRecon.Value = 0;
     }
 
     private void coordsPickerBtn_Click(object sender, EventArgs e)
