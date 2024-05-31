@@ -60,6 +60,7 @@ public partial class Form1 : Form
             int boardingTime = (int)numPlaneBoardingTime.Value;
             int unboardingTime = (int)numPlaneUnboardingTime.Value;
             _controller.AddPlane(airportId, name, type, speed, maintenanceTime, boardingTime, unboardingTime);
+            Console.WriteLine("Test");
             UpdatePlanes(_controller.GetPlanes(airportId));
         }
     }
@@ -110,7 +111,7 @@ public partial class Form1 : Form
             numPlaneSpeed.Value = int.Parse(lvwAirplane.SelectedItems[0].SubItems[2].Text);
             numPlaneMaintenanceTime.Value = int.Parse(lvwAirplane.SelectedItems[0].SubItems[3].Text);
             numPlaneBoardingTime.Value = int.Parse(lvwAirplane.SelectedItems[0].SubItems[4].Text);
-            numPlaneUnboardingTime.Value = int.Parse(lvwAirplane.SelectedItems[0].SubItems[5].Text);    
+            numPlaneUnboardingTime.Value = int.Parse(lvwAirplane.SelectedItems[0].SubItems[5].Text);
         } catch (Exception)
         {
             // ignored
