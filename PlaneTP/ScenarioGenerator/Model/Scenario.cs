@@ -95,8 +95,7 @@ public class Scenario : IXmlSerializable
         _frequencyRecon = int.Parse(reader.ReadElementString("FrequencyRecon"));
         _frequencyRescue = int.Parse(reader.ReadElementString("FrequencyRescue"));
 
-        reader.ReadStartElement("Airports");
-
+        
         XmlSerializer serializer = new XmlSerializer(typeof(Airport));
         while (reader.Read())
         {
@@ -107,6 +106,7 @@ public class Scenario : IXmlSerializable
             }
         }
         reader.Close();
+        NotifyAirportChanged();
     }
 
     public void WriteXml(XmlWriter writer)
