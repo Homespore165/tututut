@@ -67,6 +67,7 @@ public partial class Form1 : Form
     {
         _controller.SaveFrequencies((int)numFrequencyFire.Value, (int)numFrequencyRescue.Value, (int)numFrequencyRecon.Value);
         _controller.SaveScenario();
+        MessageBox.Show("Le scénario à bien été enregistré");
     }
 
     private void btnLoad_Click(object sender, EventArgs e)
