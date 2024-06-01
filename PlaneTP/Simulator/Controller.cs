@@ -32,8 +32,11 @@ public class Controller
         _scenario.Load();
     }
 
-    public void TimeStep()
+    public void TimeStep(int t)
     {
-        _scenario!.TimeStep();
+        for (int i = 0; i < t; i++)
+        {
+            _scenario!.TimeStep();
+        }
     }
 }
