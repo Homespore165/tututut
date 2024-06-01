@@ -8,9 +8,4 @@ public abstract class Flying: State
     {
         _position = plane.Position;
     }
-    
-    public override void TimeStep()
-    {
-        throw new NotImplementedException();
-    }
 }

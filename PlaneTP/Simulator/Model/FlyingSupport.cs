@@ -7,12 +7,8 @@ public abstract class FlyingSupport: Flying
 
     protected FlyingSupport(Plane plane, ClientSupport client) : base(plane)
     {
-        //_source = plane.CurrentAirport; //TODO: How do we do this?
+        _source = plane.Airport; 
         _client = client;
     }
-    
-    public override void TimeStep()
-    {
-        throw new NotImplementedException();
-    }
+    public abstract void NewPosition();
 }
