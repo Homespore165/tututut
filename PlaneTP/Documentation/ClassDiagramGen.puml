@@ -1,9 +1,12 @@
 ﻿@startuml
 
 rectangle vue {
-	class View {
-		-Controller _controller
-		+Form form
+	class Form1 {
+		- Controller _controller
+	}
+	class coordsPickerForm{
+	    - Point _chosenCoordinates
+        - Size _geoPinSize
 	}
 }
 
@@ -61,7 +64,12 @@ class Position {
 	+ int X
 	+ int Y
 }
-
+class PlaneFactory {
+	=Singleton
+	- PlaneFactory instance
+	+ PlaneFactory GetPlaneFactory()
+	+ Plane CreatePlane(string name, string type, int speed, int maintenanceTime, int boardingTime, int unboardingTime)
+}
 abstract class Plane {
 	+ String Name
 	+ int Speed
@@ -106,15 +114,17 @@ PlanePassengers --|> PlaneTransport
 PlaneFire --|> PlaneSupport
 PlaneRescue --|> PlaneSupport
 PlaneRecon --|> PlaneSupport
-Airport --|> Position
+Airport  "1" *-- "1" Position
 Airport "1" *-- "N" Plane
 Scenario "1" *-- "N" Airport
 Scenario "1" --* "1" Controller
-Controller "1" *-- "1" View
-View "1" o-- "1" Controller
+Controller "1" *-- "1" Form1
+Form1 "1" o-- "1" Controller
 Controller "1" *-- "1" Controller
+PlaneFactory "1" *-- "1" PlaneFactory
 
 IXmlSerializable <|-. Scenario
-IXmlSerializable <|-. Plane
+IXmlSerializable <|----. Plane
 IXmlSerializable <|-. Airport
+PlaneFactory <|-. Airport
 @enduml

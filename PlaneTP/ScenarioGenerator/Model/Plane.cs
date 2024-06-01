@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace ScenarioGenerator.Model;
 
-public abstract class Plane
+public abstract class Plane : IXmlSerializable
 {
 	/// <summary>
 	/// Constructeur
@@ -46,6 +46,7 @@ public abstract class Plane
 	{
 		return null;
 	}
+	public void ReadXml(XmlReader reader){}
 	/// <summary>
 	///  Enregistrer un avion en XML
 	/// </summary>

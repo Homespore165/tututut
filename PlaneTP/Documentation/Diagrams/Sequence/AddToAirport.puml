@@ -4,26 +4,6 @@
 autonumber
 
 actor User
-User -> Form : Selects an airport
-activate Form
-Form -> Form : UpdatePlanes(GetPlanes(int airportId))
-activate Form
-Form -> Controller : GetPlanes(int airportId)
-activate Controller
-Controller -> Scenario : GetPlanes(int aiportId)
-activate Scenario
-Scenario -> Airport : GetPlanes()
-activate Airport
-Airport --> Scenario : String[] planes
-deactivate Airport
-Scenario --> Controller: String[] planes
-deactivate Scenario
-Controller --> Form: String[] planes
-deactivate Controller
-
-Form -> User : Update the view
-deactivate Form
-deactivate Form
 User -> Form : Enters the plane's informations
 activate Form
 Form -> Controller : AddPlane(The plane's info and airportId)
