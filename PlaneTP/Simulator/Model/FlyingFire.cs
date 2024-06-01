@@ -1,9 +1,10 @@
 ﻿namespace Simulator.Model;
 
-public class Waiting : State
+public class FlyingFire : FlyingSupport
 {
-    public Waiting(Plane plane) : base(plane) {}
-    
+    public FlyingFire(Plane plane, ClientFire client) : base(plane, client)
+    {
+    }
     public override void TimeStep()
     {
         throw new NotImplementedException();

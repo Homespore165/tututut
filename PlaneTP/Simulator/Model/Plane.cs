@@ -6,13 +6,8 @@ namespace Simulator.Model;
 
 public abstract class Plane : IXmlSerializable
 {
-	protected Plane(string name, Position position, int speed, int maintenanceTime)
-	{
-		_name = name;
-		_speed = speed;
-		_maintenanceTime = maintenanceTime;
-	}
-
+	public State State { get; set; }
+	public Position Position { get; set; }
 	protected string _name;
 	public string Name
 	{
@@ -34,14 +29,22 @@ public abstract class Plane : IXmlSerializable
 		set => _maintenanceTime = value;
 	}
 
-	public Plane(string name, int speed, int maintenanceTime)
+	public Airport? Airport { get; set; }
+
+	public Plane(string name, int speed, int maintenanceTime, Airport airport)
 	{
 		_name = name;
 		_speed = speed;
 		_maintenanceTime = maintenanceTime;
+		State = new Waiting(this);
+		Airport = airport;
 	}
-	
-	protected Plane() {}
+
+	protected Plane()
+	{
+		State = new Waiting(this);
+	}
+
 
 	public XmlSchema? GetSchema()
 	{
@@ -68,6 +71,6 @@ public abstract class Plane : IXmlSerializable
 
 	public void TimeStep()
 	{
-		throw new NotImplementedException();
+		State.TimeStep();
 	}
 }

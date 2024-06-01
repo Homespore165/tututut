@@ -8,6 +8,7 @@ namespace Simulator.Model;
 public abstract class ClientTransport : Client
 {
     public Airport Destination { get; set; }
+    public double Size { get; set; }
     
     public ClientTransport()
     {
@@ -17,4 +18,6 @@ public abstract class ClientTransport : Client
     {
         Destination = destination;
     }
+    
+    public abstract ClientTransport Split(double size);
 }

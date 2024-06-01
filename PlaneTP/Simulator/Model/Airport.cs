@@ -72,8 +72,13 @@ public class Airport : IXmlSerializable
 	
 	public void AddPlane(string name, string type, int speed, int maintenanceTime, int boardingTime, int unboardingTime)
 	{
-		_planes.Add(PlaneFactory.Instance.CreatePlane(name, type, speed, maintenanceTime, boardingTime, unboardingTime));
+		_planes.Add(PlaneFactory.Instance.CreatePlane(name, type, speed, maintenanceTime, this, boardingTime, unboardingTime));
 		_planes.ForEach(p => Console.WriteLine(p.ToString()));
+	}
+	
+	public void AddClient(ClientTransport client)
+	{
+		_clientsTransport.Add(client);
 	}
 	
 	public XmlSchema? GetSchema()
@@ -99,7 +104,7 @@ public class Airport : IXmlSerializable
 			int planeMaintenanceTime = int.Parse(reader.ReadElementString("MaintenanceTime"));
 			int boardingTime = reader.IsStartElement("BoardingTime") ? int.Parse(reader.ReadElementString("BoardingTime")) : 0;
 			int unboardingTime = reader.IsStartElement("UnboardTime") ? int.Parse(reader.ReadElementString("UnboardTime")) : 0;
-			_planes.Add(PlaneFactory.Instance.CreatePlane(planeName, planeType, planeSpeed, planeMaintenanceTime, boardingTime, unboardingTime));
+			_planes.Add(PlaneFactory.Instance.CreatePlane(planeName, planeType, planeSpeed, planeMaintenanceTime, this, boardingTime, unboardingTime));
 			reader.ReadEndElement();
 		}
 		reader.ReadEndElement();

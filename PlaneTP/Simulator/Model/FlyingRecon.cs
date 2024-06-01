@@ -1,8 +1,8 @@
 ﻿namespace Simulator.Model;
 
-public class Waiting : State
+public class FlyingRecon : FlyingSupport
 {
-    public Waiting(Plane plane) : base(plane) {}
+    public FlyingRecon(Plane plane, ClientRecon client) : base(plane, client) {}
     
     public override void TimeStep()
     {

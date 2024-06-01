@@ -7,10 +7,18 @@ public class ClientPassenger : ClientTransport
     {
         Random r = new Random();
         NbPassenger = r.Next(0, 100);
+        Size = NbPassenger;
     }
     
     public ClientPassenger(Airport destination, int nbPassenger): base(destination)
     {
         NbPassenger = nbPassenger;
+    }
+    
+    public override ClientTransport Split(double size)
+    {
+        NbPassenger -= (int)size;
+        Size -= size;
+        return new ClientPassenger(Destination, (int)size);
     }
 }

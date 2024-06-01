@@ -19,13 +19,18 @@ public abstract class PlaneTransport : Plane
 		set => _unboardTime = value;
 	}
 	
-	public PlaneTransport(string name, int x, int y, int speed, int maintenanceTime, int boardingTime, int unboardTime) : base(name, speed, maintenanceTime)
+	public int Capacity { get; set; }
+	
+	public PlaneTransport(string name, int x, int y, int speed, int maintenanceTime, Airport airport, int boardingTime, int unboardTime) : base(name, speed, maintenanceTime, airport)
 	{
 		_boardingTime = boardingTime;
 		_unboardTime = unboardTime;
 	}
-	
-	protected PlaneTransport() {}
+
+	protected PlaneTransport()
+	{
+		Capacity = new Random().Next(100, 300);
+	}
 	
 	public override void WriteXml(XmlWriter writer)
 	{
