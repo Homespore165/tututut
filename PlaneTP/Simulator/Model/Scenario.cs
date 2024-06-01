@@ -115,6 +115,7 @@ public class Scenario : IXmlSerializable
             if (reader.NodeType == XmlNodeType.Element && reader.Name == "Airport")
             {
                 Airport airport = (Airport)serializer.Deserialize(reader.ReadSubtree());
+                airport.Scenario = this;
                 _airports.Add(airport);
             }
         }
@@ -154,10 +155,8 @@ public class Scenario : IXmlSerializable
         Random r = new Random();
         if (r.Next(0, 100) < _frequencyFire)
         {
-            int intensity = r.Next(0, 6);
-            Position p = new Position(r.Next(0, 1000), r.Next(0, 500));
-            ClientFire client = new ClientFire(p, intensity);
-            _clientsSupport.Add(client);
+            ClientSupportFactory factory = ClientSupportFactory.Instance;
+            _clientsSupport.Add(factory.CreateClientSupport("Fire"));
         }
     }
     
@@ -166,9 +165,8 @@ public class Scenario : IXmlSerializable
         Random r = new Random();
         if (r.Next(0, 100) < _frequencyRecon)
         {
-            Position p = new Position(r.Next(0, 1000), r.Next(0, 500));
-            ClientRecon client = new ClientRecon(p);
-            _clientsSupport.Add(client);
+            ClientSupportFactory factory = ClientSupportFactory.Instance;
+            _clientsSupport.Add(factory.CreateClientSupport("Recon"));
         }
     }
     
@@ -177,16 +175,33 @@ public class Scenario : IXmlSerializable
         Random r = new Random();
         if (r.Next(0, 100) < _frequencyRescue)
         {
-            Position p = new Position(r.Next(0, 1000), r.Next(0, 500));
-            ClientRescue client = new ClientRescue(p);
-            _clientsSupport.Add(client);
+            ClientSupportFactory factory = ClientSupportFactory.Instance;
+            _clientsSupport.Add(factory.CreateClientSupport("Rescue"));
         }
     }
-    
-    public void GenerateClients()
+
+    private void GenerateClients()
     {
         GenerateFire();
         GenerateRecon();
         GenerateRescue();
+    }
+
+    public void TimeStep()
+    {
+        GenerateClients();
+        Planes.ForEach(p => p.TimeStep());
+        Airports.ForEach(a => a.TimeStep());
+    }
+
+    public Airport GetRandomAirportExcluding(Airport airport)
+    {
+        Random r = new Random();
+        Airport a = airport;
+        while (a == airport)
+        {
+            a = _airports[r.Next(0, _airports.Count)];
+        }
+        return a;
     }
 }

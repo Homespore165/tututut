@@ -4,9 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simulator.Model
+namespace Simulator.Model;
+public abstract class ClientTransport : Client
 {
-    public abstract class ClientTransport : Client
+    public Airport Destination { get; set; }
+    
+    public ClientTransport()
     {
+    }
+    
+    public ClientTransport(Airport destination)
+    {
+        Destination = destination;
     }
 }

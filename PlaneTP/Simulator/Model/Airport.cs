@@ -7,6 +7,7 @@ namespace Simulator.Model;
 public delegate void OnPlaneUpdate(string[] planes);
 public class Airport : IXmlSerializable
 {
+	public Scenario Scenario { get; set; }
 	private string _name;
 	public string Name
 	{
@@ -133,7 +134,9 @@ public class Airport : IXmlSerializable
 		Random r = new Random();
 		if (r.Next(0, 101) < _passengerTraffic)
 		{
-			_clientsTransport.Add(new ClientPassenger());
+			ClientTransportFactory factory = ClientTransportFactory.Instance;
+			Airport destination = Scenario.GetRandomAirportExcluding(this);
+			_clientsTransport.Add(factory.CreateClientTransport("Passenger", destination));
 		}
 	}
 	
@@ -142,7 +145,9 @@ public class Airport : IXmlSerializable
 		Random r = new Random();
 		if (r.Next(0, 101) < _cargoTraffic)
 		{
-			_clientsTransport.Add(new ClientCargo());
+			ClientTransportFactory factory = ClientTransportFactory.Instance;
+			Airport destination = Scenario.GetRandomAirportExcluding(this);
+			_clientsTransport.Add(factory.CreateClientTransport("Cargo", destination));
 		}
 	}
 	
@@ -150,5 +155,11 @@ public class Airport : IXmlSerializable
 	{
 		GeneratePassenger();
 		GenerateCargo();
+	}
+
+	public void TimeStep()
+	{
+		GenerateClient();
+		_planes.ForEach(p => p.TimeStep());
 	}
 }

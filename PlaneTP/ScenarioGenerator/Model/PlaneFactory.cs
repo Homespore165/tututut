@@ -2,7 +2,7 @@
 
 public class PlaneFactory
 {
-    private static PlaneFactory _instance;
+    private static PlaneFactory? _instance;
     public static PlaneFactory Instance => _instance ??= new PlaneFactory(); // Implementation de singleton. Pas thread-safe.
     
     private PlaneFactory() {}

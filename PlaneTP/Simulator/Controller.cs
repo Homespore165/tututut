@@ -5,17 +5,9 @@ namespace Simulator;
 
 public class Controller
 {
-    private static Controller _instance = null;
-    public static Controller Instance { get { 
-            if (_instance is null)
-            {
-                new Controller();
-            }
-            return _instance;
-        }
-    }
-    
-    private Scenario _scenario;
+    private static Controller? _instance;
+    public static Controller Instance => _instance ??= new Controller();
+    private Scenario? _scenario;
     
     private SimForm _form;
     public SimForm Form
@@ -38,5 +30,10 @@ public class Controller
     {
         _scenario = new Scenario();
         _scenario.Load();
+    }
+
+    public void TimeStep()
+    {
+        _scenario!.TimeStep();
     }
 }

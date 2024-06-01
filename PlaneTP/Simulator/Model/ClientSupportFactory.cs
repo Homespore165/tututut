@@ -3,23 +3,21 @@ namespace Simulator.Model;
 
 public class ClientSupportFactory
 {
-    private static ClientSupportFactory _instance;
-    public static ClientSupportFactory Instance => _instance ??= new ClientSupportFactory(new Position(1000,500)); // Implementation de singleton. Pas thread-safe
-    private Position _size;
+    private static ClientSupportFactory? _instance;
+    public static ClientSupportFactory Instance => _instance ??= new ClientSupportFactory(); // Implementation de singleton. Pas thread-safe
+    private readonly Position _size = new (1000, 500);
+    private readonly Random _random = new ();
     
-    
-    private ClientSupportFactory(Position size)
+    private ClientSupportFactory()
     {
-        _size = size;
     }
     
     public ClientSupport CreateClientSupport(string type)
     {
-        Random r = new Random();
-        Position position = new Position(r.Next(_size.X + 1), r.Next(_size.Y + 1));
+        Position position = new Position(_random.Next(_size.X + 1), _random.Next(_size.Y + 1));
         return (type switch
         {
-            "Fire" => new ClientFire(position, r.Next(5)),
+            "Fire" => new ClientFire(position),
             "Recon" => new ClientRecon(position),
             "Rescue" => new ClientRecon(position),
             _ => null

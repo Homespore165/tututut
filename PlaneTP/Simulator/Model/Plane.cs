@@ -65,4 +65,9 @@ public abstract class Plane : IXmlSerializable
 	{
 		return _name + ";" + _speed + ";" + _maintenanceTime;
 	}
+
+	public void TimeStep()
+	{
+		throw new NotImplementedException();
+	}
 }
