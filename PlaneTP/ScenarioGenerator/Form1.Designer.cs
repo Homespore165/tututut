@@ -339,6 +339,7 @@ partial class Form1
         numPlaneSpeed.Margin = new Padding(2);
         numPlaneSpeed.Name = "numPlaneSpeed";
         numPlaneSpeed.Size = new Size(50, 23);
+        numPlaneSpeed.Maximum = 10;
         numPlaneSpeed.TabIndex = 25;
         // 
         // lblPlaneSpeed
