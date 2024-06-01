@@ -14,5 +14,21 @@
 3. La classe Controlleur implémente le principe indirection
 1. Les avions implémentent le principe de polymorphisme
 3. 
-4.
+## Simulateur 
+#### Patrons GOF
+1.  Séparation du logiciel en Vue, Modèle et Controlleur
+4. La classe Controlleur implémente le patron Singleton
+3. La classe Scénario implémente le patron Facade
+1. Les classes ClientSupportFactory et ClientTransportFactory implémentent le patron Fabrique,
+3. Les classes ClientSupportFactory et ClientTransportFactory implémentent le patron Singleton
+3. Les classes State et ses enfants implémentent le patron États
+3. Les classes State et ses enfants implémentent le patron Stratégie
+4. Le Patron Obs-Obs est implémenté (On rafraichie la Vue)
+#### Principes Grasp
+9. La classe PlaneFactory implémente le principe créateur
+3. La classe Controlleur implémente le principe controlleur
+3. La classe Controlleur implémente le principe indirection
+1. Les avions implémentent le principe de polymorphisme
+3. Les états implémentent le principe de polymorphisme
+4. Les Clients implémentent le principe de polymorphisme
 
