@@ -176,4 +176,9 @@ public class Airport : IXmlSerializable
 		string clients = string.Join(";", _clientsTransport.Select(c => c.ToString()));
 		return $"{name};{_position.X};{_position.Y};{clients}";
 	}
+
+	public void RemoveClient(ClientTransport clientTransport)
+	{
+		_clientsTransport.Remove(clientTransport);
+	}
 }

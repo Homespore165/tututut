@@ -18,6 +18,7 @@ public class PlaneCargo : PlaneTransport
     {
         ClientTransport c = (ClientTransport)client;
         State = new FlyingTransport(this, Airport.Position, c);
+        Airport.RemoveClient(c);
         Airport = c.Destination;
     }
 }
