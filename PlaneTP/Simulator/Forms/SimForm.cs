@@ -1,4 +1,6 @@
 using Simulator.Forms;
+using Simulator.Model;
+using System.Xml.Linq;
 
 namespace Simulator;
 
@@ -7,19 +9,15 @@ public partial class SimForm : Form
     private Controller _controller;
     private List<string> _flights;
     private float _tempTime;
+    private List<string> _airports;
 
     public SimForm()
     {
         _controller = Controller.Instance;
         InitializeComponent();
         _flights = new List<string>();
+        _airports = new List<string>();
         _tempTime = 0;
-
-        updateTreeView(new string[]
-        {
-            "airport1; 11 client2; 62 client1",
-            "airrrrrrrrrrprot; 15153 clients; 235235235235235235 asdasdasdasd; yes; ok"
-        });
 
         addFlight("P", 100, 100, 250, 400);
         addFlight("C", 20, 400, 890, 200);
@@ -45,27 +43,6 @@ public partial class SimForm : Form
         int timeToAdvance = (int)timeAdvanceSelector.Value;
 
         _controller.TimeStep(timeToAdvance);
-    }
-
-    /// <summary>
-    /// update avec une liste de string sous forme:
-    /// airport; client; client; client;
-    /// </summary>
-    /// <param name="jsonString"></param>
-    public void updateTreeView(string[] infos)
-    {
-        foreach (string info in infos)
-        {
-            string[] strings = info.Split(';');
-            TreeNode node = new TreeNode(strings[0]);
-
-            for (int i = 1; i < strings.Length; i++)
-            {
-                node.Nodes.Add(new TreeNode(strings[i]));
-            }
-
-            airportTreeView.Nodes.Add(node);
-        }
     }
 
     private void mapImage_Paint(object sender, PaintEventArgs e)
@@ -104,6 +81,17 @@ public partial class SimForm : Form
             {
                 graphics.DrawEllipse(linePen, new Rectangle(endx - circleSize, endy - circleSize, circleSize * 2, circleSize * 2));
             }
+        }
+
+        foreach (string airport in _airports)
+        {
+
+            string[] strings = airport.Split(";");
+
+            int x = int.Parse(strings[1]);
+            int y = int.Parse(strings[2]);
+
+            graphics.DrawString(strings[0], font, brush, new Point(x, y));
         }
     }
 
@@ -146,5 +134,26 @@ public partial class SimForm : Form
     public void updateAirports(List<string> strings)
     {
 
+        
+
+        _airports.Clear();
+        airportTreeView.Nodes.Clear();
+
+        foreach (string info in strings)
+        {
+            string[] strs = info.Split(';');
+            TreeNode node = new TreeNode(strs[0]);
+
+            _airports.Add(strs[0] + ";" + strs[1] + ";" + strs[2]);
+
+            for (int i = 3; i < strs.Length; i++)
+            {
+                node.Nodes.Add(new TreeNode(strs[i]));
+            }
+
+            airportTreeView.Nodes.Add(node);
+        }
+
+        updateMap();
     }
 }
