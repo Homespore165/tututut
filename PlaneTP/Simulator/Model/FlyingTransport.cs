@@ -8,18 +8,20 @@ public class FlyingTransport : Flying
     {
         _client = client;
     }
-    public void newPosition()
+    protected void Toward()
     {
-        float t = 0.0001f * _plane.Speed % 1f;
-        int x = (int)((1 - t) * _plane.Airport.Position.X + t * _client.Destination.Position.X);
-        int y = (int)((1 - t) * _plane.Airport.Position.Y + t * _client.Destination.Position.Y);
-        _position = new Position(x, y);
+        int speed = _plane.Speed;
+        int deltaX = _client.Position.X - _position.X;
+        int deltaY = _client.Position.Y - _position.Y;
+        int angle = (int)Math.Atan2(deltaY, deltaX);
+        _position.X += (int)Math.Ceiling(speed * Math.Cos(angle));
+        _position.Y += (int)Math.Ceiling(speed * Math.Sin(angle));
     }
     
     public override void TimeStep()
     {
-        newPosition();
-        if (_plane.Airport.Position == _client.Destination.Position)
+        Toward();
+        if (_position == _client.Destination.Position)
         {
             _plane.State = new Deboarding((PlaneTransport)_plane,  _client);
         }

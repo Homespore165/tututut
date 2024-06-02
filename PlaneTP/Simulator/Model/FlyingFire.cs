@@ -10,6 +10,7 @@ public class FlyingFire : FlyingSupport
     public FlyingFire(Plane plane, Position start, ClientFire client) : base(plane, start, client)
     {
         _client = client;
+        _handler = Toward;
     }
 
     private void Toward()

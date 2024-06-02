@@ -9,6 +9,7 @@ public class FlyingRescue : FlyingSupport
 
     public FlyingRescue(Plane plane, Position start, ClientRescue client) : base(plane, start, client)
     {
+        _client = client;
         _handler = Toward;
     }
     
