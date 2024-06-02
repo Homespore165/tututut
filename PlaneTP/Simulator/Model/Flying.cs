@@ -55,7 +55,10 @@ public abstract class Flying: State
 
         return str;
     }
-
+    /// <summary>
+    /// L'avion est-il arrivé à destination
+    /// </summary>
+    /// <returns>Oui/Non</returns>
     public bool isAtDestination()
     {
         int deltaX = _client.Position.X - _position.X;
@@ -64,7 +67,10 @@ public abstract class Flying: State
 
         return dist < 5;
     }
-
+    /// <summary>
+    /// L'avion est-il à sa position de départ
+    /// </summary>
+    /// <returns>Oui/Non</returns>
     public bool isAtStart()
     {
         int deltaX = _startPos.X - _position.X;

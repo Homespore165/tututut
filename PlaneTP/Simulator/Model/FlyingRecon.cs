@@ -15,7 +15,9 @@ public class FlyingRecon : FlyingSupport
     {
         _handler = Toward;
     }
-
+    /// <summary>
+    /// Faire avancer l'avion
+    /// </summary>
     private void Toward()
     {
         base.Toward();
@@ -25,7 +27,9 @@ public class FlyingRecon : FlyingSupport
             _handler = Circle;
         }
     }
-    
+    /// <summary>
+    /// Faire revenir l'avion
+    /// </summary>
     private void Back()
     {
         base.Back();
@@ -35,7 +39,9 @@ public class FlyingRecon : FlyingSupport
             _plane.State = new Maintenance(_plane);
         }
     }
-
+    /// <summary>
+    /// Effectuer le cercle de reconnaissance
+    /// </summary>
     private void Circle()
     {
         int speed = _plane.Speed;
