@@ -106,4 +106,11 @@ public partial class SimForm : Form
     {
         mapImage.Invalidate();
     }
+
+
+    // "type;startx;starty;endx;endy;posx,posy"
+    public void updateFlights(List<String> strings)
+    {
+
+    }
 }
