@@ -6,6 +6,7 @@ public class FlyingRescue : FlyingSupport
 {
     private delegate void Step();
     private Step _handler;
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -17,6 +18,7 @@ public class FlyingRescue : FlyingSupport
         _client = client;
         _handler = Toward;
     }
+
     /// <summary>
     /// Faire avancer l'avion
     /// </summary>
@@ -24,11 +26,12 @@ public class FlyingRescue : FlyingSupport
     {
         base.Toward();
         
-        if (_client.Position == _position)
+        if (isAtPos(_client.Position))
         {
             _handler = Back;
         }
     }
+
     /// <summary>
     /// Faire retourner l'avion
     /// </summary>
@@ -36,19 +39,17 @@ public class FlyingRescue : FlyingSupport
     {
         base.Back();
         
-        if (_source.Position == _position)
+        if (isAtPos(_source.Position))
         {
             _plane.State = new Maintenance(_plane);
         }
     }
+
     /// <summary>
     /// Gestion d'avancer d'un seul pas
     /// </summary>
     public override void TimeStep()
     {
-        if (_plane.Airport.Position == _position)
-        {
-            _plane.State = new Maintenance(_plane);
-        }
+        _handler();
     }
 }
