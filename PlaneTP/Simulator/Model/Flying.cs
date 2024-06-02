@@ -74,4 +74,13 @@ public abstract class Flying: State
         return dist < 5;
     }
 
+    public bool isAtPos(Position pos, float errorRange = 5)
+    {
+        int deltaX = pos.X - _position.X;
+        int deltaY = pos.Y - _position.Y;
+        float dist = MathF.Sqrt(MathF.Pow(deltaX, 2) + MathF.Pow(deltaY, 2));
+
+        return dist < errorRange;
+    }
+
 }

@@ -21,7 +21,7 @@ public partial class SimForm : Form
 
     private void button1_Click(object sender, EventArgs e)
     {
-
+        
     }
 
     private void advanceTimeBtn_Click(object sender, EventArgs e)
@@ -62,10 +62,10 @@ public partial class SimForm : Form
             graphics.DrawLine(linePen, new Point(startx, starty), new Point(endx, endy));
             graphics.DrawString(type, font, brush, new Point(posx, posy));
 
-            try
+            if (posx >= 0 && posy >= 0)
             {
                 graphics.DrawEllipse(Pens.DarkBlue, new Rectangle(posx - pointSize, posy - pointSize, pointSize * 2, pointSize * 2));
-            } catch {}
+            }
 
             if (type == "O")
             {
