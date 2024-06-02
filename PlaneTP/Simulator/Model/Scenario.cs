@@ -226,4 +226,21 @@ public class Scenario
     {
         _clientsSupport.Remove(client);
     }
+
+    public List<string> GetAirportPlanes()
+    {
+        List<string> info = new List<string>();
+        foreach (var airport in _airports)
+        {
+            string name = airport.Name;
+            string output = name + ";";
+            foreach (var plane in airport.Planes)
+            {
+                output += plane.Name + " - " + plane.GetType().Name.Remove(0,5) + ";";
+            }
+            output.Remove(output.Length - 1);
+            info.Add(output);
+        }
+        return info;
+    }
 }

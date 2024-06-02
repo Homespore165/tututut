@@ -36,6 +36,8 @@ public class FlyingTransport : Flying
         if (isAtPos(_client.Destination.Position))
         {
             _plane.State = new Deboarding((PlaneTransport)_plane,  _client);
+            _plane.Airport = _client.Destination;
+            _client.Destination.Planes.Add(_plane);
         }
     }
 }
