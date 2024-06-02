@@ -30,6 +30,8 @@ public class Boarding : State
                 _plane.State = new FlyingTransport(_plane, _plane.Airport.Position, c);
             } else {
                 _plane.State = new FlyingTransport(_plane, _plane.Airport.Position, _client);
+                _plane.Airport.RemoveClient(_client);
+                _client.Destination.Planes.Add(_plane);
             }
         }
     }

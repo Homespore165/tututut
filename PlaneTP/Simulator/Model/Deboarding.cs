@@ -20,7 +20,7 @@ public class Deboarding : State
     public override void TimeStep()
     {
         _timeToCompletion--;
-        if (_timeToCompletion == 0)
+        if (_timeToCompletion <= 0)
         {
             _plane.State = new Waiting(_plane);
         }
