@@ -21,7 +21,7 @@ public partial class SimForm : Form
 
     private void button1_Click(object sender, EventArgs e)
     {
-        
+        _controller.LoadScenario();
     }
 
     private void advanceTimeBtn_Click(object sender, EventArgs e)
@@ -123,9 +123,6 @@ public partial class SimForm : Form
 
     public void updateAirports(List<string> strings)
     {
-
-        
-
         _airports.Clear();
         airportTreeView.Nodes.Clear();
 

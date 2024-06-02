@@ -41,4 +41,9 @@ public class Controller
         _scenario.updateView();
         GC.Collect();
     }
+
+    public void LoadScenario()
+    {
+        _scenario.Load();
+    }
 }
