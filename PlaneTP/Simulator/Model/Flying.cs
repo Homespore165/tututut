@@ -50,8 +50,10 @@ public abstract class Flying: State
         int endY = _client.Position.Y;
         int posX = _position.X;
         int posY = _position.Y;
-        
-        return $"{planeType};{startX};{startY};{endX};{endY};{posX};{posY}";
+
+        string str = $"{planeType};{startX};{startY};{endX};{endY};{posX};{posY}";
+
+        return str;
     }
 
     public bool isAtDestination()
@@ -60,7 +62,16 @@ public abstract class Flying: State
         int deltaY = _client.Position.Y - _position.Y;
         float dist = MathF.Sqrt(MathF.Pow(deltaX, 2) + MathF.Pow(deltaY, 2));
 
-        return dist < 2;
+        return dist < 5;
+    }
+
+    public bool isAtStart()
+    {
+        int deltaX = _startPos.X - _position.X;
+        int deltaY = _startPos.Y - _position.Y;
+        float dist = MathF.Sqrt(MathF.Pow(deltaX, 2) + MathF.Pow(deltaY, 2));
+
+        return dist < 5;
     }
 
 }

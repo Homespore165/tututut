@@ -25,8 +25,8 @@ public abstract class FlyingSupport: Flying
 
         float length = MathF.Sqrt(deltaX * deltaX + deltaY * deltaY);
 
-        _position.X += (int)(deltaX / length * speed);
-        _position.Y += (int)(deltaY / length * speed);
+        _position.X = (int)(_position.X + deltaX / length * speed);
+        _position.Y = (int)(_position.Y + deltaY / length * speed);
     }
     /// <summary>
     /// Faire retourner l'avion
@@ -34,12 +34,12 @@ public abstract class FlyingSupport: Flying
     protected void Back()
     {
         int speed = _plane.Speed;
-        int deltaX = _client.Position.X - _position.X;
-        int deltaY = _client.Position.Y - _position.Y;
+        int deltaX = _startPos.X - _position.X;
+        int deltaY = _startPos.Y - _position.Y;
 
         float length = MathF.Sqrt(deltaX * deltaX + deltaY * deltaY);
 
-        _position.X += (int)(deltaX / length * -speed);
-        _position.Y += (int)(deltaY / length * -speed);
+        _position.X = (int)(_position.X + deltaX / length * speed);
+        _position.Y = (int)(_position.Y + deltaY / length * speed);
     }
 }

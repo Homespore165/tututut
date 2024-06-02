@@ -191,6 +191,11 @@ public class Scenario
         GenerateClients();
         Planes?.ForEach(p => p.TimeStep());
         Airports.ForEach(a => a.TimeStep());
+        
+    }
+
+    public void updateView()
+    {
         FlightUpdate?.Invoke(Planes.Select(p => p.State.ToString()).ToList());
         AirportUpdate?.Invoke(Airports.Select(a => a.ToString()).ToList());
     }

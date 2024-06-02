@@ -36,7 +36,7 @@ public class FlyingFire : FlyingSupport
     {
         base.Back();
     
-        if (_source.Position == _position)
+        if (isAtStart())
         {
             _handler = _client.Intensity > 0 ? Toward : () => _plane.State = new Maintenance(_plane);
         }
