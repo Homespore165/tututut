@@ -11,7 +11,11 @@ public class ClientSupportFactory
     private ClientSupportFactory()
     {
     }
-    
+    /// <summary>
+    /// Constructeur de clients
+    /// </summary>
+    /// <param name="type">Type de client de support</param>
+    /// <returns>un client</returns>
     public ClientSupport CreateClientSupport(string type)
     {
         Position position = new Position(_random.Next(_size.X + 1), _random.Next(_size.Y + 1));

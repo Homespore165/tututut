@@ -4,13 +4,19 @@ public class Boarding : State
 {
     private int _timeToCompletion;
     private ClientTransport _client;
-    
+    /// <summary>
+    /// Constructeur
+    /// </summary>
+    /// <param name="plane">Avion possèdant cet état</param>
+    /// <param name="client">Client</param>
     public Boarding(PlaneTransport plane, ClientTransport client) : base(plane)
     {
         _timeToCompletion = plane.BoardingTime;
         _client = client;
     }
-    
+    /// <summary>
+    /// Gestion d'avancer d'un seul pas
+    /// </summary>
     public override void TimeStep()
     {
         _timeToCompletion--;
