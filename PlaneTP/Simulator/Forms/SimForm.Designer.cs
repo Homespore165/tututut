@@ -106,7 +106,7 @@ partial class SimForm
         airportTreeView.Location = new Point(12, 563);
         airportTreeView.Name = "airportTreeView";
         airportTreeView.ShowPlusMinus = false;
-        airportTreeView.Size = new Size(498, 274);
+        airportTreeView.Size = new Size(1000, 274);
         airportTreeView.TabIndex = 6;
         // 
         // label1
@@ -125,6 +125,7 @@ partial class SimForm
         planeTreeView.ShowPlusMinus = false;
         planeTreeView.Size = new Size(496, 274);
         planeTreeView.TabIndex = 8;
+        planeTreeView.Visible = false;
         // 
         // label2
         // 
@@ -134,6 +135,7 @@ partial class SimForm
         label2.Size = new Size(109, 15);
         label2.TabIndex = 9;
         label2.Text = "Airports and planes";
+        label2.Visible = false;
         // 
         // SimForm
         // 
