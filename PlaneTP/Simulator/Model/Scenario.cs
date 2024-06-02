@@ -20,7 +20,7 @@ public class Scenario : IXmlSerializable
             {
                 planes.AddRange(airport.Planes);
             }
-            return planes.Where(p => p.State is not Flying).ToList();
+            return planes.Where(p => p.State is Flying).ToList();
         }
     }
     
