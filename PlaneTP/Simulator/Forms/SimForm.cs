@@ -5,14 +5,14 @@ namespace Simulator;
 public partial class SimForm : Form
 {
     private Controller _controller;
-    private List<FormFlight> _flights;
+    private List<string> _flights;
     private float _tempTime;
 
     public SimForm()
     {
         _controller = Controller.Instance;
         InitializeComponent();
-        _flights = new List<FormFlight>();
+        _flights = new List<string>();
         _tempTime = 0;
 
         updateTreeView(new string[]
@@ -32,7 +32,7 @@ public partial class SimForm : Form
     {
         FormFlight flight = new FormFlight(type, new Point(startX, startY), new Point(endX, endY));
         flight.setProgress(0.5f);
-        _flights.Add(flight);
+        //_flights.Add(flight);
     }
 
     private void button1_Click(object sender, EventArgs e)
@@ -42,7 +42,9 @@ public partial class SimForm : Form
 
     private void advanceTimeBtn_Click(object sender, EventArgs e)
     {
+        int timeToAdvance = (int)timeAdvanceSelector.Value;
 
+        _controller.TimeStep(timeToAdvance);
     }
 
     /// <summary>
@@ -73,44 +75,73 @@ public partial class SimForm : Form
         int pointSize = 5;
         int circleSize = 15;
 
-        Pen linePen = new Pen(Brushes.Blue, 2f);
-        linePen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-        linePen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-
-        Brush b = Brushes.DarkBlue;
-
         Graphics graphics = e.Graphics;
 
         Font font = new Font(FontFamily.GenericSansSerif, 12);
         Brush brush = SystemBrushes.ControlText;
 
-        foreach (FormFlight flight in _flights)
+        foreach (string flight in _flights)
         {
-            flight.setProgress(_tempTime % 1f);
 
-            graphics.DrawLine(flight.Pen, flight.Start, flight.End);
-            graphics.DrawString(flight.Type, font, brush, flight.Position);
-            graphics.DrawEllipse(Pens.DarkBlue, new Rectangle(flight.Position.X - pointSize, flight.Position.Y - pointSize, pointSize * 2, pointSize * 2));
+            string[] strings = flight.Split(";");
 
-            if (flight.Type == "O")
+            string type = strings[0];
+            int startx = int.Parse(strings[1]);
+            int starty = int.Parse(strings[2]);
+            int endx = int.Parse(strings[3]);
+            int endy = int.Parse(strings[4]);
+            int posx = int.Parse(strings[5]);
+            int posy = int.Parse(strings[6]);
+
+            Pen linePen = getPenForType(type);
+            linePen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
+            linePen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
+
+            graphics.DrawLine(linePen, new Point(startx, starty), new Point(endx, endy));
+            graphics.DrawString(type, font, brush, new Point(posx, posy));
+            graphics.DrawEllipse(Pens.DarkBlue, new Rectangle(posx - pointSize, posy - pointSize, pointSize * 2, pointSize * 2));
+
+            if (type == "O")
             {
-                graphics.DrawEllipse(flight.Pen, new Rectangle(flight.End.X - circleSize, flight.End.Y - circleSize, circleSize * 2, circleSize * 2));
+                graphics.DrawEllipse(linePen, new Rectangle(endx - circleSize, endy - circleSize, circleSize * 2, circleSize * 2));
             }
         }
-
-        updateMap();
     }
 
-    //temp: ToDelete
     private void updateMap()
     {
         mapImage.Invalidate();
+    }
+
+    private Pen getPenForType(string type)
+    {
+        Pen pen = new Pen(Brushes.Blue, 2f);
+
+        switch (type)
+        {
+            case "O":
+                pen = new Pen(Brushes.White, 2f);
+                break;
+            case "R":
+                pen = new Pen(Brushes.Yellow, 2f);
+                break;
+            case "C":
+                pen = new Pen(Brushes.Green, 2f);
+                break;
+            case "F":
+                pen = new Pen(Brushes.Red, 2f);
+                break;
+        }
+
+        return pen;
     }
 
 
     // "type;startx;starty;endx;endy;posx,posy"
     public void updateFlights(List<String> strings)
     {
+        _flights = strings;
 
+        updateMap();
     }
 }
