@@ -9,7 +9,7 @@ public abstract class Flying: State
     /// Constructeur
     /// </summary>
     /// <param name="plane">Avion possèdant cet état</param>
-    /// <param name="start">Position de départ de l'avion (position de l'aéroport)</param>
+    /// <param name="position">Position de départ de l'avion (position de l'aéroport)</param>
     protected Flying(Plane plane, Position position) : base(plane)
     {
         _position = (Position)position.Clone();
@@ -19,7 +19,7 @@ public abstract class Flying: State
     /// Constructeur
     /// </summary>
     /// <param name="plane">Avion possèdant cet état</param>
-    /// <param name="start">Position de départ de l'avion (position de l'aéroport)</param>
+    /// <param name="position">Position de départ de l'avion (position de l'aéroport)</param>
     /// <param name="client">Client</param>
     protected Flying(Plane plane, Position position, Client client) : base(plane)
     {
