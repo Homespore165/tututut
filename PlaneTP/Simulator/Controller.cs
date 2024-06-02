@@ -39,5 +39,6 @@ public class Controller
         {
             _scenario!.TimeStep();
         }
+        _scenario.updateView();
     }
 }
