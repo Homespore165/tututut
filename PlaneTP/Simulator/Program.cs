@@ -14,7 +14,7 @@ static class Program
 		// see https://aka.ms/applicationconfiguration.
 		ApplicationConfiguration.Initialize();
 		Controller c = Controller.Instance;
-		Controller.Instance.TimeStep(5);
+		c.TimeStep(10);
 		Application.Run(Controller.Instance.Form);
 	}
 }

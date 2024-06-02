@@ -8,7 +8,6 @@ public class Controller
     private static Controller? _instance;
     public static Controller Instance => _instance ??= new Controller();
     private Scenario? _scenario;
-    
     private SimForm _form;
     public SimForm Form
     {
@@ -23,6 +22,7 @@ public class Controller
         _form = new SimForm();
         LoadSavedScenario();
         
+        _scenario!.SubscribeFlights(_form.updateFlights);
         //TODO: subscribe to events
     }
 

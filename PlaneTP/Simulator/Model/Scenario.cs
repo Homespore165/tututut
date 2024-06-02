@@ -6,13 +6,22 @@ namespace Simulator.Model;
 
 public class Scenario : IXmlSerializable
 {
-    private static Scenario? _instance;
+    public delegate void Flight(List<String> flights);
+    private event Flight FlightUpdate;
+    private static Scenario _instance;
     public static Scenario Instance => _instance ??= new Scenario();
     private List<Plane> _planes;
     public List<Plane> Planes
     {
-        get => _planes;
-        set => _planes = value;
+        get
+        {
+            List<Plane> planes = new List<Plane>();
+            foreach (Airport airport in _airports)
+            {
+                planes.AddRange(airport.Planes);
+            }
+            return planes.Where(p => p.State is not Flying).ToList();
+        }
     }
     
     private List<Airport> _airports;
@@ -196,6 +205,12 @@ public class Scenario : IXmlSerializable
         GenerateClients();
         Planes?.ForEach(p => p.TimeStep());
         Airports.ForEach(a => a.TimeStep());
+        FlightUpdate?.Invoke(Planes.Select(p => p.State.ToString()).ToList());
+    }
+    
+    public void SubscribeFlights(Flight eventHandler)
+    {
+        FlightUpdate += eventHandler;
     }
 
     public Airport GetRandomAirportExcluding(Airport airport)

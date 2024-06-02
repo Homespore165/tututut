@@ -7,4 +7,5 @@ using System.Threading.Tasks;
 namespace Simulator.Model;
 public abstract class Client
 {
+    public Position Position { get; set; }
 }
