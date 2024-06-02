@@ -6,6 +6,8 @@ namespace Simulator.Model;
 
 public class Scenario : IXmlSerializable
 {
+    private static Scenario? _instance;
+    public static Scenario Instance => _instance ??= new Scenario();
     private List<Plane> _planes;
     public List<Plane> Planes
     {

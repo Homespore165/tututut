@@ -9,4 +9,14 @@ public class PlaneRescue : PlaneSupport
 	}
 	
 	public PlaneRescue() {}
+
+	public override List<Client> GetPossibleClients()
+	{
+		return Scenario.Instance.ClientsRescue.Cast<Client>().ToList();
+	}
+
+	public override void StartFlightProcess(Client client)
+	{
+		State = new FlyingRescue(this, Airport.Position, (ClientRescue)client);
+	}
 }

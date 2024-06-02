@@ -8,4 +8,14 @@ public class PlaneRecon : PlaneSupport
 	}
 	
 	public PlaneRecon() {}
+
+	public override List<Client> GetPossibleClients()
+	{
+		return Scenario.Instance.ClientsRecon.Cast<Client>().ToList();
+	}
+	
+	public override void StartFlightProcess(Client client)
+	{
+		State = new FlyingRecon(this, Airport.Position, (ClientRecon)client);
+	}
 }

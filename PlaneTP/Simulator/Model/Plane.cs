@@ -68,8 +68,12 @@ public abstract class Plane : IXmlSerializable
 		return _name + ";" + _speed + ";" + _maintenanceTime;
 	}
 
+	public abstract List<Client> GetPossibleClients();
+
 	public void TimeStep()
 	{
 		State.TimeStep();
 	}
+
+	public abstract void StartFlightProcess(Client client);
 }

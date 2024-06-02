@@ -6,6 +6,11 @@ public class Waiting : State
     
     public override void TimeStep()
     {
-        //TODO: Implement
+        List<Client> clients = _plane.GetPossibleClients();
+        if (clients.Count > 0)
+        {
+            Client client = clients[0];
+            _plane.StartFlightProcess(client);
+        }
     }
 }

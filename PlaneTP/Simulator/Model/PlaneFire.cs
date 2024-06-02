@@ -9,4 +9,14 @@ public class PlaneFire : PlaneSupport
 	}
 	
 	private PlaneFire() {}
+	
+	public override List<Client> GetPossibleClients()
+	{
+		return Scenario.Instance.ClientsFire.Cast<Client>().ToList();
+	}
+	
+	public override void StartFlightProcess(Client client)
+	{
+		State = new FlyingFire(this, Airport.Position, (ClientFire)client);
+	}
 }

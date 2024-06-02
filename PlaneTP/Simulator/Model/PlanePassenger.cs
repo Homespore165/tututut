@@ -8,4 +8,16 @@ public class PlanePassenger : PlaneTransport
 	}
 	
 	private PlanePassenger() {}
+	
+	public override List<Client> GetPossibleClients()
+	{
+		return Airport.ClientsPassenger.Cast<Client>().ToList();
+	}
+
+	public override void StartFlightProcess(Client client)
+	{
+		ClientTransport c = (ClientTransport)client;
+		State = new Boarding(this, c);
+		Airport = c.Destination;
+	}
 }
