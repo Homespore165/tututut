@@ -1,4 +1,3 @@
-using Simulator.Forms;
 using Simulator.Model;
 using System.Xml.Linq;
 
@@ -18,19 +17,6 @@ public partial class SimForm : Form
         _flights = new List<string>();
         _airports = new List<string>();
         _tempTime = 0;
-
-        addFlight("P", 100, 100, 250, 400);
-        addFlight("C", 20, 400, 890, 200);
-        addFlight("O", 790, 150, 200, 50);
-        addFlight("R", 180, 300, 500, 490);
-        addFlight("F", 300, 400, 600, 255);
-    }
-
-    public void addFlight(string type, int startX, int startY, int endX, int endY)
-    {
-        FormFlight flight = new FormFlight(type, new Point(startX, startY), new Point(endX, endY));
-        flight.setProgress(0.5f);
-        //_flights.Add(flight);
     }
 
     private void button1_Click(object sender, EventArgs e)
