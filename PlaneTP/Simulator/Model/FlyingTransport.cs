@@ -19,7 +19,7 @@ public class FlyingTransport : Flying
     public override void TimeStep()
     {
         newPosition();
-        if (_plane.Airport.Position.X == _client.Destination.Position.X && _plane.Airport.Position.Y == _client.Destination.Position.Y)
+        if (_plane.Airport.Position == _client.Destination.Position)
         {
             _plane.State = new Deboarding((PlaneTransport)_plane,  _client);
         }

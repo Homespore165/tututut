@@ -14,7 +14,7 @@ public class FlyingRecon : FlyingSupport
     {
         base.Toward();
         
-        if (_client.Position.X == _position.X && _client.Position.Y == _position.Y)
+        if (_client.Position == _position)
         {
             _handler = Circle;
         }
@@ -24,7 +24,7 @@ public class FlyingRecon : FlyingSupport
     {
         base.Back();
         
-        if (_source.Position.X == _position.X && _source.Position.Y == _position.Y)
+        if (_source.Position == _position)
         {
             _plane.State = new Maintenance(_plane);
         }

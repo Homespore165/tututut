@@ -16,7 +16,7 @@ public class FlyingRescue : FlyingSupport
     {
         base.Toward();
         
-        if (_client.Position.X == _position.X && _client.Position.Y == _position.Y)
+        if (_client.Position == _position)
         {
             _handler = Back;
         }
@@ -26,7 +26,7 @@ public class FlyingRescue : FlyingSupport
     {
         base.Back();
         
-        if (_source.Position.X == _position.X && _source.Position.Y == _position.Y)
+        if (_source.Position == _position)
         {
             _plane.State = new Maintenance(_plane);
         }
@@ -34,7 +34,7 @@ public class FlyingRescue : FlyingSupport
         
     public override void TimeStep()
     {
-        if (_plane.Airport.Position.X == _position.X  && _plane.Airport.Position.Y == _position.Y)
+        if (_plane.Airport.Position == _position)
         {
             _plane.State = new Maintenance(_plane);
         }
