@@ -37,6 +37,8 @@ partial class SimForm
         timeLabel = new Label();
         airportTreeView = new TreeView();
         label1 = new Label();
+        planeTreeView = new TreeView();
+        label2 = new Label();
         ((System.ComponentModel.ISupportInitialize)mapImage).BeginInit();
         ((System.ComponentModel.ISupportInitialize)timeAdvanceSelector).BeginInit();
         SuspendLayout();
@@ -103,7 +105,8 @@ partial class SimForm
         // 
         airportTreeView.Location = new Point(12, 563);
         airportTreeView.Name = "airportTreeView";
-        airportTreeView.Size = new Size(1000, 274);
+        airportTreeView.ShowPlusMinus = false;
+        airportTreeView.Size = new Size(498, 274);
         airportTreeView.TabIndex = 6;
         // 
         // label1
@@ -115,11 +118,30 @@ partial class SimForm
         label1.TabIndex = 7;
         label1.Text = "Airports and clients";
         // 
+        // planeTreeView
+        // 
+        planeTreeView.Location = new Point(516, 563);
+        planeTreeView.Name = "planeTreeView";
+        planeTreeView.ShowPlusMinus = false;
+        planeTreeView.Size = new Size(496, 274);
+        planeTreeView.TabIndex = 8;
+        // 
+        // label2
+        // 
+        label2.AutoSize = true;
+        label2.Location = new Point(516, 544);
+        label2.Name = "label2";
+        label2.Size = new Size(109, 15);
+        label2.TabIndex = 9;
+        label2.Text = "Airports and planes";
+        // 
         // SimForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(1024, 849);
+        Controls.Add(label2);
+        Controls.Add(planeTreeView);
         Controls.Add(label1);
         Controls.Add(airportTreeView);
         Controls.Add(timeLabel);
@@ -146,4 +168,6 @@ partial class SimForm
     private Label timeLabel;
     private TreeView airportTreeView;
     private Label label1;
+    private TreeView planeTreeView;
+    private Label label2;
 }

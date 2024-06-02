@@ -21,9 +21,11 @@ public class FlyingTransport : Flying
         int speed = _plane.Speed;
         int deltaX = _client.Position.X - _position.X;
         int deltaY = _client.Position.Y - _position.Y;
-        int angle = (int)Math.Atan2(deltaY, deltaX);
-        _position.X += (int)Math.Ceiling(speed * Math.Cos(angle));
-        _position.Y += (int)Math.Ceiling(speed * Math.Sin(angle));
+
+        float length = MathF.Sqrt(deltaX * deltaX + deltaY * deltaY);
+
+        _position.X = (int)(_position.X + deltaX / length * speed);
+        _position.Y = (int)(_position.Y + deltaY / length * speed);
     }
     /// <summary>
     /// Gestion d'avancer d'un seul pas
@@ -31,9 +33,11 @@ public class FlyingTransport : Flying
     public override void TimeStep()
     {
         Toward();
-        if (_position == _client.Destination.Position)
+        if (isAtPos(_client.Destination.Position))
         {
             _plane.State = new Deboarding((PlaneTransport)_plane,  _client);
+            _plane.Airport = _client.Destination;
+            _client.Destination.Planes.Add(_plane);
         }
     }
 }

@@ -21,7 +21,7 @@ public partial class SimForm : Form
 
     private void button1_Click(object sender, EventArgs e)
     {
-
+        _controller.LoadScenario();
     }
 
     private void advanceTimeBtn_Click(object sender, EventArgs e)
@@ -62,10 +62,10 @@ public partial class SimForm : Form
             graphics.DrawLine(linePen, new Point(startx, starty), new Point(endx, endy));
             graphics.DrawString(type, font, brush, new Point(posx, posy));
 
-            try
+            if (posx >= 0 && posy >= 0)
             {
                 graphics.DrawEllipse(Pens.DarkBlue, new Rectangle(posx - pointSize, posy - pointSize, pointSize * 2, pointSize * 2));
-            } catch {}
+            }
 
             if (type == "O")
             {
@@ -123,9 +123,6 @@ public partial class SimForm : Form
 
     public void updateAirports(List<string> strings)
     {
-
-        
-
         _airports.Clear();
         airportTreeView.Nodes.Clear();
 
@@ -144,6 +141,28 @@ public partial class SimForm : Form
             airportTreeView.Nodes.Add(node);
         }
 
+        airportTreeView.ExpandAll();
+
         updateMap();
+    }
+
+    public void updatePlaneList(List<string> strings)
+    {
+        planeTreeView.Nodes.Clear();
+
+        foreach (string info in strings)
+        {
+            string[] strs = info.Split(';');
+            TreeNode node = new TreeNode(strs[0]);
+
+            for (int i = 1; i < strs.Length; i++)
+            {
+                node.Nodes.Add(new TreeNode(strs[i]));
+            }
+
+            planeTreeView.Nodes.Add(node);
+        }
+
+        planeTreeView.ExpandAll();
     }
 }

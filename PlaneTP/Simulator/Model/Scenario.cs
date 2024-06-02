@@ -10,6 +10,8 @@ public class Scenario
     private event Flight FlightUpdate;
     public delegate void AirportDelegate(List<String> airports);
     private event AirportDelegate AirportUpdate;
+    public delegate void PlaneDelegate(List<String> planes);
+    private event PlaneDelegate PlaneUpdate;
     private static Scenario _instance;
     public static Scenario Instance => _instance ??= new Scenario();
     private List<Plane> _planes;
@@ -198,6 +200,7 @@ public class Scenario
     {
         FlightUpdate?.Invoke(Planes.Select(p => p.State.ToString()).ToList());
         AirportUpdate?.Invoke(Airports.Select(a => a.ToString()).ToList());
+        PlaneUpdate?.Invoke(GetAirportPlanes());
     }
     
     public void SubscribeFlights(Flight eventHandler)
@@ -225,5 +228,27 @@ public class Scenario
     public void RemoveClient(ClientSupport client)
     {
         _clientsSupport.Remove(client);
+    }
+
+    public List<string> GetAirportPlanes()
+    {
+        List<string> info = new List<string>();
+        foreach (var airport in _airports)
+        {
+            string name = airport.Name;
+            string output = name + ";";
+            foreach (var plane in airport.Planes)
+            {
+                output += plane.Name + " - " + plane.GetType().Name.Remove(0,5) + ";";
+            }
+            output.Remove(output.Length - 1);
+            info.Add(output);
+        }
+        return info;
+    }
+
+    public void SubscribeAirportsPlane(PlaneDelegate updatePlaneList)
+    {
+        PlaneUpdate += updatePlaneList;
     }
 }
