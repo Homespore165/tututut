@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.Pkcs;
-
-namespace Simulator.Model;
+﻿namespace Simulator.Model;
 
 public class FlyingFire : FlyingSupport
 {

@@ -8,6 +8,8 @@ public class Scenario : IXmlSerializable
 {
     public delegate void Flight(List<String> flights);
     private event Flight FlightUpdate;
+    public delegate void AirportDelegate(List<String> airports);
+    private event AirportDelegate AirportUpdate;
     private static Scenario _instance;
     public static Scenario Instance => _instance ??= new Scenario();
     private List<Plane> _planes;
@@ -207,11 +209,17 @@ public class Scenario : IXmlSerializable
         Planes?.ForEach(p => p.TimeStep());
         Airports.ForEach(a => a.TimeStep());
         FlightUpdate?.Invoke(Planes.Select(p => p.State.ToString()).ToList());
+        AirportUpdate?.Invoke(Airports.Select(a => a.ToString()).ToList());
     }
     
     public void SubscribeFlights(Flight eventHandler)
     {
         FlightUpdate += eventHandler;
+    }
+    
+    public void SubscribeAirports(AirportDelegate eventHandler)
+    {
+        AirportUpdate += eventHandler;
     }
 
     public Airport GetRandomAirportExcluding(Airport airport)

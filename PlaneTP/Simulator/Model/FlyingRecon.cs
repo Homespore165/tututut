@@ -7,8 +7,7 @@ public class FlyingRecon : FlyingSupport
     private Step _handler;
     public FlyingRecon(Plane plane, Position start, ClientRecon client) : base(plane, start, client)
     {
-         _handler = Toward;
-        _client = client;
+        _handler = Toward;
     }
 
     private void Toward()

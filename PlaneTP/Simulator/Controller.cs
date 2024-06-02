@@ -23,6 +23,7 @@ public class Controller
         LoadSavedScenario();
         
         _scenario!.SubscribeFlights(_form.updateFlights);
+        _scenario!.SubscribeAirports(_form.updateAirports);
         //TODO: subscribe to events
     }
 
