@@ -76,7 +76,6 @@ public class Airport : IXmlSerializable
 	public void AddPlane(string name, string type, int speed, int maintenanceTime, int boardingTime, int unboardingTime)
 	{
 		_planes.Add(PlaneFactory.Instance.CreatePlane(name, type, speed, maintenanceTime, this, boardingTime, unboardingTime));
-		_planes.ForEach(p => Console.WriteLine(p.ToString()));
 	}
 	
 	public void AddClient(ClientTransport client)
