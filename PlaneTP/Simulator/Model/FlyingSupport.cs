@@ -10,5 +10,24 @@ public abstract class FlyingSupport: Flying
         _source = plane.Airport; 
         _client = client;
     }
-    public abstract void NewPosition();
+
+    protected void Toward()
+    {
+        int speed = _plane.Speed;
+        int deltaX = _client.Position.X - _position.X;
+        int deltaY = _client.Position.Y - _position.Y;
+        int angle = (int)Math.Atan2(deltaY, deltaX);
+        _position.X += (int)Math.Ceiling(speed * Math.Cos(angle));
+        _position.Y += (int)Math.Ceiling(speed * Math.Sin(angle));
+    }
+    
+    protected void Back()
+    {
+        int speed = _plane.Speed;
+        int deltaX = _source.Position.X - _position.X;
+        int deltaY = _source.Position.Y - _position.Y;
+        int angle = (int)Math.Atan2(deltaY, deltaX);
+        _position.X += (int)Math.Ceiling(speed * Math.Cos(angle));
+        _position.Y += (int)Math.Ceiling(speed * Math.Sin(angle));
+    }
 }

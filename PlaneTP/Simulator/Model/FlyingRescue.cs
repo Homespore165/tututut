@@ -4,30 +4,36 @@ namespace Simulator.Model;
 
 public class FlyingRescue : FlyingSupport
 {
-    public FlyingRescue(Plane plane, Position start, ClientRescue client) : base(plane, start ,client) {}
-    
-    public override void NewPosition()
+    private delegate void Step();
+    private Step _handler;
+
+    public FlyingRescue(Plane plane, Position start, ClientRescue client) : base(plane, start, client)
     {
-        bool returning = (_position.X == _client.Position.X && _position.Y == _client.Position.Y) ? true : false;
-        if (!returning)
+        _handler = Toward;
+    }
+    
+    private void Toward()
+    {
+        base.Toward();
+        
+        if (_client.Position.X == _position.X && _client.Position.Y == _position.Y)
         {
-            float t = 0.0001f * _plane.Speed % 1f;
-            int x = (int)((1 - t) * _position.X + t *  _client.Position.X);
-            int y = (int)((1 - t) * _position.Y + t *  _client.Position.Y);
-            _position = new Position(x, y);
+            _handler = Back;
         }
-        else
+    }
+    
+    private void Back()
+    {
+        base.Back();
+        
+        if (_source.Position.X == _position.X && _source.Position.Y == _position.Y)
         {
-            float t = 0.0001f * _plane.Speed % 1f;
-            int x = (int)((1 - t) * _client.Position.X + t *  _position.X);
-            int y = (int)((1 - t) * _client.Position.Y + t *  _position.Y);
-            _position = new Position(x, y);
+            _plane.State = new Maintenance(_plane);
         }
     }
         
     public override void TimeStep()
     {
-        NewPosition();
         if (_plane.Airport.Position.X == _position.X  && _plane.Airport.Position.Y == _position.Y)
         {
             _plane.State = new Maintenance(_plane);
