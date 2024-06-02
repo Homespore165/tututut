@@ -239,7 +239,7 @@ public class Scenario
             string output = name + ";";
             foreach (var plane in airport.Planes)
             {
-                output += plane.Name + " - " + plane.GetType().Name.Remove(0,5) + " - " + plane.State + ";";
+                output += plane.Name + " - " + plane.GetType().Name.Remove(0,5) + " - " + plane.State.ToString().Replace(";", ",") + ";";
             }
             output.Remove(output.Length - 1);
             info.Add(output);

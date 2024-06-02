@@ -34,7 +34,7 @@ public class PlaneCargo : PlaneTransport
     public override void StartFlightProcess(Client client)
     {
         ClientTransport c = (ClientTransport)client;
-        State = new Boarding(this, c);
+        State = new Boarding(this, Airport.Position, c);
         Airport = c.Destination;
         c.Destination.Planes.Add(this);
     }

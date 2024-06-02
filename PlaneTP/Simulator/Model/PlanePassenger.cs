@@ -32,7 +32,7 @@ public class PlanePassenger : PlaneTransport
 	public override void StartFlightProcess(Client client)
 	{
 		ClientTransport c = (ClientTransport)client;
-		State = new Boarding(this, c);
+		State = new Boarding(this, Airport.Position, c);
 		Airport.RemoveClient(c);
 		Airport = c.Destination;
 	}
