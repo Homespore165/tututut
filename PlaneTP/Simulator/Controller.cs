@@ -40,4 +40,9 @@ public class Controller
             _scenario!.TimeStep();
         }
     }
+
+    public void LoadScenario()
+    {
+        _scenario.Load();
+    }
 }
