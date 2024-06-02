@@ -21,7 +21,7 @@
 1. Les classes PlaneFactory, ClientSupportFactory et ClientTransportFactory implémentent le patron Fabrique pour centraliser la création des clients
 1. Les classes PlaneFactory, ClientSupportFactory et ClientTransportFactory implémentent le patron Singleton pour empêcher la création de plusieurs instances
 1. Les classes State et ses enfants implémentent le patron États pour gérer les états des avions
-1. Les classes State et ses enfants implémentent le patron Stratégie pour gérer les comportements des avions
+1. Les classes Flying et ses enfants implémentent le patron Stratégie pour gérer les comportements des avions en vols
 1. Le Patron Obs-Obs est implémenté (On rafraichie la Vue) pour mettre à jour la vue
 #### Principes Grasp
 1. La classe PlaneFactory implémente le principe créateur pour centraliser la création des avions

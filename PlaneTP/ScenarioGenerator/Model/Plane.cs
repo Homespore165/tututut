@@ -48,7 +48,7 @@ public abstract class Plane : IXmlSerializable
 	}
 	public void ReadXml(XmlReader reader){}
 	/// <summary>
-	///  Enregistrer un avion en XML
+	/// Enregistrer un avion en XML
 	/// </summary>
 	/// <param name="writer">le fichier XML</param>
 	public virtual void WriteXml(XmlWriter writer)

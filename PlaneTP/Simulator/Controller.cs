@@ -39,6 +39,7 @@ public class Controller
         {
             _scenario!.TimeStep();
         }
+        _scenario.updateView();
     }
 
     public void LoadScenario()
