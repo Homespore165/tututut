@@ -5,6 +5,12 @@ public class FlyingRecon : FlyingSupport
     private int _circle = 0;
     private delegate void Step();
     private Step _handler;
+    /// <summary>
+    /// Constructeur
+    /// </summary>
+    /// <param name="plane">Avion possèdant cet état</param>
+    /// <param name="start">Position de départ de l'avion (position de l'aéroport)</param>
+    /// <param name="client">Client</param>
     public FlyingRecon(Plane plane, Position start, ClientRecon client) : base(plane, start, client)
     {
         _handler = Toward;
@@ -48,7 +54,9 @@ public class FlyingRecon : FlyingSupport
             _handler = Back;
         }
     }
-    
+    /// <summary>
+    /// Gestion d'avancer d'un seul pas
+    /// </summary>
     public override void TimeStep()
     {
         _handler();

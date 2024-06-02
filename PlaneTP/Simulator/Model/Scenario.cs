@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace Simulator.Model;
 
-public class Scenario : IXmlSerializable
+public class Scenario
 {
     public delegate void Flight(List<String> flights);
     private event Flight FlightUpdate;
@@ -136,23 +136,6 @@ public class Scenario : IXmlSerializable
             }
         }
         reader.Close();
-    }
-
-    public void WriteXml(XmlWriter writer)
-    {
-        writer.WriteStartElement("Scenario");
-		
-        writer.WriteElementString("FrequencyFire", FrequencyFire.ToString());
-        writer.WriteElementString("FrequencyRecon", FrequencyRecon.ToString());
-        writer.WriteElementString("FrequencyRescue", FrequencyRescue.ToString());
-		
-        writer.WriteStartElement("Airports");
-		
-        XmlSerializer serializer = new XmlSerializer(typeof(Airport));
-        foreach (Airport airport in _airports)
-            serializer.Serialize(writer, airport);
-		
-        writer.Close();
     }
 
     public void Load()
