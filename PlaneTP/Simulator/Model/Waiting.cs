@@ -6,6 +6,6 @@ public class Waiting : State
     
     public override void TimeStep()
     {
-        throw new NotImplementedException();
+        //TODO: Implement
     }
 }

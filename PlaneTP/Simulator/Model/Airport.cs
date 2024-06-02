@@ -54,6 +54,7 @@ public class Airport : IXmlSerializable
 		_passengerTraffic = passengerTraffic;
 		_cargoTraffic = cargoTraffic;
 		_planes = new List<Plane>();
+		_clientsTransport = new List<ClientTransport>();
 	}
 
 	public Airport(String name, int x, int y, int passengerTraffic, int cargoTraffic)
@@ -63,11 +64,13 @@ public class Airport : IXmlSerializable
 		_passengerTraffic = passengerTraffic;
 		_cargoTraffic = cargoTraffic;
 		_planes = new List<Plane>();
+		_clientsTransport = new List<ClientTransport>();
 	}
 
 	private Airport()
 	{
 		_planes = new List<Plane>();
+		_clientsTransport = new List<ClientTransport>();
 	}
 	
 	public void AddPlane(string name, string type, int speed, int maintenanceTime, int boardingTime, int unboardingTime)

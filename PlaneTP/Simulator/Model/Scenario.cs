@@ -55,6 +55,8 @@ public class Scenario : IXmlSerializable
     public Scenario()
     {
         _airports = new List<Airport>();
+        _planes = new List<Plane>();
+        _clientsSupport = new List<ClientSupport>();
         _frequencyFire = 0;
         _frequencyRecon = 0;
         _frequencyRescue = 0;
@@ -141,7 +143,7 @@ public class Scenario : IXmlSerializable
 
     public void Load()
     {
-        XmlReader reader = XmlReader.Create("../../../../ScenarioGenerator/Scenario.xml");
+        XmlReader reader = XmlReader.Create("../../../Scenario.xml");
         ReadXml(reader);
     }
 
@@ -190,7 +192,7 @@ public class Scenario : IXmlSerializable
     public void TimeStep()
     {
         GenerateClients();
-        Planes.ForEach(p => p.TimeStep());
+        Planes?.ForEach(p => p.TimeStep());
         Airports.ForEach(a => a.TimeStep());
     }
 
