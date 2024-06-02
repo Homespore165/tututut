@@ -9,7 +9,7 @@ public abstract class Flying: State
         _position = position;
     }
 
-    public String ToString()
+    public override String ToString()
     {
         String planeType = _plane.GetType().Name.Remove(0,5);
         planeType = planeType switch
