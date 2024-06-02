@@ -9,7 +9,6 @@ public abstract class ClientTransport : Client
 {
     public Airport Destination { get; set; }
 
-    public Position Position => Destination.Position;
     public double Size { get; set; }
     public ClientTransport()
     {
@@ -18,6 +17,7 @@ public abstract class ClientTransport : Client
     public ClientTransport(Airport destination)
     {
         Destination = destination;
+        Position = Destination.Position;
     }
     
     public abstract ClientTransport Split(double size);

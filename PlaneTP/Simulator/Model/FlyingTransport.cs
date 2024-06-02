@@ -4,7 +4,7 @@ public class FlyingTransport : Flying
 {
     protected ClientTransport _client;
 
-    public FlyingTransport(Plane plane, Position start, ClientTransport client) : base(plane, start)
+    public FlyingTransport(Plane plane, Position start, ClientTransport client) : base(plane, start, client)
     {
         _client = client;
     }

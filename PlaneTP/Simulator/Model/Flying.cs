@@ -9,7 +9,13 @@ public abstract class Flying: State
         _position = position;
     }
 
-    public String ToString()
+    protected Flying(Plane plane, Position position, Client client) : base(plane)
+    {
+        _position = position;
+        _client = client;
+    }
+
+    public override String ToString()
     {
         String planeType = _plane.GetType().Name.Remove(0,5);
         planeType = planeType switch
