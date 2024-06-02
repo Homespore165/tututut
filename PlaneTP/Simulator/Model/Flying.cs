@@ -38,7 +38,7 @@ public abstract class Flying: State
         String planeType = _plane.GetType().Name.Remove(0,5);
         planeType = planeType switch
         {
-            "Observation" => "O",
+            "Recon" => "O",
             "Rescue" => "R",
             "Passenger" => "P",
             "Cargo" => "C",

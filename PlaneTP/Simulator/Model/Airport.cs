@@ -188,6 +188,7 @@ public class Airport
 	public void TimeStep()
 	{
 		GenerateClient();
+		_planes.RemoveAll(p => p.Airport != this);
 		_planes.ForEach(p => p.TimeStep());
 	}
 	/// <summary>
@@ -207,5 +208,10 @@ public class Airport
 	public void RemoveClient(ClientTransport clientTransport)
 	{
 		_clientsTransport.Remove(clientTransport);
+	}
+
+	public void RemovePlane(Plane plane)
+	{
+		_planes.Remove(plane);
 	}
 }
