@@ -141,6 +141,8 @@ public partial class SimForm : Form
             airportTreeView.Nodes.Add(node);
         }
 
+        airportTreeView.ExpandAll();
+
         updateMap();
     }
 
@@ -160,5 +162,7 @@ public partial class SimForm : Form
 
             planeTreeView.Nodes.Add(node);
         }
+
+        planeTreeView.ExpandAll();
     }
 }

@@ -105,6 +105,7 @@ partial class SimForm
         // 
         airportTreeView.Location = new Point(12, 563);
         airportTreeView.Name = "airportTreeView";
+        airportTreeView.ShowPlusMinus = false;
         airportTreeView.Size = new Size(498, 274);
         airportTreeView.TabIndex = 6;
         // 
