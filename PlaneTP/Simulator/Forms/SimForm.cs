@@ -82,7 +82,6 @@ public partial class SimForm : Form
 
         foreach (string flight in _flights)
         {
-
             string[] strings = flight.Split(";");
 
             string type = strings[0];
@@ -136,12 +135,16 @@ public partial class SimForm : Form
         return pen;
     }
 
-
     // "type;startx;starty;endx;endy;posx,posy"
-    public void updateFlights(List<String> strings)
+    public void updateFlights(List<string> strings)
     {
         _flights = strings;
 
         updateMap();
+    }
+
+    public void updateAirports(List<string> strings)
+    {
+
     }
 }
