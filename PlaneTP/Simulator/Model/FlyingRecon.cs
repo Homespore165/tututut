@@ -2,7 +2,7 @@
 
 public class FlyingRecon : FlyingSupport
 {
-    public FlyingRecon(Plane plane, ClientRecon client) : base(plane, client) {}
+    public FlyingRecon(Plane plane, Position start, ClientRecon client) : base(plane, start, client) {}
     
     public override void NewPosition()
     {
@@ -12,7 +12,7 @@ public class FlyingRecon : FlyingSupport
     public override void TimeStep()
     {
         NewPosition();
-        if (_plane.Airport.Position.X == _plane.Position.X  && _plane.Airport.Position.Y == _plane.Position.Y)
+        if (_plane.Airport.Position.X == _position.X  && _plane.Airport.Position.Y == _position.Y)
         {
             _plane.State = new Maintenance(_plane);
         }

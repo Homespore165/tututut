@@ -2,10 +2,10 @@
 
 public abstract class Flying: State
 {
-    private Position _position;
+    protected Position _position;
 
-    protected Flying(Plane plane) : base(plane)
+    protected Flying(Plane plane, Position position) : base(plane)
     {
-        _position = plane.Position;
+        _position = position;
     }
 }

@@ -7,7 +7,6 @@ namespace Simulator.Model;
 public abstract class Plane : IXmlSerializable
 {
 	public State State { get; set; }
-	public Position Position { get; set; }
 	protected string _name;
 	public string Name
 	{
@@ -36,8 +35,8 @@ public abstract class Plane : IXmlSerializable
 		_name = name;
 		_speed = speed;
 		_maintenanceTime = maintenanceTime;
-		State = new Waiting(this);
 		Airport = airport;
+		State = new Waiting(this);
 	}
 
 	protected Plane()

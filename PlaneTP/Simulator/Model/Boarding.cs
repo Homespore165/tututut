@@ -21,9 +21,9 @@ public class Boarding : State
             {
                 ClientTransport c = _client.Split(p.Capacity);
                 _plane.Airport?.AddClient(_client);
-                _plane.State = new FlyingTransport(_plane, c);
+                _plane.State = new FlyingTransport(_plane, _plane.Airport.Position, c);
             } else {
-                _plane.State = new FlyingTransport(_plane, _client);
+                _plane.State = new FlyingTransport(_plane, _plane.Airport.Position, _client);
             }
         }
     }
