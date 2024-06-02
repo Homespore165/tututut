@@ -33,6 +33,6 @@ public abstract class Flying: State
         int posX = _position.X;
         int posY = _position.Y;
         
-        return $"{planeType};{startX};{startY};{endX};{endY};{posX},{posY}";
+        return $"{planeType};{startX};{startY};{endX};{endY};{posX};{posY}";
     }
 }

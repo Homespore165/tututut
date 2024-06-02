@@ -2,7 +2,6 @@
 public class ClientCargo : ClientTransport
 {
     public double WeightInTons { get; set; }
-    
     public ClientCargo(Airport destination) : base(destination)
     {
         Random r = new Random();

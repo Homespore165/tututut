@@ -65,6 +65,7 @@ public class Scenario : IXmlSerializable
     
     public Scenario()
     {
+        _instance = this;
         _airports = new List<Airport>();
         _planes = new List<Plane>();
         _clientsSupport = new List<ClientSupport>();
