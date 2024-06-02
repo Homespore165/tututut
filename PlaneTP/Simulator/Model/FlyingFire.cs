@@ -15,7 +15,7 @@ public class FlyingFire : FlyingSupport
     {
         base.Toward();
         
-        if (_client.Position == _position)
+        if (isAtDestination())
         {
             _client.Intensity--;
             _handler = Back;

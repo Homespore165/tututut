@@ -1,4 +1,6 @@
-﻿namespace Simulator.Model;
+﻿using System.DirectoryServices;
+
+namespace Simulator.Model;
 
 public abstract class Flying: State
 {
@@ -38,4 +40,14 @@ public abstract class Flying: State
         
         return $"{planeType};{startX};{startY};{endX};{endY};{posX};{posY}";
     }
+
+    public bool isAtDestination()
+    {
+        int deltaX = _client.Position.X - _position.X;
+        int deltaY = _client.Position.Y - _position.Y;
+        float dist = MathF.Sqrt(MathF.Pow(deltaX, 2) + MathF.Pow(deltaY, 2));
+
+        return dist < 2;
+    }
+
 }
