@@ -21,4 +21,9 @@ public class ClientCargo : ClientTransport
         WeightInTons -= size;
         return new ClientCargo(Destination, size);
     }
+    
+    public override String ToString()
+    {
+        return $"{WeightInTons} tonnes à destination de {Destination.Name}";
+    }
 }
