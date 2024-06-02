@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace Simulator.Model;
 
-public class Position : IXmlSerializable, ICloneable
+public class Position : ICloneable
 {
 	private int _x;
 	public int X
@@ -19,7 +19,11 @@ public class Position : IXmlSerializable, ICloneable
 		get => _y;
 		set => _y = value;
 	}
-	
+	/// <summary>
+	/// Constructeur
+	/// </summary>
+	/// <param name="x">Positiion en X</param>
+	/// <param name="y">Positiion en Y</param>
 	public Position(int x, int y)
 	{
 		_x = x;
@@ -32,7 +36,10 @@ public class Position : IXmlSerializable, ICloneable
 	{
 		return null;
 	}
-
+	/// <summary>
+	/// Charger les positions d'un fichier XML
+	/// </summary>
+	/// <param name="reader">le fichier XML</param>
 	public void ReadXml(XmlReader reader)
 	{
 		reader.ReadStartElement();
@@ -41,12 +48,6 @@ public class Position : IXmlSerializable, ICloneable
 		_y = int.Parse(reader.ReadElementString("Y"));
 
 		reader.ReadEndElement(); 
-	}
-
-	public void WriteXml(XmlWriter writer)
-	{
-		writer.WriteElementString("X", X.ToString());
-		writer.WriteElementString("Y", Y.ToString());
 	}
 	
 	public static bool operator ==(Position a, Position b)
@@ -58,7 +59,10 @@ public class Position : IXmlSerializable, ICloneable
 	{
 		return !(a == b);
 	}
-
+	/// <summary>
+	/// Constructeur de copie
+	/// </summary>
+	/// <returns>un clone</returns>
 	public object Clone()
 	{
 		return new Position(X, Y);

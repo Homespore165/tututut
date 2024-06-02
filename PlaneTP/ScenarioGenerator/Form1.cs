@@ -205,6 +205,6 @@ public partial class Form1 : Form
         coordsPicker.ShowDialog();
 
         numAirportPositionX.Value = (int)Math.Clamp(coordsPicker.ChosenCoordinates.X, 0, numAirportPositionX.Maximum);
-        numAirportPositionY.Value = (int)Math.Clamp(coordsPicker.ChosenCoordinates.X, 0, numAirportPositionY.Maximum);
+        numAirportPositionY.Value = (int)Math.Clamp(coordsPicker.ChosenCoordinates.Y, 0, numAirportPositionY.Maximum);
     }
 }

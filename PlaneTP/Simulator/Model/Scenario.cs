@@ -66,7 +66,9 @@ public class Scenario
         get => _frequencyRescue;
         set => _frequencyRescue = value;
     }
-    
+    /// <summary>
+    /// Constructeur
+    /// </summary>
     public Scenario()
     {
         _instance = this;
@@ -77,7 +79,12 @@ public class Scenario
         _frequencyRecon = 0;
         _frequencyRescue = 0;
     }
-	
+    /// <summary>
+    /// Constructeur
+    /// </summary>
+    /// <param name="frequencyFire">Indicateur de la fréquance d'événement</param>
+    /// <param name="frequencyRecon">Indicateur de la fréquance d'événement</param>
+    /// <param name="frequencyRescue">Indicateur de la fréquance d'événement</param>
     public Scenario(int frequencyFire, int frequencyRecon, int frequencyRescue)
     {
         _planes = new List<Plane>();
@@ -88,37 +95,14 @@ public class Scenario
         _frequencyRescue = frequencyRescue;
     }
 	
-    public void AddAirport(Airport airport)
-    {
-        _airports.Add(airport);
-    }
-	
-    public void AddAirport(string name, int x, int y, int passengerTraffic, int cargoTraffic)
-    {
-        Airport airport = new Airport(name, x, y, passengerTraffic, cargoTraffic);
-        _airports.Add(airport);
-    }
-	
-    public void EditAirport(int id, string name, int x, int y, int passengerTraffic, int cargoTraffic)
-    {
-        _airports[id] =	new Airport(name, x, y, passengerTraffic, cargoTraffic);
-    }
-	
-    public void DeleteAirport(int id)
-    {
-        _airports.Remove(_airports[id]);
-    }
-	
-    public void AddPlane(int airportId, string name, string type, int speed, int maintenanceTime, int boardingTime = 0, int unboardingTime = 0)
-    {
-        _airports[airportId].AddPlane(name, type, speed, maintenanceTime, boardingTime, unboardingTime);
-    }
-	
     public XmlSchema? GetSchema()
     {
         return null;
     }
-
+    /// <summary>
+    /// Lire le XML du scénario enregistré
+    /// </summary>
+    /// <param name="writer">le fichier à lire</param>
     public void ReadXml(XmlReader reader)
     {
         reader.ReadStartElement();
@@ -139,18 +123,17 @@ public class Scenario
         }
         reader.Close();
     }
-
+    /// <summary>
+    /// Remplir le simulateur à l'aide du scénario déja enregistré
+    /// </summary>
     public void Load()
     {
         XmlReader reader = XmlReader.Create("../../../Scenario.xml");
         ReadXml(reader);
     }
-
-    public string[] GetPlanes(int airportId)
-    {
-        return _airports[airportId].GetPlanes();
-    }
-
+    /// <summary>
+    /// Génère un incident de type incendie
+    /// </summary>
     private void GenerateFire()
     {
         Random r = new Random();
@@ -160,7 +143,9 @@ public class Scenario
             _clientsSupport.Add(factory.CreateClientSupport("Fire"));
         }
     }
-    
+    /// <summary>
+    /// Génère un incident de type reconnaissance
+    /// </summary>
     private void GenerateRecon()
     {
         Random r = new Random();
@@ -170,7 +155,9 @@ public class Scenario
             _clientsSupport.Add(factory.CreateClientSupport("Recon"));
         }
     }
-    
+    /// <summary>
+    /// Génère un incident de type sauvetage
+    /// </summary>
     private void GenerateRescue()
     {
         Random r = new Random();
@@ -180,14 +167,18 @@ public class Scenario
             _clientsSupport.Add(factory.CreateClientSupport("Rescue"));
         }
     }
-
+    /// <summary>
+    /// Génère un incident
+    /// </summary>
     private void GenerateClients()
     {
         GenerateFire();
         GenerateRecon();
         GenerateRescue();
     }
-
+    /// <summary>
+    /// Gestion d'avancer d'un seul pas
+    /// </summary>
     public void TimeStep()
     {
         GenerateClients();
@@ -195,24 +186,36 @@ public class Scenario
         Airports.ForEach(a => a.TimeStep());
         
     }
-
+    /// <summary>
+    /// Envoie des informations à la vue
+    /// </summary>
     public void updateView()
     {
         FlightUpdate?.Invoke(Planes.Select(p => p.State.ToString()).ToList());
         AirportUpdate?.Invoke(Airports.Select(a => a.ToString()).ToList());
         PlaneUpdate?.Invoke(GetAirportPlanes());
     }
-    
+    /// <summary>
+    /// S'abonner à l'événement modification d'un vol
+    /// </summary>
+    /// <param name="eventHandler">événement</param>
     public void SubscribeFlights(Flight eventHandler)
     {
         FlightUpdate += eventHandler;
     }
-    
+    /// <summary>
+    /// S'abonner à l'événement modification d'un aéroport
+    /// </summary>
+    /// <param name="eventHandler">événement</param>
     public void SubscribeAirports(AirportDelegate eventHandler)
     {
         AirportUpdate += eventHandler;
     }
-
+    /// <summary>
+    /// Génère des destinations alétoires aux clients de transport
+    /// </summary>
+    /// <param name="airport"></param>
+    /// <returns></returns>
     public Airport GetRandomAirportExcluding(Airport airport)
     {
         Random r = new Random();
@@ -223,13 +226,18 @@ public class Scenario
         }
         return a;
     }
-
-
+    /// <summary>
+    /// Détruit un incident réglé
+    /// </summary>
+    /// <param name="client">client</param>
     public void RemoveClient(ClientSupport client)
     {
         _clientsSupport.Remove(client);
     }
-
+    /// <summary>
+    /// Retourne les avions par aéroport
+    /// </summary>
+    /// <returns>Les avions des aéroports</returns>
     public List<string> GetAirportPlanes()
     {
         List<string> info = new List<string>();
@@ -246,7 +254,10 @@ public class Scenario
         }
         return info;
     }
-
+    /// <summary>
+    ///  S'abonner à l'événement modification d'un avion
+    /// </summary>
+    /// <param name="updatePlaneList">événement</param>
     public void SubscribeAirportsPlane(PlaneDelegate updatePlaneList)
     {
         PlaneUpdate += updatePlaneList;

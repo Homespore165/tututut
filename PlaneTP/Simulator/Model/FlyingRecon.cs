@@ -27,6 +27,7 @@ public class FlyingRecon : FlyingSupport
             _handler = Circle;
         }
     }
+
     /// <summary>
     /// Faire revenir l'avion
     /// </summary>
@@ -39,6 +40,7 @@ public class FlyingRecon : FlyingSupport
             _plane.State = new Maintenance(_plane);
         }
     }
+
     /// <summary>
     /// Effectuer le cercle de reconnaissance
     /// </summary>
