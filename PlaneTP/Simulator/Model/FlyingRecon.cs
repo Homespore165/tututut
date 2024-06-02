@@ -22,7 +22,7 @@ public class FlyingRecon : FlyingSupport
     {
         base.Toward();
         
-        if (_client.Position == _position)
+        if (isAtPos(_client.Position))
         {
             _handler = Circle;
         }
@@ -34,7 +34,7 @@ public class FlyingRecon : FlyingSupport
     {
         base.Back();
         
-        if (_source.Position == _position)
+        if (isAtPos(_source.Position))
         {
             _plane.State = new Maintenance(_plane);
         }
@@ -44,17 +44,19 @@ public class FlyingRecon : FlyingSupport
     /// </summary>
     private void Circle()
     {
-        int speed = _plane.Speed;
-        int deltaX = _client.Position.X - _position.X;
-        int deltaY = _client.Position.Y - _position.Y;
-        double angle = Math.Atan2(deltaY, deltaX);
-        angle += Math.PI / 5;
+        int timeToCircle = 30;
 
-        _position.X += (int)Math.Round(speed * Math.Cos(angle));
-        _position.Y += (int)Math.Round(speed * Math.Sin(angle));
+        int deltaX = _client.Position.X - _startPos.X;
+        int deltaY = _client.Position.Y - _startPos.Y;
+
+        double angle = Math.Atan2(deltaY, deltaX) - Math.PI;
+        angle += _circle * (2 * Math.PI / timeToCircle);
+
+        _position.X = _client.Position.X + (int)Math.Round(15 * Math.Cos(angle));
+        _position.Y = _client.Position.Y + (int)Math.Round(15 * Math.Sin(angle));
 
         _circle++;
-        if (_circle == 10)
+        if (_circle >= timeToCircle)
         {
             _circle = 0;
             _handler = Back;
