@@ -7,15 +7,15 @@ public abstract class Flying: State
     protected Position _startPos;
     protected Flying(Plane plane, Position position) : base(plane)
     {
-        _position = position;
-        _startPos = position;
+        _position = (Position)position.Clone();
+        _startPos = (Position)position.Clone();
     }
 
     protected Flying(Plane plane, Position position, Client client) : base(plane)
     {
-        _position = position;
+        _position = (Position)position.Clone();
         _client = client;
-        _startPos = position;
+        _startPos = (Position)position.Clone();
     }
 
     public override String ToString()

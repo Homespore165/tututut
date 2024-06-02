@@ -61,7 +61,11 @@ public partial class SimForm : Form
 
             graphics.DrawLine(linePen, new Point(startx, starty), new Point(endx, endy));
             graphics.DrawString(type, font, brush, new Point(posx, posy));
-            graphics.DrawEllipse(Pens.DarkBlue, new Rectangle(posx - pointSize, posy - pointSize, pointSize * 2, pointSize * 2));
+
+            try
+            {
+                graphics.DrawEllipse(Pens.DarkBlue, new Rectangle(posx - pointSize, posy - pointSize, pointSize * 2, pointSize * 2));
+            } catch {}
 
             if (type == "O")
             {

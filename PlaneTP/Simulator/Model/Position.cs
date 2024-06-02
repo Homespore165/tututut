@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace Simulator.Model;
 
-public class Position : IXmlSerializable
+public class Position : IXmlSerializable, ICloneable
 {
 	private int _x;
 	public int X
@@ -57,5 +57,10 @@ public class Position : IXmlSerializable
 	public static bool operator !=(Position a, Position b)
 	{
 		return !(a == b);
+	}
+
+	public object Clone()
+	{
+		return new Position(X, Y);
 	}
 }
