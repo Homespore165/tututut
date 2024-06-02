@@ -35,7 +35,6 @@ public partial class SimForm : Form
         _flights.Add(flight);
     }
 
-    //load scene - f*ck winforms
     private void button1_Click(object sender, EventArgs e)
     {
 
@@ -72,7 +71,7 @@ public partial class SimForm : Form
         _tempTime += 0.001f;
 
         int pointSize = 5;
-        int circleSize = 5;
+        int circleSize = 15;
 
         Pen linePen = new Pen(Brushes.Blue, 2f);
         linePen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
@@ -89,9 +88,14 @@ public partial class SimForm : Form
         {
             flight.setProgress(_tempTime % 1f);
 
-            graphics.DrawLine(linePen, flight.Start, flight.End);
+            graphics.DrawLine(flight.Pen, flight.Start, flight.End);
             graphics.DrawString(flight.Type, font, brush, flight.Position);
             graphics.DrawEllipse(Pens.DarkBlue, new Rectangle(flight.Position.X - pointSize, flight.Position.Y - pointSize, pointSize * 2, pointSize * 2));
+
+            if (flight.Type == "O")
+            {
+                graphics.DrawEllipse(flight.Pen, new Rectangle(flight.End.X - circleSize, flight.End.Y - circleSize, circleSize * 2, circleSize * 2));
+            }
         }
 
         updateMap();
