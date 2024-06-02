@@ -12,8 +12,8 @@ public abstract class Flying: State
     /// <param name="start">Position de départ de l'avion (position de l'aéroport)</param>
     protected Flying(Plane plane, Position position) : base(plane)
     {
-        _position = position;
-        _startPos = position;
+        _position = (Position)position.Clone();
+        _startPos = (Position)position.Clone();
     }
     /// <summary>
     /// Constructeur
@@ -23,9 +23,9 @@ public abstract class Flying: State
     /// <param name="client">Client</param>
     protected Flying(Plane plane, Position position, Client client) : base(plane)
     {
-        _position = position;
+        _position = (Position)position.Clone();
         _client = client;
-        _startPos = position;
+        _startPos = (Position)position.Clone();
     }
     /// <summary>
     /// Sérilialiser en String l'état

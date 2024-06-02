@@ -10,6 +10,6 @@ public abstract class ClientSupport : Client
 {
     protected ClientSupport(Position position)
     {
-        Position = position;
+        Position = (Position)position.Clone();
     }
 }

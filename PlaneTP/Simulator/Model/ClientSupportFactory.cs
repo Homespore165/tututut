@@ -19,7 +19,7 @@ public class ClientSupportFactory
         {
             "Fire" => new ClientFire(position),
             "Recon" => new ClientRecon(position),
-            "Rescue" => new ClientRecon(position),
+            "Rescue" => new ClientRescue(position),
             _ => null
         })!;
     }

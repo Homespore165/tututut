@@ -215,4 +215,10 @@ public class Scenario
         }
         return a;
     }
+
+
+    public void RemoveClient(ClientSupport client)
+    {
+        _clientsSupport.Remove(client);
+    }
 }
