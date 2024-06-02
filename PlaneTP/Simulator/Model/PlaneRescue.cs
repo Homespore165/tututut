@@ -18,5 +18,6 @@ public class PlaneRescue : PlaneSupport
 	public override void StartFlightProcess(Client client)
 	{
 		State = new FlyingRescue(this, Airport.Position, (ClientRescue)client);
+		Scenario.Instance.RemoveClient((ClientSupport)client);
 	}
 }

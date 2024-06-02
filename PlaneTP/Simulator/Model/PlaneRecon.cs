@@ -17,5 +17,6 @@ public class PlaneRecon : PlaneSupport
 	public override void StartFlightProcess(Client client)
 	{
 		State = new FlyingRecon(this, Airport.Position, (ClientRecon)client);
+		Scenario.Instance.RemoveClient((ClientRecon)client);
 	}
 }

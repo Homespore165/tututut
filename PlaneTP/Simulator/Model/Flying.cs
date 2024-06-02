@@ -7,19 +7,32 @@ public abstract class Flying: State
     protected Position _position;
     protected Client _client;
     protected Position _startPos;
+    /// <summary>
+    /// Constructeur
+    /// </summary>
+    /// <param name="plane">Avion possèdant cet état</param>
+    /// <param name="start">Position de départ de l'avion (position de l'aéroport)</param>
     protected Flying(Plane plane, Position position) : base(plane)
     {
         _position = (Position)position.Clone();
         _startPos = (Position)position.Clone();
     }
-
+    /// <summary>
+    /// Constructeur
+    /// </summary>
+    /// <param name="plane">Avion possèdant cet état</param>
+    /// <param name="start">Position de départ de l'avion (position de l'aéroport)</param>
+    /// <param name="client">Client</param>
     protected Flying(Plane plane, Position position, Client client) : base(plane)
     {
         _position = (Position)position.Clone();
         _client = client;
         _startPos = (Position)position.Clone();
     }
-
+    /// <summary>
+    /// Sérilialiser en String l'état
+    /// </summary>
+    /// <returns></returns>
     public override String ToString()
     {
         String planeType = _plane.GetType().Name.Remove(0,5);

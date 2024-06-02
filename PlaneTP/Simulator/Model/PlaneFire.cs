@@ -18,5 +18,6 @@ public class PlaneFire : PlaneSupport
 	public override void StartFlightProcess(Client client)
 	{
 		State = new FlyingFire(this, Airport.Position, (ClientFire)client);
+		Scenario.Instance.RemoveClient((ClientSupport)client);
 	}
 }
