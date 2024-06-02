@@ -37,7 +37,7 @@ public class FlyingTransport : Flying
         {
             _plane.State = new Deboarding((PlaneTransport)_plane,  _client);
             _plane.Airport = _client.Destination;
-            _client.Destination.Planes.Add(_plane);
+            //_client.Destination.Planes.Add(_plane);
         }
     }
 }
