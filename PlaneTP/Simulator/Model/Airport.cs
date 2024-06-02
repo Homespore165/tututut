@@ -169,4 +169,11 @@ public class Airport : IXmlSerializable
 		GenerateClient();
 		_planes.ForEach(p => p.TimeStep());
 	}
+
+	public override string ToString()
+	{
+		string name = _name;
+		string clients = string.Join(";", _clientsTransport.Select(c => c.ToString()));
+		return $"{name};{_position.X};{_position.Y};{clients}";
+	}
 }

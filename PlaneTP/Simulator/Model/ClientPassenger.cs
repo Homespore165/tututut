@@ -21,4 +21,9 @@ public class ClientPassenger : ClientTransport
         Size -= size;
         return new ClientPassenger(Destination, (int)size);
     }
+    
+    public override String ToString()
+    {
+        return $"{NbPassenger} passagers à destination de {Destination.Name}";
+    }
 }
