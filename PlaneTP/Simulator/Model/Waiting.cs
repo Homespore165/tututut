@@ -7,6 +7,7 @@ public class Waiting : State
     public override void TimeStep()
     {
         List<Client> clients = _plane.GetPossibleClients();
+        Console.WriteLine(clients);
         if (clients.Count > 0)
         {
             Client client = clients[0];

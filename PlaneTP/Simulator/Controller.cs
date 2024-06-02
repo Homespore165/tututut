@@ -37,6 +37,7 @@ public class Controller
         for (int i = 0; i < t; i++)
         {
             _scenario!.TimeStep();
+            Console.WriteLine("TimeStep()");
         }
     }
 }

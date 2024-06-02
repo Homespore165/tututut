@@ -20,7 +20,7 @@ public class Scenario : IXmlSerializable
             {
                 planes.AddRange(airport.Planes);
             }
-            return planes.Where(p => p.State is Flying).ToList();
+            return planes.ToList();
         }
     }
     
@@ -205,6 +205,7 @@ public class Scenario : IXmlSerializable
         GenerateClients();
         Planes?.ForEach(p => p.TimeStep());
         Airports.ForEach(a => a.TimeStep());
+        Planes.ForEach(p => Console.WriteLine(p.State.ToString()));
         FlightUpdate?.Invoke(Planes.Select(p => p.State.ToString()).ToList());
     }
     
