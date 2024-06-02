@@ -56,9 +56,9 @@ partial class SimForm
         // 
         loadScenarioBtn.Location = new Point(12, 12);
         loadScenarioBtn.Name = "loadScenarioBtn";
-        loadScenarioBtn.Size = new Size(336, 23);
+        loadScenarioBtn.Size = new Size(296, 23);
         loadScenarioBtn.TabIndex = 1;
-        loadScenarioBtn.Text = "Charger le scénario";
+        loadScenarioBtn.Text = "Load Scenario";
         loadScenarioBtn.UseVisualStyleBackColor = true;
         loadScenarioBtn.Click += button1_Click;
         // 
@@ -129,7 +129,7 @@ partial class SimForm
         Controls.Add(loadScenarioBtn);
         Controls.Add(mapImage);
         Name = "SimForm";
-        Text = "Simulateur";
+        Text = "Simulator";
         ((System.ComponentModel.ISupportInitialize)mapImage).EndInit();
         ((System.ComponentModel.ISupportInitialize)timeAdvanceSelector).EndInit();
         ResumeLayout(false);
