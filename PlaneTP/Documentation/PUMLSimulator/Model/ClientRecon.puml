@@ -1,6 +1,0 @@
-@startuml
-class ClientRecon {
-    + ClientRecon(position:Position)
-}
-ClientSupport <|-- ClientRecon
-@enduml

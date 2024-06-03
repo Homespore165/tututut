@@ -1,5 +1,0 @@
-﻿class Scenario {
-	+ Plane[] planes
-	+ Aeroport[] aeroports 
-}
-

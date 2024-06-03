@@ -1,8 +1,0 @@
-@startuml
-class Maintenance {
-    - _timeToCompletion : int
-    + Maintenance(plane:Plane)
-    + <<override>> TimeStep() : void
-}
-State <|-- Maintenance
-@enduml

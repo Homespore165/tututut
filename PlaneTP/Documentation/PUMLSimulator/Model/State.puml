@@ -1,7 +1,0 @@
-@startuml
-abstract class State {
-    # _plane : Plane
-    # State(plane:Plane)
-    + {abstract} TimeStep() : void
-}
-@enduml

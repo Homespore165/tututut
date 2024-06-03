@@ -1,9 +1,0 @@
-@startuml
-abstract class FlyingSupport {
-    # _source : Airport
-    # FlyingSupport(plane:Plane, start:Position, client:ClientSupport)
-    # Toward() : void
-    # Back() : void
-}
-Flying <|-- FlyingSupport
-@enduml

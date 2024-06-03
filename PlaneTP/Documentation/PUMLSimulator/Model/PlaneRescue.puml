@@ -1,9 +1,0 @@
-@startuml
-class PlaneRescue {
-    + PlaneRescue(name:string, x:int, y:int, speed:int, maintenanceTime:int, airport:Airport)
-    + PlaneRescue()
-    + <<override>> GetPossibleClients() : List<Client>
-    + <<override>> StartFlightProcess(client:Client) : void
-}
-PlaneSupport <|-- PlaneRescue
-@enduml

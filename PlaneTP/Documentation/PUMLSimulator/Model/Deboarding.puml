@@ -1,9 +1,0 @@
-@startuml
-class Deboarding {
-    - _timeToCompletion : int
-    - _client : ClientTransport
-    + Deboarding(plane:PlaneTransport, client:ClientTransport)
-    + <<override>> TimeStep() : void
-}
-State <|-- Deboarding
-@enduml

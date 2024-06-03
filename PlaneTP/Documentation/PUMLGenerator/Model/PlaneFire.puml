@@ -1,7 +1,0 @@
-@startuml
-class PlaneFire {
-    + PlaneFire(name:string, speed:int, maintenanceTime:int)
-    - PlaneFire()
-}
-PlaneSupport <|-- PlaneFire
-@enduml

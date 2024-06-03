@@ -1,9 +1,0 @@
-@startuml
-class ClientTransportFactory {
-    - {static} _instance : ClientTransportFactory?
-    + {static} Instance : ClientTransportFactory <<get>>
-    - <<readonly>> _size : Position
-    - ClientTransportFactory()
-    + CreateClientTransport(type:string, destination:Airport) : ClientTransport
-}
-@enduml
