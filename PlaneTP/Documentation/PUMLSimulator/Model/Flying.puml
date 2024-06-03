@@ -1,0 +1,14 @@
+@startuml
+abstract class Flying {
+    # _position : Position
+    # _client : Client
+    # _startPos : Position
+    # Flying(plane:Plane, position:Position)
+    # Flying(plane:Plane, position:Position, client:Client)
+    + <<override>> ToString() : String
+    + isAtDestination() : bool
+    + isAtStart() : bool
+    + isAtPos(pos:Position, errorRange:float) : bool
+}
+State <|-- Flying
+@enduml

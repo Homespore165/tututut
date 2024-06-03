@@ -1,0 +1,8 @@
+@startuml
+class ClientFire {
+    + Intensity : int <<get>> <<set>>
+    + ClientFire(position:Position)
+    + ClientFire(position:Position, intensity:int)
+}
+ClientSupport <|-- ClientFire
+@enduml

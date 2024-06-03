@@ -1,0 +1,8 @@
+@startuml
+abstract class PlaneSupport {
+    + PlaneSupport(name:string, speed:int, maintenanceTime:int)
+    # PlaneSupport()
+    + <<override>> ToString() : string?
+}
+Plane <|-- PlaneSupport
+@enduml

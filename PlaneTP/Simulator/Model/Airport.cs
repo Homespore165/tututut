@@ -249,8 +249,7 @@ public class Airport : IXmlSerializable
 	/// <param name="clientTransport"></param>
 	public void RemoveClient(ClientTransport clientTransport)
 	{
-		if (_clientsTransport.Remove(clientTransport))
-			Console.WriteLine("Client removed");
+		_clientsTransport.Remove(clientTransport);
 	}
 
 	/// <summary>

@@ -178,24 +178,4 @@ public partial class SimForm : Form
 
         updateMap();
     }
-
-    public void updatePlaneList(List<string> strings)
-    {
-        planeTreeView.Nodes.Clear();
-
-        foreach (string info in strings)
-        {
-            string[] strs = info.Split(';');
-            TreeNode node = new TreeNode(strs[0]);
-
-            for (int i = 1; i < strs.Length; i++)
-            {
-                node.Nodes.Add(new TreeNode(strs[i]));
-            }
-
-            planeTreeView.Nodes.Add(node);
-        }
-
-        planeTreeView.ExpandAll();
-    }
 }

@@ -37,7 +37,6 @@ public partial class Form1 : Form
         if (lvwAirport.SelectedIndices.Count > 0)
         {
             int airportId = lvwAirport.SelectedIndices[0];
-            Console.WriteLine(airportId);
             string name = txbAirportName.Text;
             int x = (int)numAirportPositionX.Value;
             int y = (int)numAirportPositionY.Value;

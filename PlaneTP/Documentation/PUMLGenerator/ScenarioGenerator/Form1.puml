@@ -1,0 +1,20 @@
+@startuml
+class Form1 <<partial>> {
+    - _controller : Controller
+    + Form1(controller:Controller)
+    - btnAddAirport_Click(sender:object, e:EventArgs) : void
+    - btnEditAirport_Click(sender:object, e:EventArgs) : void
+    - btnDeleteAirport_Click(sender:object, e:EventArgs) : void
+    - btnAddPlane_Click(sender:object, e:EventArgs) : void
+    - btnSave_Click(sender:object, e:EventArgs) : void
+    - btnLoad_Click(sender:object, e:EventArgs) : void
+    - btnEmpty_Click(sender:object, e:EventArgs) : void
+    - lvwAirport_SelectedIndexChanged(sender:object, e:EventArgs) : void
+    - lvwAirplane_SelectedIndexChanged(sender:object, e:EventArgs) : void
+    + UpdateAirports(airports:string[]) : void
+    + UpdatePlanes(planes:string[]) : void
+    + OnEmptyScenario() : void
+    - coordsPickerBtn_Click(sender:object, e:EventArgs) : void
+}
+Form <|-- Form1
+@enduml

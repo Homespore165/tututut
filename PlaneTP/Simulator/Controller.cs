@@ -33,7 +33,6 @@ public class Controller
         _scenario.Load();
         _scenario!.SubscribeFlights(_form.updateFlights);
         _scenario!.SubscribeAirports(_form.updateAirports);
-        _scenario!.SubscribeAirportsPlane(_form.updatePlaneList);
     }
 
     /// <summary>
