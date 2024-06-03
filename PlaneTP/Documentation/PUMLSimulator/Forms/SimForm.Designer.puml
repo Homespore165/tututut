@@ -1,0 +1,15 @@
+@startuml
+class SimForm <<partial>> {
+    - components : System.ComponentModel.IContainer = null
+    # <<override>> Dispose(disposing:bool) : void
+    - InitializeComponent() : void
+    - mapImage : PictureBox
+    - loadScenarioBtn : Button
+    - advanceTimeBtn : Button
+    - timeAdvanceSelector : NumericUpDown
+    - timeAdvanceLabel : Label
+    - airportTreeView : TreeView
+    - label1 : Label
+    - label2 : Label
+}
+@enduml

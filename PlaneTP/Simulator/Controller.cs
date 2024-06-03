@@ -1,5 +1,5 @@
-﻿using Simulator.Model;
-using System.Security.Cryptography.X509Certificates;
+﻿
+using Simulator.Model;
 
 namespace Simulator;
 
@@ -9,6 +9,7 @@ public class Controller
     public static Controller Instance => _instance ??= new Controller();
     private Scenario? _scenario;
     private SimForm _form;
+
     public SimForm Form
     {
         get => _form;
@@ -23,15 +24,21 @@ public class Controller
         LoadSavedScenario();
     }
 
+    /// <summary>
+    /// Charge le scénario XML sauvegardé
+    /// </summary>
     public void LoadSavedScenario()
     {
         _scenario = new Scenario();
         _scenario.Load();
         _scenario!.SubscribeFlights(_form.updateFlights);
         _scenario!.SubscribeAirports(_form.updateAirports);
-        _scenario!.SubscribeAirportsPlane(_form.updatePlaneList);
     }
 
+    /// <summary>
+    /// Avance le temps d'un quantité d'étapes
+    /// </summary>
+    /// <param name="t">Quantité d'étapes</param>
     public void TimeStep(int t)
     {
         for (int i = 0; i < t; i++)

@@ -36,7 +36,6 @@ partial class SimForm
         timeAdvanceLabel = new Label();
         airportTreeView = new TreeView();
         label1 = new Label();
-        planeTreeView = new TreeView();
         label2 = new Label();
         ((System.ComponentModel.ISupportInitialize)mapImage).BeginInit();
         ((System.ComponentModel.ISupportInitialize)timeAdvanceSelector).BeginInit();
@@ -106,35 +105,14 @@ partial class SimForm
         label1.TabIndex = 7;
         label1.Text = "Airports and clients";
         // 
-        // planeTreeView
-        // 
-        planeTreeView.Location = new Point(516, 563);
-        planeTreeView.Name = "planeTreeView";
-        planeTreeView.ShowPlusMinus = false;
-        planeTreeView.Size = new Size(496, 274);
-        planeTreeView.TabIndex = 8;
-        planeTreeView.Visible = false;
-        // 
-        // label2
-        // 
-        label2.AutoSize = true;
-        label2.Location = new Point(516, 544);
-        label2.Name = "label2";
-        label2.Size = new Size(109, 15);
-        label2.TabIndex = 9;
-        label2.Text = "Airports and planes";
-        label2.Visible = false;
-        // 
         // SimForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(1024, 849);
         Controls.Add(label2);
-        Controls.Add(planeTreeView);
         Controls.Add(label1);
         Controls.Add(airportTreeView);
-        Controls.Add(timeLabel);
         Controls.Add(timeAdvanceLabel);
         Controls.Add(timeAdvanceSelector);
         Controls.Add(advanceTimeBtn);
@@ -155,9 +133,7 @@ partial class SimForm
     private Button advanceTimeBtn;
     private NumericUpDown timeAdvanceSelector;
     private Label timeAdvanceLabel;
-    private Label timeLabel;
     private TreeView airportTreeView;
     private Label label1;
-    private TreeView planeTreeView;
     private Label label2;
 }

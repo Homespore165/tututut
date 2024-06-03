@@ -10,6 +10,7 @@ public abstract class ClientTransport : Client
     public Airport Destination { get; set; }
 
     public double Size { get; set; }
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -19,6 +20,7 @@ public abstract class ClientTransport : Client
         Destination = destination;
         Position = Destination.Position;
     }
+
     /// <summary>
     /// Prendre une portion de la quantité du client
     /// </summary>

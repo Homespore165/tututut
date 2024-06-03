@@ -1,0 +1,9 @@
+@startuml
+class FlyingTransport {
+    # _client : ClientTransport
+    + FlyingTransport(plane:Plane, start:Position, client:ClientTransport)
+    # Toward() : void
+    + <<override>> TimeStep() : void
+}
+Flying <|-- FlyingTransport
+@enduml

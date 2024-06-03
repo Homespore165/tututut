@@ -11,6 +11,7 @@ public class ClientSupportFactory
     private ClientSupportFactory()
     {
     }
+
     /// <summary>
     /// Constructeur de clients
     /// </summary>

@@ -3,6 +3,7 @@
 public abstract class FlyingSupport: Flying
 {
     protected Airport _source;
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -11,9 +12,10 @@ public abstract class FlyingSupport: Flying
     /// <param name="client">Client</param>
     protected FlyingSupport(Plane plane, Position start, ClientSupport client) : base(plane, start)
     {
-        _source = plane.Airport; 
+        _source = plane.Airport;
         _client = client;
     }
+
     /// <summary>
     /// Faire avancer l'avion
     /// </summary>
@@ -28,6 +30,7 @@ public abstract class FlyingSupport: Flying
         _position.X = (int)(_position.X + deltaX / length * speed);
         _position.Y = (int)(_position.Y + deltaY / length * speed);
     }
+
     /// <summary>
     /// Faire retourner l'avion
     /// </summary>

@@ -1,0 +1,29 @@
+@startuml
+class Airport {
+    -  <<event>> OnPlaneUpdate : OnPlaneUpdate 
+    - _name : string
+    + Name : string <<get>> <<set>>
+    - _planes : List<Plane>
+    + Planes : List<Plane> <<get>> <<set>>
+    - _passengerTraffic : int
+    + PassengerTraffic : int <<get>> <<set>>
+    - _cargoTraffic : int
+    + CargoTraffic : int <<get>> <<set>>
+    - _position : Position
+    + Position : Position <<get>> <<set>>
+    + Airport(name:String, position:Position, passengerTraffic:int, cargoTraffic:int)
+    + Airport(name:String, x:int, y:int, passengerTraffic:int, cargoTraffic:int)
+    - Airport()
+    + AddPlane(name:string, type:string, speed:int, maintenanceTime:int, boardingTime:int, unboardingTime:int) : void
+    + GetSchema() : XmlSchema?
+    + ReadXml(reader:XmlReader) : void
+    + ClearPlanes() : void
+    + WriteXml(writer:XmlWriter) : void
+    + <<override>> ToString() : string?
+    - NotifyPlaneChanged() : void
+    + SubscribePlaneChanged(updatePlanes:Action<string[]>) : void
+    + UnsubcribeAll() : void
+    + GetPlanes() : string[]
+}
+IXmlSerializable <|-- Airport
+@enduml

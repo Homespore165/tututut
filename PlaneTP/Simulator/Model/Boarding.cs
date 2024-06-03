@@ -5,6 +5,7 @@ public class Boarding : State
     private int _timeToCompletion;
     private ClientTransport _client;
     private Position _start;
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -16,6 +17,7 @@ public class Boarding : State
         _client = client;
         _start = start;
     }
+
     /// <summary>
     /// Gestion d'avancer d'un seul pas
     /// </summary>
@@ -28,7 +30,6 @@ public class Boarding : State
             if (_client.Size > p.Capacity)
             {
                 ClientTransport c = _client.Split(p.Capacity);
-                //_plane.Airport?.AddClient(_client);
                 _plane.State = new FlyingTransport(_plane, _start, c);
             } else {
                 _plane.State = new FlyingTransport(_plane, _start, _client);

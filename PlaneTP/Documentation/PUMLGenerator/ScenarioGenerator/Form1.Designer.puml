@@ -1,0 +1,56 @@
+@startuml
+class Form1 <<partial>> {
+    - components : System.ComponentModel.IContainer = null
+    # <<override>> Dispose(disposing:bool) : void
+    - InitializeComponent() : void
+    - lvwAirport : ListView
+    - lblAirportName : Label
+    - lblAirportPositionX : Label
+    - numAirportPositionX : NumericUpDown
+    - numAirportPositionY : NumericUpDown
+    - lblAirportPositionY : Label
+    - txbAirportName : TextBox
+    - numAirportPassengerTraffic : NumericUpDown
+    - lblAirportPassengerTraffic : Label
+    - numAirportCargoTraffic : NumericUpDown
+    - lblAirportCargoTraffic : Label
+    - btnAddAirport : Button
+    - lvwAirplane : ListView
+    - btnEditAirport : Button
+    - btnRemoveAirport : Button
+    - txbPlaneName : TextBox
+    - lblPlaneName : Label
+    - lblPlaneType : Label
+    - cbxPlaneType : ComboBox
+    - numPlaneSpeed : NumericUpDown
+    - lblPlaneSpeed : Label
+    - numPlaneBoardingTime : NumericUpDown
+    - lblPlaneBoardingTime : Label
+    - numPlaneUnboardingTime : NumericUpDown
+    - lblPlaneUnboardingTime : Label
+    - btnPlaneAdd : Button
+    - numPlaneMaintenanceTime : NumericUpDown
+    - lblPlaneMaintenanceTime : Label
+    - lblFrequencyFire : Label
+    - numFrequencyFire : NumericUpDown
+    - numFrequencyRecon : NumericUpDown
+    - lblFrequencyRecon : Label
+    - numFrequencyRescue : NumericUpDown
+    - lblFrequencyRescue : Label
+    - btnSave : Button
+    - btnLoad : Button
+    - btnEmpty : Button
+    - coordsPickerBtn : Button
+    - airportName : ColumnHeader
+    - xPos : ColumnHeader
+    - yPos : ColumnHeader
+    - passengerTraffic : ColumnHeader
+    - cargoTraffic : ColumnHeader
+    - planeName : ColumnHeader
+    - planeType : ColumnHeader
+    - speed : ColumnHeader
+    - boardingTime : ColumnHeader
+    - unboardingTime : ColumnHeader
+    - maintenanceTime : ColumnHeader
+}
+@enduml

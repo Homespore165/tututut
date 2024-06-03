@@ -1,0 +1,12 @@
+@startuml
+class CoordsPickerForm <<partial>> {
+    - components : System.ComponentModel.IContainer = null
+    # <<override>> Dispose(disposing:bool) : void
+    - InitializeComponent() : void
+    - worldMap : PictureBox
+    - coordsLabel : Label
+    - posLabel : Label
+    - debugLabel : Label
+    - closeBtn : Button
+}
+@enduml

@@ -3,6 +3,7 @@
 public class Maintenance : State
 {
     private int _timeToCompletion;
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -11,6 +12,7 @@ public class Maintenance : State
     {
         _timeToCompletion = plane.MaintenanceTime;
     }
+
     /// <summary>
     /// Gestion d'avancer d'un seul pas
     /// </summary>

@@ -1,0 +1,9 @@
+@startuml
+class PlaneFire {
+    + PlaneFire(name:string, x:int, y:int, speed:int, maintenanceTime:int, airport:Airport)
+    - PlaneFire()
+    + <<override>> GetPossibleClients() : List<Client>
+    + <<override>> StartFlightProcess(client:Client) : void
+}
+PlaneSupport <|-- PlaneFire
+@enduml

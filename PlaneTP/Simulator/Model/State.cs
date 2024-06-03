@@ -3,6 +3,7 @@
 public abstract class State
 {
     protected Plane _plane;
+
     /// <summary>
     /// constructeur
     /// </summary>
@@ -11,6 +12,7 @@ public abstract class State
     {
         _plane = plane;
     }
+
     /// <summary>
     /// Gestion d'avancer d'un seul pas
     /// </summary>

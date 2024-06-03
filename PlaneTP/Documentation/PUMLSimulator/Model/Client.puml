@@ -1,0 +1,5 @@
+@startuml
+abstract class Client {
+    + Position : Position <<get>> <<set>>
+}
+@enduml

@@ -2,7 +2,6 @@
 
 public class PlaneCargo : PlaneTransport
 {
-
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -38,6 +37,7 @@ public class PlaneCargo : PlaneTransport
     {
         ClientTransport c = (ClientTransport)client;
         State = new Boarding(this, Airport.Position, c);
+        Airport.RemoveClient((ClientTransport)client);
         Airport = c.Destination;
         c.Destination.Planes.Add(this);
     }

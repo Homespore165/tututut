@@ -1,0 +1,12 @@
+@startuml
+class Controller {
+    - {static} _instance : Controller?
+    + {static} Instance : Controller <<get>>
+    - _scenario : Scenario?
+    - _form : SimForm
+    + Form : SimForm <<get>> <<set>>
+    - Controller()
+    + LoadSavedScenario() : void
+    + TimeStep(t:int) : void
+}
+@enduml

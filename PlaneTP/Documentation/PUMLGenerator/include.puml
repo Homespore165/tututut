@@ -1,0 +1,24 @@
+@startuml
+!include .\\.\ScenarioGenerator\Controller.puml
+!include .\\.\ScenarioGenerator\Form1.puml
+!include .\\.\ScenarioGenerator\Form1.Designer.puml
+!include .\\.\ScenarioGenerator\Program.puml
+!include .\\Model\Airport.puml
+!include .\\Model\Plane.puml
+!include .\\Model\PlaneCargo.puml
+!include .\\Model\PlaneFactory.puml
+!include .\\Model\PlaneFire.puml
+!include .\\Model\PlanePassenger.puml
+!include .\\Model\PlaneRecon.puml
+!include .\\Model\PlaneRescue.puml
+!include .\\Model\PlaneSupport.puml
+!include .\\Model\PlaneTransport.puml
+!include .\\Model\Position.puml
+!include .\\Model\Scenario.puml
+!include .\\Properties\Resources.Designer.puml
+!include .\\View\CoordsPickerForm.puml
+!include .\\View\CoordsPickerForm.Designer.puml
+!include .\\obj\Debug\net7.0-windows\.NETCoreApp,Version=v7.0.AssemblyAttributes.puml
+!include .\\obj\Debug\net7.0-windows\ScenarioGenerator.AssemblyInfo.puml
+!include .\\obj\Debug\net7.0-windows\ScenarioGenerator.GlobalUsings.g.puml
+@enduml

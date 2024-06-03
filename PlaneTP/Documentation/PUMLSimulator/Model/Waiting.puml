@@ -1,0 +1,7 @@
+@startuml
+class Waiting {
+    + Waiting(plane:Plane)
+    + <<override>> TimeStep() : void
+}
+State <|-- Waiting
+@enduml

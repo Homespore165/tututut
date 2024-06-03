@@ -2,6 +2,7 @@
 public class ClientCargo : ClientTransport
 {
     public double WeightInTons { get; set; }
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -12,6 +13,7 @@ public class ClientCargo : ClientTransport
         WeightInTons = r.NextDouble() * r.Next(0, 1000);
         Size = WeightInTons;
     }
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -22,6 +24,7 @@ public class ClientCargo : ClientTransport
         WeightInTons = weightInTons;
         Size = WeightInTons;
     }
+
     /// <summary>
     /// Prendre une portion du poids du client
     /// </summary>
@@ -33,6 +36,7 @@ public class ClientCargo : ClientTransport
         WeightInTons -= size;
         return new ClientCargo(Destination, size);
     }
+
     /// <summary>
     /// Sérialise le client en String
     /// </summary>

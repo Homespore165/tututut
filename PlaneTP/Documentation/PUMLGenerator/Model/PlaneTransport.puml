@@ -1,0 +1,13 @@
+@startuml
+abstract class PlaneTransport {
+    - _boardingTime : int
+    + BoardingTime : int <<get>> <<set>>
+    - _unboardTime : int
+    + UnboardTime : int <<get>> <<set>>
+    + PlaneTransport(name:string, speed:int, maintenanceTime:int, boardingTime:int, unboardTime:int)
+    # PlaneTransport()
+    + <<override>> WriteXml(writer:XmlWriter) : void
+    + <<override>> ToString() : string?
+}
+Plane <|-- PlaneTransport
+@enduml

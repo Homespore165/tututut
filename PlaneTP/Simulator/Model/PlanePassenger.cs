@@ -17,6 +17,7 @@ public class PlanePassenger : PlaneTransport
 		: base(name, x, y, speed, maintenanceTime, airport, boardingTime, unboardTime)
 	{
 	}
+
 	/// <summary>
 	/// Retourne la liste des clients potentiel pour l'avion
 	/// </summary>
@@ -25,15 +26,17 @@ public class PlanePassenger : PlaneTransport
 	{
 		return Airport.ClientsPassenger.Cast<Client>().ToList();
 	}
+
 	/// <summary>
-	/// Commence le processus de vol 
-	/// </summary>
-	/// <param name="client">le client</param>
-	public override void StartFlightProcess(Client client)
-	{
-		ClientTransport c = (ClientTransport)client;
-		State = new Boarding(this, Airport.Position, c);
-		Airport.RemoveClient(c);
-		Airport = c.Destination;
-	}
+    /// Commence le processus de vol 
+    /// </summary>
+    /// <param name="client">le client</param>
+    public override void StartFlightProcess(Client client)
+    {
+        ClientTransport c = (ClientTransport)client;
+        State = new Boarding(this, Airport.Position, c);
+        Airport.RemoveClient((ClientTransport)client);
+        Airport = c.Destination;
+        c.Destination.Planes.Add(this);
+    }
 }

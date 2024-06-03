@@ -7,19 +7,25 @@ public partial class SimForm : Form
 {
     private Controller _controller;
     private List<string> _flights;
-    private float _tempTime;
     private List<string> _airports;
 
+    /// <summary>
+    /// Constructeur du formulaire
+    /// </summary>
     public SimForm()
     {
         _controller = Controller.Instance;
         InitializeComponent();
         _flights = new List<string>();
         _airports = new List<string>();
-        _tempTime = 0;
         advanceTimeBtn.Enabled = false;
     }
 
+    /// <summary>
+    /// Évenement pour charger le scénario
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void button1_Click(object sender, EventArgs e)
     {
         _controller.LoadSavedScenario();
@@ -27,6 +33,11 @@ public partial class SimForm : Form
         advanceTimeBtn.Enabled = true;
     }
 
+    /// <summary>
+    /// Évenement pour avancer le temps d'un certain nombre d'étapes
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void advanceTimeBtn_Click(object sender, EventArgs e)
     {
         int timeToAdvance = (int)timeAdvanceSelector.Value;
@@ -34,9 +45,13 @@ public partial class SimForm : Form
         _controller.TimeStep(timeToAdvance);
     }
 
+    /// <summary>
+    /// Évenement pour peinturer la carte principale
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void mapImage_Paint(object sender, PaintEventArgs e)
     {
-        _tempTime += 0.001f;
 
         int pointSize = 5;
         int circleSize = 15;
@@ -88,11 +103,19 @@ public partial class SimForm : Form
         }
     }
 
+    /// <summary>
+    /// Rafraichit la carte
+    /// </summary>
     private void updateMap()
     {
         mapImage.Invalidate();
     }
 
+    /// <summary>
+    /// Obtient un crayon pour le type d'avion
+    /// </summary>
+    /// <param name="type">le string du type d'avion</param>
+    /// <returns>Le crayon de couleur pour le type d'avion</returns>
     private Pen getPenForType(string type)
     {
         Pen pen = new Pen(Brushes.Blue, 2f);
@@ -116,7 +139,10 @@ public partial class SimForm : Form
         return pen;
     }
 
-    // "type;startx;starty;endx;endy;posx,posy"
+    /// <summary>
+    /// Met à jour la vue des avions en vol
+    /// </summary>
+    /// <param name="strings">la liste de strings des vols</param>
     public void updateFlights(List<string> strings)
     {
         _flights = strings;
@@ -124,6 +150,10 @@ public partial class SimForm : Form
         updateMap();
     }
 
+    /// <summary>
+    /// Met à jour la vue des aéroports sur la carte et dans la liste
+    /// </summary>
+    /// <param name="strings">la liste des aéroports</param>
     public void updateAirports(List<string> strings)
     {
         _airports.Clear();
@@ -147,25 +177,5 @@ public partial class SimForm : Form
         airportTreeView.ExpandAll();
 
         updateMap();
-    }
-
-    public void updatePlaneList(List<string> strings)
-    {
-        planeTreeView.Nodes.Clear();
-
-        foreach (string info in strings)
-        {
-            string[] strs = info.Split(';');
-            TreeNode node = new TreeNode(strs[0]);
-
-            for (int i = 1; i < strs.Length; i++)
-            {
-                node.Nodes.Add(new TreeNode(strs[i]));
-            }
-
-            planeTreeView.Nodes.Add(node);
-        }
-
-        planeTreeView.ExpandAll();
     }
 }

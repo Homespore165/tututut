@@ -1,0 +1,6 @@
+@startuml
+abstract class ClientSupport {
+    # ClientSupport(position:Position)
+}
+Client <|-- ClientSupport
+@enduml

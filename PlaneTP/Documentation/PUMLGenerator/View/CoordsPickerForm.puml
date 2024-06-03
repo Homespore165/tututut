@@ -1,0 +1,15 @@
+@startuml
+class CoordsPickerForm <<partial>> {
+    - _chosenCoordinates : Point
+    - _geoPinSize : Size
+    + ChosenCoordinates : Point <<get>>
+    + CoordsPickerForm()
+    - setDebugMsg(msg:string) : void
+    - updateCoordinateLabels() : void
+    - convertPosToCoordString(pos:Point) : string
+    - worldMap_Click(sender:object, e:EventArgs) : void
+    - worldMap_Paint(sender:object, e:PaintEventArgs) : void
+    - closeBtn_Click(sender:object, e:EventArgs) : void
+}
+Form <|-- CoordsPickerForm
+@enduml

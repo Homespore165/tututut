@@ -1,0 +1,7 @@
+@startuml
+abstract class PlaneSupport {
+    + PlaneSupport(name:string, x:int, y:int, speed:int, maintenanceTime:int, airport:Airport)
+    # PlaneSupport()
+}
+Plane <|-- PlaneSupport
+@enduml
