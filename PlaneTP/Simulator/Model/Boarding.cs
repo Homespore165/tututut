@@ -27,6 +27,8 @@ public class Boarding : State
             PlaneTransport p = (PlaneTransport)_plane;
             if (_client.Size > p.Capacity)
             {
+                Console.WriteLine("Size: " + _client.Size);
+                Console.WriteLine("Capacity: " + p.Capacity);
                 ClientTransport c = _client.Split(p.Capacity);
                 //_plane.Airport?.AddClient(_client);
                 _plane.State = new FlyingTransport(_plane, _start, c);

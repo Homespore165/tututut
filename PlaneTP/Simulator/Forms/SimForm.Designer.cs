@@ -113,7 +113,7 @@ partial class SimForm
         planeTreeView.ShowPlusMinus = false;
         planeTreeView.Size = new Size(496, 274);
         planeTreeView.TabIndex = 8;
-        planeTreeView.Visible = false;
+        planeTreeView.Visible = true;
         // 
         // label2
         // 
@@ -123,7 +123,7 @@ partial class SimForm
         label2.Size = new Size(109, 15);
         label2.TabIndex = 9;
         label2.Text = "Airports and planes";
-        label2.Visible = false;
+        label2.Visible = true;
         // 
         // SimForm
         // 
