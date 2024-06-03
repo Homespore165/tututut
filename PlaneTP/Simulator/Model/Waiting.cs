@@ -15,7 +15,6 @@ public class Waiting : State
         List<Client> clients = _plane.GetPossibleClients();
         if (clients.Count > 0)
         {
-            Console.WriteLine("test");
             Client client = clients[0];
             _plane.StartFlightProcess(client);
         }
