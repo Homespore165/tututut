@@ -13,5 +13,5 @@ abstract class Plane {
     + <<virtual>> WriteXml(writer:XmlWriter) : void
     + <<override>> ToString() : string?
 }
-IXmlSerializable <|-- Plane
+IXmlSerializable <|-. Plane
 @enduml

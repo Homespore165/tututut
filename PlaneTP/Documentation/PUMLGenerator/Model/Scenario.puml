@@ -29,5 +29,5 @@ class Scenario {
     + GetRescue() : int
     + GetRecon() : int
 }
-IXmlSerializable <|-- Scenario
+IXmlSerializable <|-. Scenario
 @enduml

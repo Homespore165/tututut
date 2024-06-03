@@ -1,8 +1,8 @@
 @startuml
+rectangle controller {
 !include .\\.\ScenarioGenerator\Controller.puml
-!include .\\.\ScenarioGenerator\Form1.puml
-!include .\\.\ScenarioGenerator\Form1.Designer.puml
-!include .\\.\ScenarioGenerator\Program.puml
+}
+rectangle model {
 !include .\\Model\Airport.puml
 !include .\\Model\Plane.puml
 !include .\\Model\PlaneCargo.puml
@@ -15,10 +15,18 @@
 !include .\\Model\PlaneTransport.puml
 !include .\\Model\Position.puml
 !include .\\Model\Scenario.puml
-!include .\\Properties\Resources.Designer.puml
+Scenario "1" *-- "n" Airport
+Airport "1" *-- "n" Plane
+Airport "1" *-- "1" Position
+Airport <-. PlaneFactory
+}
+rectangle view {
+!include .\\.\ScenarioGenerator\Form1.puml
+!include .\\.\ScenarioGenerator\Form1.Designer.puml
 !include .\\View\CoordsPickerForm.puml
 !include .\\View\CoordsPickerForm.Designer.puml
-!include .\\obj\Debug\net7.0-windows\.NETCoreApp,Version=v7.0.AssemblyAttributes.puml
-!include .\\obj\Debug\net7.0-windows\ScenarioGenerator.AssemblyInfo.puml
-!include .\\obj\Debug\net7.0-windows\ScenarioGenerator.GlobalUsings.g.puml
+Form1 <-. CoordsPickerForm
+}
+Controller "1" *-- "1" Scenario
+Controller "1" *-down- "1" Form1
 @enduml

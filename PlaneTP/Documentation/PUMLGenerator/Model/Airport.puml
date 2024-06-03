@@ -25,5 +25,5 @@ class Airport {
     + UnsubcribeAll() : void
     + GetPlanes() : string[]
 }
-IXmlSerializable <|-- Airport
+IXmlSerializable <|-. Airport
 @enduml
