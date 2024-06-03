@@ -3,6 +3,7 @@
 public class ClientFire : ClientSupport
 {
     public int Intensity { get; set; }
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -12,6 +13,7 @@ public class ClientFire : ClientSupport
         Random r = new Random();
         Intensity = r.Next(1, 6);
     }
+
     /// <summary>
     /// Constructeur
     /// </summary>

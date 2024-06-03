@@ -14,6 +14,7 @@ public class ClientTransportFactory
     private ClientTransportFactory()
     {
     }
+
     /// <summary>
     /// Constructeur de clients
     /// </summary>

@@ -47,6 +47,13 @@ public class Airport : IXmlSerializable
 	public List<ClientCargo> ClientsCargo => _clientsTransport.OfType<ClientCargo>().ToList();
 	public List<ClientPassenger> ClientsPassenger => _clientsTransport.OfType<ClientPassenger>().ToList();
 
+	/// <summary>
+	/// Constructeur d'aéroport
+	/// </summary>
+	/// <param name="name">Nom</param>
+	/// <param name="position">Position</param>
+	/// <param name="passengerTraffic">Fréquence de traffic passager</param>
+	/// <param name="cargoTraffic">Fréquence de traffic cargo</param>
 	public Airport(String name, Position position, int passengerTraffic, int cargoTraffic)
 	{
 		_name = name;
@@ -57,7 +64,15 @@ public class Airport : IXmlSerializable
 		_clientsTransport = new List<ClientTransport>();
 	}
 
-	public Airport(String name, int x, int y, int passengerTraffic, int cargoTraffic)
+    /// <summary>
+    /// Constructeur d'aéroport
+    /// </summary>
+    /// <param name="name">Nom</param>
+    /// <param name="x">Position X</param>
+    /// <param name="y">Position Y</param>
+    /// <param name="passengerTraffic">Fréquence de traffic passager</param>
+    /// <param name="cargoTraffic">Fréquence de traffic cargo</param>
+    public Airport(String name, int x, int y, int passengerTraffic, int cargoTraffic)
 	{
 		_name = name;
 		_position = new Position(x, y);
@@ -73,21 +88,42 @@ public class Airport : IXmlSerializable
 		_clientsTransport = new List<ClientTransport>();
 	}
 	
+	/// <summary>
+	/// Ajouter un avion dans l'aéroport
+	/// </summary>
+	/// <param name="name">Nom</param>
+	/// <param name="type">Type</param>
+	/// <param name="speed">Vitesse</param>
+	/// <param name="maintenanceTime">Temps de maintenance</param>
+	/// <param name="boardingTime">Temps d'embarquement</param>
+	/// <param name="unboardingTime">Temps de débarquement</param>
 	public void AddPlane(string name, string type, int speed, int maintenanceTime, int boardingTime, int unboardingTime)
 	{
 		_planes.Add(PlaneFactory.Instance.CreatePlane(name, type, speed, maintenanceTime, this, boardingTime, unboardingTime));
 	}
 	
+	/// <summary>
+	/// Ajouter un client dans l'aéroport
+	/// </summary>
+	/// <param name="client">Le client à ajouter</param>
 	public void AddClient(ClientTransport client)
 	{
 		_clientsTransport.Add(client);
 	}
 	
+	/// <summary>
+	/// Obtenir le schéma XML
+	/// </summary>
+	/// <returns></returns>
 	public XmlSchema? GetSchema()
 	{
 		return null;
 	}
 	
+	/// <summary>
+	/// Lire le stream XML
+	/// </summary>
+	/// <param name="reader">Le reader avec le stream XML</param>
 	public void ReadXml(XmlReader reader)
 	{
 		reader.ReadStartElement();
@@ -112,6 +148,10 @@ public class Airport : IXmlSerializable
 		reader.ReadEndElement();
 	}
 
+	/// <summary>
+	/// Écrire au stream XML
+	/// </summary>
+	/// <param name="writer">Le writer du stream XML</param>
 	public void WriteXml(XmlWriter writer)
 	{
 		writer.WriteElementString("Name", Name);
@@ -131,11 +171,18 @@ public class Airport : IXmlSerializable
 		writer.WriteEndElement();
 	}
 	
+	/// <summary>
+	/// Obtenir la liste des avions de l'aéroport
+	/// </summary>
+	/// <returns>La liste d'avions</returns>
 	public string[] GetPlanes()
 	{
 		return _planes.Select(p => p.ToString()).ToArray();
 	}
 
+	/// <summary>
+	/// Génére des clients de passagers
+	/// </summary>
 	private void GeneratePassenger()
 	{
 		Random r = new Random();
@@ -147,6 +194,9 @@ public class Airport : IXmlSerializable
 		}
 	}
 	
+	/// <summary>
+	/// Génére des clients de cargo
+	/// </summary>
 	private void GenerateCargo()
 	{
 		Random r = new Random();
@@ -158,12 +208,18 @@ public class Airport : IXmlSerializable
 		}
 	}
 	
+	/// <summary>
+	/// Génére des clients divers
+	/// </summary>
 	private void GenerateClient()
 	{
 		GeneratePassenger();
 		GenerateCargo();
 	}
 
+	/// <summary>
+	/// Avance d'une étape de temps
+	/// </summary>
 	public void TimeStep()
 	{
 		GenerateClient();
@@ -174,10 +230,12 @@ public class Airport : IXmlSerializable
 			_planes[index].TimeStep();
 			index++;
 		}
-
-		//_planes.ForEach(p => p.TimeStep());
 	}
 
+	/// <summary>
+	/// Génere un string représentant la classe
+	/// </summary>
+	/// <returns>Un string</returns>
 	public override string ToString()
 	{
 		string name = _name;
@@ -185,11 +243,19 @@ public class Airport : IXmlSerializable
 		return $"{name};{_position.X};{_position.Y};{clients}";
 	}
 
+	/// <summary>
+	/// Enleve un client de la liste de clients
+	/// </summary>
+	/// <param name="clientTransport"></param>
 	public void RemoveClient(ClientTransport clientTransport)
 	{
 		_clientsTransport.Remove(clientTransport);
 	}
 
+	/// <summary>
+	/// Enleve un avions de l'aéroport
+	/// </summary>
+	/// <param name="plane"></param>
 	public void RemovePlane(Plane plane)
 	{
 		_planes.Remove(plane);

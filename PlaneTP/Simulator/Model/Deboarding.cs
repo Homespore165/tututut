@@ -4,6 +4,7 @@ public class Deboarding : State
 {
     private int _timeToCompletion;
     private ClientTransport _client;
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -14,6 +15,7 @@ public class Deboarding : State
         _timeToCompletion = plane.UnboardTime;
         _client = client;
     }
+
     /// <summary>
     /// Gestion d'avancer d'un seul pas
     /// </summary>

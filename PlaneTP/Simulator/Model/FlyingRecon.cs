@@ -5,6 +5,7 @@ public class FlyingRecon : FlyingSupport
     private int _circle = 0;
     private delegate void Step();
     private Step _handler;
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -15,6 +16,7 @@ public class FlyingRecon : FlyingSupport
     {
         _handler = Toward;
     }
+
     /// <summary>
     /// Faire avancer l'avion
     /// </summary>
@@ -64,6 +66,7 @@ public class FlyingRecon : FlyingSupport
             _handler = Back;
         }
     }
+
     /// <summary>
     /// Gestion d'avancer d'un seul pas
     /// </summary>

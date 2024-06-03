@@ -5,6 +5,7 @@ public class FlyingFire : FlyingSupport
     ClientFire _client;
     private delegate void Step();
     private Step _handler;
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -16,6 +17,7 @@ public class FlyingFire : FlyingSupport
         _client = client;
         _handler = Toward;
     }
+
     /// <summary>
     /// Faire avancer l'avion
     /// </summary>
@@ -29,6 +31,7 @@ public class FlyingFire : FlyingSupport
             _handler = Back;
         }
     }
+
     /// <summary>
     /// Faire retourner l'avion
     /// </summary>
@@ -41,6 +44,7 @@ public class FlyingFire : FlyingSupport
             _handler = _client.Intensity > 0 ? Toward : () => _plane.State = new Maintenance(_plane);
         }
     }
+
     /// <summary>
     /// Gestion d'avancer d'un seul pas
     /// </summary>

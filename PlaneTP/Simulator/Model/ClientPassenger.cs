@@ -3,6 +3,7 @@
 public class ClientPassenger : ClientTransport
 {
     public int NbPassenger { get; set; }
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -13,6 +14,7 @@ public class ClientPassenger : ClientTransport
         NbPassenger = r.Next(0, 100);
         Size = NbPassenger;
     }
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -22,6 +24,7 @@ public class ClientPassenger : ClientTransport
     {
         NbPassenger = nbPassenger;
     }
+
     /// <summary>
     /// Prendre une portion du nombre de passagers 
     /// </summary>
@@ -33,6 +36,7 @@ public class ClientPassenger : ClientTransport
         Size -= size;
         return new ClientPassenger(Destination, (int)size);
     }
+
     /// <summary>
     /// Sérialise le client en String
     /// </summary>

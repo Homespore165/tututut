@@ -15,6 +15,7 @@ public class PlaneRecon : PlaneSupport
 		maintenanceTime, airport)
 	{
 	}
+
 	/// <summary>
 	/// Retourne la liste des clients potentiel pour l'avion
 	/// </summary>
@@ -23,6 +24,7 @@ public class PlaneRecon : PlaneSupport
 	{
 		return Scenario.Instance.ClientsRecon.Cast<Client>().ToList();
 	}
+
 	/// <summary>
 	/// Commence le processus de vol 
 	/// </summary>

@@ -19,8 +19,13 @@ public class Position : IXmlSerializable, ICloneable
 		get => _y;
 		set => _y = value;
 	}
-	
-	public Position(int x, int y)
+
+    /// <summary>
+    /// Contructeur
+    /// </summary>
+    /// <param name="x">Coordonée X</param>
+    /// <param name="y">Coordonée Y</param>
+    public Position(int x, int y)
 	{
 		_x = x;
 		_y = y;
@@ -48,17 +53,33 @@ public class Position : IXmlSerializable, ICloneable
 		writer.WriteElementString("X", X.ToString());
 		writer.WriteElementString("Y", Y.ToString());
 	}
-	
-	public static bool operator ==(Position a, Position b)
+
+    /// <summary>
+    /// Opérateur de comparaison Position à Position
+    /// </summary>
+    /// <param name="a">La première position</param>
+    /// <param name="b">La deuxième position</param>
+    /// <returns>un booléen d'égalité</returns>
+    public static bool operator ==(Position a, Position b)
 	{
 		return a.X == b.X && a.Y == b.Y;
 	}
-	
-	public static bool operator !=(Position a, Position b)
+
+    /// <summary>
+    /// Opérateur de comparaison inégale Position à Position
+    /// </summary>
+    /// <param name="a">La première position</param>
+    /// <param name="b">La deuxième position</param>
+    /// <returns>un booléen d'inégalité</returns>
+    public static bool operator !=(Position a, Position b)
 	{
 		return !(a == b);
 	}
 
+	/// <summary>
+	/// Clone la position
+	/// </summary>
+	/// <returns>Une position avec les même coordonées</returns>
 	public object Clone()
 	{
 		return new Position(X, Y);
