@@ -171,7 +171,6 @@ public class Airport : IXmlSerializable
 	private void NotifyPlaneChanged()
 	{
 		OnPlaneUpdate?.Invoke(_planes.Select(p => p.ToString()).ToArray());
-		Console.WriteLine("test");
 	}
 	/// <summary>
 	/// Méthode d'abonnement à l'événement : OnPlaneUpdate

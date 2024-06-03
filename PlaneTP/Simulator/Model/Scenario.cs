@@ -10,8 +10,6 @@ public class Scenario
     private event Flight FlightUpdate;
     public delegate void AirportDelegate(List<String> airports);
     private event AirportDelegate AirportUpdate;
-    public delegate void PlaneDelegate(List<String> planes);
-    private event PlaneDelegate PlaneUpdate;
     private static Scenario _instance;
     public static Scenario Instance => _instance ??= new Scenario();
     private List<Plane> _planes;
@@ -193,7 +191,6 @@ public class Scenario
     {
         FlightUpdate?.Invoke(Planes.Select(p => p.State.ToString()).ToList());
         AirportUpdate?.Invoke(Airports.Select(a => a.ToString()).ToList());
-        PlaneUpdate?.Invoke(GetAirportPlanes());
     }
     /// <summary>
     /// S'abonner à l'événement modification d'un vol
@@ -253,13 +250,5 @@ public class Scenario
             info.Add(output);
         }
         return info;
-    }
-    /// <summary>
-    ///  S'abonner à l'événement modification d'un avion
-    /// </summary>
-    /// <param name="updatePlaneList">événement</param>
-    public void SubscribeAirportsPlane(PlaneDelegate updatePlaneList)
-    {
-        PlaneUpdate += updatePlaneList;
     }
 }
