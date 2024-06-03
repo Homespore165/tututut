@@ -10,5 +10,5 @@ class Position {
     + ReadXml(reader:XmlReader) : void
     + WriteXml(writer:XmlWriter) : void
 }
-IXmlSerializable <|-- Position
+IXmlSerializable <|-. Position
 @enduml
