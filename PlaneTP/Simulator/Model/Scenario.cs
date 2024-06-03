@@ -137,7 +137,7 @@ public class Scenario
     private void GenerateFire()
     {
         Random r = new Random();
-        if (r.Next(0, 100) < _frequencyFire)
+        if (r.Next(0, 10000) < _frequencyFire)
         {
             ClientSupportFactory factory = ClientSupportFactory.Instance;
             _clientsSupport.Add(factory.CreateClientSupport("Fire"));
@@ -149,7 +149,7 @@ public class Scenario
     private void GenerateRecon()
     {
         Random r = new Random();
-        if (r.Next(0, 100) < _frequencyRecon)
+        if (r.Next(0, 10000) < _frequencyRecon)
         {
             ClientSupportFactory factory = ClientSupportFactory.Instance;
             _clientsSupport.Add(factory.CreateClientSupport("Recon"));
@@ -161,7 +161,7 @@ public class Scenario
     private void GenerateRescue()
     {
         Random r = new Random();
-        if (r.Next(0, 100) < _frequencyRescue)
+        if (r.Next(0, 10000) < _frequencyRescue)
         {
             ClientSupportFactory factory = ClientSupportFactory.Instance;
             _clientsSupport.Add(factory.CreateClientSupport("Rescue"));
@@ -215,7 +215,7 @@ public class Scenario
     /// Génère des destinations alétoires aux clients de transport
     /// </summary>
     /// <param name="airport"></param>
-    /// <returns></returns>
+    /// <returns>un aéroport</returns> 
     public Airport GetRandomAirportExcluding(Airport airport)
     {
         Random r = new Random();

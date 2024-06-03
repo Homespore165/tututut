@@ -34,7 +34,6 @@ partial class SimForm
         advanceTimeBtn = new Button();
         timeAdvanceSelector = new NumericUpDown();
         timeAdvanceLabel = new Label();
-        timeLabel = new Label();
         airportTreeView = new TreeView();
         label1 = new Label();
         planeTreeView = new TreeView();
@@ -90,17 +89,6 @@ partial class SimForm
         timeAdvanceLabel.Size = new Size(99, 15);
         timeAdvanceLabel.TabIndex = 4;
         timeAdvanceLabel.Text = "Advance time by:";
-        // 
-        // timeLabel
-        // 
-        timeLabel.AutoSize = true;
-        timeLabel.Location = new Point(490, 16);
-        timeLabel.Name = "timeLabel";
-        timeLabel.Size = new Size(45, 15);
-        timeLabel.TabIndex = 5;
-        timeLabel.Text = "Time: 0";
-        timeLabel.TextAlign = ContentAlignment.MiddleCenter;
-        // 
         // airportTreeView
         // 
         airportTreeView.Location = new Point(12, 563);
