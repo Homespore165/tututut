@@ -21,16 +21,15 @@ public class Controller
 
         _form = new SimForm();
         LoadSavedScenario();
-        
-        _scenario!.SubscribeFlights(_form.updateFlights);
-        _scenario!.SubscribeAirports(_form.updateAirports);
-        _scenario!.SubscribeAirportsPlane(_form.updatePlaneList);
     }
 
-    private void LoadSavedScenario()
+    public void LoadSavedScenario()
     {
         _scenario = new Scenario();
         _scenario.Load();
+        _scenario!.SubscribeFlights(_form.updateFlights);
+        _scenario!.SubscribeAirports(_form.updateAirports);
+        _scenario!.SubscribeAirportsPlane(_form.updatePlaneList);
     }
 
     public void TimeStep(int t)
