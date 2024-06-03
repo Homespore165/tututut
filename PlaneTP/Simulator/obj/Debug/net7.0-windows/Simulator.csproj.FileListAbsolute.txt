@@ -1,0 +1,17 @@
+D:\Projects\tututut\PlaneTP\Simulator\bin\Debug\net7.0-windows\Simulator.exe
+D:\Projects\tututut\PlaneTP\Simulator\bin\Debug\net7.0-windows\Simulator.deps.json
+D:\Projects\tututut\PlaneTP\Simulator\bin\Debug\net7.0-windows\Simulator.runtimeconfig.json
+D:\Projects\tututut\PlaneTP\Simulator\bin\Debug\net7.0-windows\Simulator.dll
+D:\Projects\tututut\PlaneTP\Simulator\bin\Debug\net7.0-windows\Simulator.pdb
+D:\Projects\tututut\PlaneTP\Simulator\obj\Debug\net7.0-windows\Simulator.SimForm.resources
+D:\Projects\tututut\PlaneTP\Simulator\obj\Debug\net7.0-windows\Simulator.Properties.Resources.resources
+D:\Projects\tututut\PlaneTP\Simulator\obj\Debug\net7.0-windows\Simulator.csproj.GenerateResource.cache
+D:\Projects\tututut\PlaneTP\Simulator\obj\Debug\net7.0-windows\Simulator.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\tututut\PlaneTP\Simulator\obj\Debug\net7.0-windows\Simulator.AssemblyInfoInputs.cache
+D:\Projects\tututut\PlaneTP\Simulator\obj\Debug\net7.0-windows\Simulator.AssemblyInfo.cs
+D:\Projects\tututut\PlaneTP\Simulator\obj\Debug\net7.0-windows\Simulator.csproj.CoreCompileInputs.cache
+D:\Projects\tututut\PlaneTP\Simulator\obj\Debug\net7.0-windows\Simulator.dll
+D:\Projects\tututut\PlaneTP\Simulator\obj\Debug\net7.0-windows\refint\Simulator.dll
+D:\Projects\tututut\PlaneTP\Simulator\obj\Debug\net7.0-windows\Simulator.pdb
+D:\Projects\tututut\PlaneTP\Simulator\obj\Debug\net7.0-windows\Simulator.genruntimeconfig.cache
+D:\Projects\tututut\PlaneTP\Simulator\obj\Debug\net7.0-windows\ref\Simulator.dll
