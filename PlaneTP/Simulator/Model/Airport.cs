@@ -168,7 +168,14 @@ public class Airport : IXmlSerializable
 	{
 		GenerateClient();
 		_planes.RemoveAll(p => p.Airport != this);
-		_planes.ForEach(p => p.TimeStep());
+
+		int index = 0;
+		while (index < _planes.Count) {
+			_planes[index].TimeStep();
+			index++;
+		}
+
+		//_planes.ForEach(p => p.TimeStep());
 	}
 
 	public override string ToString()
