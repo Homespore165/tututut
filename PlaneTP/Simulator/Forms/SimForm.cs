@@ -17,11 +17,14 @@ public partial class SimForm : Form
         _flights = new List<string>();
         _airports = new List<string>();
         _tempTime = 0;
+        advanceTimeBtn.Enabled = false;
     }
 
     private void button1_Click(object sender, EventArgs e)
     {
-        _controller.LoadScenario();
+        _controller.LoadSavedScenario();
+        loadScenarioBtn.Enabled = false;
+        advanceTimeBtn.Enabled = true;
     }
 
     private void advanceTimeBtn_Click(object sender, EventArgs e)
