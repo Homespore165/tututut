@@ -1,0 +1,7 @@
+@startuml
+class PlaneRecon {
+    + PlaneRecon(name:string, speed:int, maintenanceTime:int)
+    + PlaneRecon()
+}
+PlaneSupport <|-- PlaneRecon
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class ClientRescue {
+    + ClientRescue(position:Position)
+}
+ClientSupport <|-- ClientRescue
+@enduml

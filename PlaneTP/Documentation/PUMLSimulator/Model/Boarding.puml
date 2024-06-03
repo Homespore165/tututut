@@ -1,0 +1,10 @@
+@startuml
+class Boarding {
+    - _timeToCompletion : int
+    - _client : ClientTransport
+    - _start : Position
+    + Boarding(plane:PlaneTransport, start:Position, client:ClientTransport)
+    + <<override>> TimeStep() : void
+}
+State <|-- Boarding
+@enduml

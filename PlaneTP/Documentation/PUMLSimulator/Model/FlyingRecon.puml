@@ -1,0 +1,12 @@
+@startuml
+class FlyingRecon {
+    - _circle : int = 0
+    - _handler : Step
+    + FlyingRecon(plane:Plane, start:Position, client:ClientRecon)
+    - Toward() : void
+    - Back() : void
+    - Circle() : void
+    + <<override>> TimeStep() : void
+}
+FlyingSupport <|-- FlyingRecon
+@enduml

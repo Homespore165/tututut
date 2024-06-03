@@ -1,0 +1,9 @@
+@startuml
+abstract class ClientTransport {
+    + Destination : Airport <<get>> <<set>>
+    + Size : double <<get>> <<set>>
+    + ClientTransport(destination:Airport)
+    + {abstract} Split(size:double) : ClientTransport
+}
+Client <|-- ClientTransport
+@enduml

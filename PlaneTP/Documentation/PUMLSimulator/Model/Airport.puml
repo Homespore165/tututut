@@ -1,0 +1,35 @@
+@startuml
+class Airport {
+    + Scenario : Scenario <<get>> <<set>>
+    - _name : string
+    + Name : string <<get>> <<set>>
+    - _planes : List<Plane>
+    + Planes : List<Plane> <<get>> <<set>>
+    - _passengerTraffic : int
+    + PassengerTraffic : int <<get>> <<set>>
+    - _cargoTraffic : int
+    + CargoTraffic : int <<get>> <<set>>
+    - _position : Position
+    + Position : Position <<get>> <<set>>
+    - _clientsTransport : List<ClientTransport>
+    + ClientsCargo : List<ClientCargo> <<get>>
+    + ClientsPassenger : List<ClientPassenger> <<get>>
+    + Airport(name:String, position:Position, passengerTraffic:int, cargoTraffic:int)
+    + Airport(name:String, x:int, y:int, passengerTraffic:int, cargoTraffic:int)
+    - Airport()
+    + AddPlane(name:string, type:string, speed:int, maintenanceTime:int, boardingTime:int, unboardingTime:int) : void
+    + AddClient(client:ClientTransport) : void
+    + GetSchema() : XmlSchema?
+    + ReadXml(reader:XmlReader) : void
+    + WriteXml(writer:XmlWriter) : void
+    + GetPlanes() : string[]
+    - GeneratePassenger() : void
+    - GenerateCargo() : void
+    - GenerateClient() : void
+    + TimeStep() : void
+    + <<override>> ToString() : string
+    + RemoveClient(clientTransport:ClientTransport) : void
+    + RemovePlane(plane:Plane) : void
+}
+IXmlSerializable <|-- Airport
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class PlaneRecon {
+    + PlaneRecon(name:string, x:int, y:int, speed:int, maintenanceTime:int, airport:Airport)
+    + <<override>> GetPossibleClients() : List<Client>
+    + <<override>> StartFlightProcess(client:Client) : void
+}
+PlaneSupport <|-- PlaneRecon
+@enduml

@@ -1,0 +1,263 @@
+@startuml
+class Controller {
+    - {static} _instance : Controller?
+    + {static} Instance : Controller <<get>>
+    -  <<event>> _emptyScenarioEvent : EmptyScenario 
+    - _scenario : Scenario
+    - _form : Form1
+    + Form : Form1 <<get>> <<set>>
+    - Controller()
+    + AddPlane(airportId:int, name:string, type:string, speed:int, maintenanceTime:int, boardingTime:int, unboardingTime:int) : void
+    + AddAirport(name:string, x:int, y:int, passengerTraffic:int, cargoTraffic:int) : void
+    + EditAirport(airportId:int, name:string, x:int, y:int, passengerTraffic:int, cargoTraffic:int) : void
+    + DeleteAirport(airportId:int) : void
+    + SaveScenario() : void
+    + SaveFrequencies(fire:int, rescue:int, recon:int) : void
+    + LoadScenario() : void
+    + EmptyScenario() : void
+    + GetPlanes(airportId:int) : string[]
+    + GetFire() : int
+    + GetRecon() : int
+    + GetRescue() : int
+}
+class Form1 <<partial>> {
+    - _controller : Controller
+    + Form1(controller:Controller)
+    - btnAddAirport_Click(sender:object, e:EventArgs) : void
+    - btnEditAirport_Click(sender:object, e:EventArgs) : void
+    - btnDeleteAirport_Click(sender:object, e:EventArgs) : void
+    - btnAddPlane_Click(sender:object, e:EventArgs) : void
+    - btnSave_Click(sender:object, e:EventArgs) : void
+    - btnLoad_Click(sender:object, e:EventArgs) : void
+    - btnEmpty_Click(sender:object, e:EventArgs) : void
+    - lvwAirport_SelectedIndexChanged(sender:object, e:EventArgs) : void
+    - lvwAirplane_SelectedIndexChanged(sender:object, e:EventArgs) : void
+    + UpdateAirports(airports:string[]) : void
+    + UpdatePlanes(planes:string[]) : void
+    + OnEmptyScenario() : void
+    - coordsPickerBtn_Click(sender:object, e:EventArgs) : void
+}
+Form <|-- Form1
+class Form1 <<partial>> {
+    - components : System.ComponentModel.IContainer = null
+    # <<override>> Dispose(disposing:bool) : void
+    - InitializeComponent() : void
+    - lvwAirport : ListView
+    - lblAirportName : Label
+    - lblAirportPositionX : Label
+    - numAirportPositionX : NumericUpDown
+    - numAirportPositionY : NumericUpDown
+    - lblAirportPositionY : Label
+    - txbAirportName : TextBox
+    - numAirportPassengerTraffic : NumericUpDown
+    - lblAirportPassengerTraffic : Label
+    - numAirportCargoTraffic : NumericUpDown
+    - lblAirportCargoTraffic : Label
+    - btnAddAirport : Button
+    - lvwAirplane : ListView
+    - btnEditAirport : Button
+    - btnRemoveAirport : Button
+    - txbPlaneName : TextBox
+    - lblPlaneName : Label
+    - lblPlaneType : Label
+    - cbxPlaneType : ComboBox
+    - numPlaneSpeed : NumericUpDown
+    - lblPlaneSpeed : Label
+    - numPlaneBoardingTime : NumericUpDown
+    - lblPlaneBoardingTime : Label
+    - numPlaneUnboardingTime : NumericUpDown
+    - lblPlaneUnboardingTime : Label
+    - btnPlaneAdd : Button
+    - numPlaneMaintenanceTime : NumericUpDown
+    - lblPlaneMaintenanceTime : Label
+    - lblFrequencyFire : Label
+    - numFrequencyFire : NumericUpDown
+    - numFrequencyRecon : NumericUpDown
+    - lblFrequencyRecon : Label
+    - numFrequencyRescue : NumericUpDown
+    - lblFrequencyRescue : Label
+    - btnSave : Button
+    - btnLoad : Button
+    - btnEmpty : Button
+    - coordsPickerBtn : Button
+    - airportName : ColumnHeader
+    - xPos : ColumnHeader
+    - yPos : ColumnHeader
+    - passengerTraffic : ColumnHeader
+    - cargoTraffic : ColumnHeader
+    - planeName : ColumnHeader
+    - planeType : ColumnHeader
+    - speed : ColumnHeader
+    - boardingTime : ColumnHeader
+    - unboardingTime : ColumnHeader
+    - maintenanceTime : ColumnHeader
+}
+class Program <<static>> {
+    {static} - Main() : void
+}
+class Airport {
+    -  <<event>> OnPlaneUpdate : OnPlaneUpdate 
+    - _name : string
+    + Name : string <<get>> <<set>>
+    - _planes : List<Plane>
+    + Planes : List<Plane> <<get>> <<set>>
+    - _passengerTraffic : int
+    + PassengerTraffic : int <<get>> <<set>>
+    - _cargoTraffic : int
+    + CargoTraffic : int <<get>> <<set>>
+    - _position : Position
+    + Position : Position <<get>> <<set>>
+    + Airport(name:String, position:Position, passengerTraffic:int, cargoTraffic:int)
+    + Airport(name:String, x:int, y:int, passengerTraffic:int, cargoTraffic:int)
+    - Airport()
+    + AddPlane(name:string, type:string, speed:int, maintenanceTime:int, boardingTime:int, unboardingTime:int) : void
+    + GetSchema() : XmlSchema?
+    + ReadXml(reader:XmlReader) : void
+    + ClearPlanes() : void
+    + WriteXml(writer:XmlWriter) : void
+    + <<override>> ToString() : string?
+    - NotifyPlaneChanged() : void
+    + SubscribePlaneChanged(updatePlanes:Action<string[]>) : void
+    + UnsubcribeAll() : void
+    + GetPlanes() : string[]
+}
+IXmlSerializable <|-- Airport
+abstract class Plane {
+    # Plane(name:string, speed:int, maintenanceTime:int)
+    # _name : string
+    + Name : string <<get>> <<set>>
+    # _speed : int
+    + Speed : int <<get>> <<set>>
+    # _maintenanceTime : int
+    + MaintenanceTime : int <<get>> <<set>>
+    # Plane()
+    + GetSchema() : XmlSchema?
+    + ReadXml(reader:XmlReader) : void
+    + <<virtual>> WriteXml(writer:XmlWriter) : void
+    + <<override>> ToString() : string?
+}
+IXmlSerializable <|-- Plane
+class PlaneCargo {
+    + PlaneCargo(name:string, speed:int, maintenanceTime:int, boardingTime:int, unboardTime:int)
+    - PlaneCargo()
+}
+PlaneTransport <|-- PlaneCargo
+class PlaneFactory {
+    - {static} _instance : PlaneFactory?
+    + {static} Instance : PlaneFactory <<get>>
+    - PlaneFactory()
+    + CreatePlane(name:string, type:string, speed:int, maintenanceTime:int, boardingTime:int, unboardingTime:int) : Plane
+}
+class PlaneFire {
+    + PlaneFire(name:string, speed:int, maintenanceTime:int)
+    - PlaneFire()
+}
+PlaneSupport <|-- PlaneFire
+class PlanePassenger {
+    + PlanePassenger(name:string, speed:int, maintenanceTime:int, boardingTime:int, unboardTime:int)
+    - PlanePassenger()
+}
+PlaneTransport <|-- PlanePassenger
+class PlaneRecon {
+    + PlaneRecon(name:string, speed:int, maintenanceTime:int)
+    + PlaneRecon()
+}
+PlaneSupport <|-- PlaneRecon
+class PlaneRescue {
+    + PlaneRescue(name:string, speed:int, maintenanceTime:int)
+    + PlaneRescue()
+}
+PlaneSupport <|-- PlaneRescue
+abstract class PlaneSupport {
+    + PlaneSupport(name:string, speed:int, maintenanceTime:int)
+    # PlaneSupport()
+    + <<override>> ToString() : string?
+}
+Plane <|-- PlaneSupport
+abstract class PlaneTransport {
+    - _boardingTime : int
+    + BoardingTime : int <<get>> <<set>>
+    - _unboardTime : int
+    + UnboardTime : int <<get>> <<set>>
+    + PlaneTransport(name:string, speed:int, maintenanceTime:int, boardingTime:int, unboardTime:int)
+    # PlaneTransport()
+    + <<override>> WriteXml(writer:XmlWriter) : void
+    + <<override>> ToString() : string?
+}
+Plane <|-- PlaneTransport
+class Position {
+    - _x : int
+    + X : int <<get>> <<set>>
+    - _y : int
+    + Y : int <<get>> <<set>>
+    + Position(x:int, y:int)
+    - Position()
+    + GetSchema() : XmlSchema?
+    + ReadXml(reader:XmlReader) : void
+    + WriteXml(writer:XmlWriter) : void
+}
+IXmlSerializable <|-- Position
+class Scenario {
+    -  <<event>> OnAirportUpdate : OnAirportUpdate 
+    - _airports : List<Airport>
+    + Airports : List<Airport> <<get>> <<set>>
+    - _frequencyFire : int
+    + FrequencyFire : int <<get>> <<set>>
+    - _frequencyRecon : int
+    + FrequencyRecon : int <<get>> <<set>>
+    - _frequencyRescue : int
+    + FrequencyRescue : int <<get>> <<set>>
+    + Scenario()
+    + Scenario(frequencyFire:int, frequencyRecon:int, frequencyRescue:int)
+    + AddAirport(airport:Airport) : void
+    + AddAirport(name:string, x:int, y:int, passengerTraffic:int, cargoTraffic:int) : void
+    + EditAirport(id:int, name:string, x:int, y:int, passengerTraffic:int, cargoTraffic:int) : void
+    + DeleteAirport(id:int) : void
+    + AddPlane(airportId:int, name:string, type:string, speed:int, maintenanceTime:int, boardingTime:int, unboardingTime:int) : void
+    + GetSchema() : XmlSchema?
+    + ReadXml(reader:XmlReader) : void
+    + WriteXml(writer:XmlWriter) : void
+    + Save() : void
+    + Load() : void
+    - NotifyAirportChanged() : void
+    + SubscribeAirportUpdate(updateAirports:Action<string[]>) : void
+    + SubscribePlaneUpdate(updatePlanes:Action<string[]>) : void
+    + GetPlanes(airportId:int) : string[]
+    + GetFire() : int
+    + GetRescue() : int
+    + GetRecon() : int
+}
+IXmlSerializable <|-- Scenario
+class Resources {
+    - {static} resourceMan : global::System.Resources.ResourceManager
+    - {static} resourceCulture : global::System.Globalization.CultureInfo
+    <<internal>> Resources()
+    <<internal>> {static} ResourceManager : global::System.Resources.ResourceManager <<get>>
+    <<internal>> {static} Culture : global::System.Globalization.CultureInfo <<get>> <<set>>
+    <<internal>> {static} GeoPin : System.Drawing.Bitmap <<get>>
+    <<internal>> {static} world_map : System.Drawing.Bitmap <<get>>
+}
+class CoordsPickerForm <<partial>> {
+    - _chosenCoordinates : Point
+    - _geoPinSize : Size
+    + ChosenCoordinates : Point <<get>>
+    + CoordsPickerForm()
+    - setDebugMsg(msg:string) : void
+    - updateCoordinateLabels() : void
+    - convertPosToCoordString(pos:Point) : string
+    - worldMap_Click(sender:object, e:EventArgs) : void
+    - worldMap_Paint(sender:object, e:PaintEventArgs) : void
+    - closeBtn_Click(sender:object, e:EventArgs) : void
+}
+Form <|-- CoordsPickerForm
+class CoordsPickerForm <<partial>> {
+    - components : System.ComponentModel.IContainer = null
+    # <<override>> Dispose(disposing:bool) : void
+    - InitializeComponent() : void
+    - worldMap : PictureBox
+    - coordsLabel : Label
+    - posLabel : Label
+    - debugLabel : Label
+    - closeBtn : Button
+}
+@enduml

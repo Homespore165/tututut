@@ -1,0 +1,7 @@
+@startuml
+class PlaneCargo {
+    + PlaneCargo(name:string, speed:int, maintenanceTime:int, boardingTime:int, unboardTime:int)
+    - PlaneCargo()
+}
+PlaneTransport <|-- PlaneCargo
+@enduml

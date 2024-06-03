@@ -1,0 +1,16 @@
+@startuml
+class Position {
+    - _x : int
+    + X : int <<get>> <<set>>
+    - _y : int
+    + Y : int <<get>> <<set>>
+    + Position(x:int, y:int)
+    - Position()
+    + GetSchema() : XmlSchema?
+    + ReadXml(reader:XmlReader) : void
+    + WriteXml(writer:XmlWriter) : void
+    + Clone() : object
+}
+IXmlSerializable <|-- Position
+ICloneable <|-- Position
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class PlaneFactory {
+    - {static} _instance : PlaneFactory?
+    + {static} Instance : PlaneFactory <<get>>
+    - PlaneFactory()
+    + CreatePlane(name:string, type:string, speed:int, maintenanceTime:int, boardingTime:int, unboardingTime:int) : Plane
+}
+@enduml

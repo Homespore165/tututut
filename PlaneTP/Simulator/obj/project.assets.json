@@ -8,24 +8,26 @@
     "net7.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\xavar\\.nuget\\packages\\": {}
+    "C:\\Users\\Xavier\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\tututut\\PlaneTP\\Simulator\\Simulator.csproj",
+      "projectUniqueName": "C:\\Users\\Xavier\\Documents\\School\\tututut\\PlaneTP\\Simulator\\Simulator.csproj",
       "projectName": "Simulator",
-      "projectPath": "D:\\Projects\\tututut\\PlaneTP\\Simulator\\Simulator.csproj",
-      "packagesPath": "C:\\Users\\xavar\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\tututut\\PlaneTP\\Simulator\\obj\\",
+      "projectPath": "C:\\Users\\Xavier\\Documents\\School\\tututut\\PlaneTP\\Simulator\\Simulator.csproj",
+      "packagesPath": "C:\\Users\\Xavier\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Xavier\\Documents\\School\\tututut\\PlaneTP\\Simulator\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\xavar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Xavier\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0-windows"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -62,7 +64,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\xavar\\.dotnet\\sdk\\7.0.407\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

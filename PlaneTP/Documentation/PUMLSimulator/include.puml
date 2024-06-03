@@ -1,0 +1,351 @@
+@startuml
+class Controller {
+    - {static} _instance : Controller?
+    + {static} Instance : Controller <<get>>
+    - _scenario : Scenario?
+    - _form : SimForm
+    + Form : SimForm <<get>> <<set>>
+    - Controller()
+    + LoadSavedScenario() : void
+    + TimeStep(t:int) : void
+}
+class Program <<static>> {
+    {static} - Main() : void
+}
+class SimForm <<partial>> {
+    - _controller : Controller
+    - _flights : List<string>
+    - _tempTime : float
+    - _airports : List<string>
+    + SimForm()
+    - button1_Click(sender:object, e:EventArgs) : void
+    - advanceTimeBtn_Click(sender:object, e:EventArgs) : void
+    - mapImage_Paint(sender:object, e:PaintEventArgs) : void
+    - updateMap() : void
+    - getPenForType(type:string) : Pen
+    + updateFlights(strings:List<string>) : void
+    + updateAirports(strings:List<string>) : void
+}
+Form <|-- SimForm
+class SimForm <<partial>> {
+    - components : System.ComponentModel.IContainer = null
+    # <<override>> Dispose(disposing:bool) : void
+    - InitializeComponent() : void
+    - mapImage : PictureBox
+    - loadScenarioBtn : Button
+    - advanceTimeBtn : Button
+    - timeAdvanceSelector : NumericUpDown
+    - timeAdvanceLabel : Label
+    - airportTreeView : TreeView
+    - label1 : Label
+    - label2 : Label
+}
+class Airport {
+    + Scenario : Scenario <<get>> <<set>>
+    - _name : string
+    + Name : string <<get>> <<set>>
+    - _planes : List<Plane>
+    + Planes : List<Plane> <<get>> <<set>>
+    - _passengerTraffic : int
+    + PassengerTraffic : int <<get>> <<set>>
+    - _cargoTraffic : int
+    + CargoTraffic : int <<get>> <<set>>
+    - _position : Position
+    + Position : Position <<get>> <<set>>
+    - _clientsTransport : List<ClientTransport>
+    + ClientsCargo : List<ClientCargo> <<get>>
+    + ClientsPassenger : List<ClientPassenger> <<get>>
+    + Airport(name:String, position:Position, passengerTraffic:int, cargoTraffic:int)
+    + Airport(name:String, x:int, y:int, passengerTraffic:int, cargoTraffic:int)
+    - Airport()
+    + AddPlane(name:string, type:string, speed:int, maintenanceTime:int, boardingTime:int, unboardingTime:int) : void
+    + AddClient(client:ClientTransport) : void
+    + GetSchema() : XmlSchema?
+    + ReadXml(reader:XmlReader) : void
+    + WriteXml(writer:XmlWriter) : void
+    + GetPlanes() : string[]
+    - GeneratePassenger() : void
+    - GenerateCargo() : void
+    - GenerateClient() : void
+    + TimeStep() : void
+    + <<override>> ToString() : string
+    + RemoveClient(clientTransport:ClientTransport) : void
+    + RemovePlane(plane:Plane) : void
+}
+IXmlSerializable <|-- Airport
+class Boarding {
+    - _timeToCompletion : int
+    - _client : ClientTransport
+    - _start : Position
+    + Boarding(plane:PlaneTransport, start:Position, client:ClientTransport)
+    + <<override>> TimeStep() : void
+}
+State <|-- Boarding
+abstract class Client {
+    + Position : Position <<get>> <<set>>
+}
+class ClientCargo {
+    + WeightInTons : double <<get>> <<set>>
+    + ClientCargo(destination:Airport)
+    + ClientCargo(destination:Airport, weightInTons:double)
+    + <<override>> Split(size:double) : ClientCargo
+    + <<override>> ToString() : String
+}
+ClientTransport <|-- ClientCargo
+class ClientFire {
+    + Intensity : int <<get>> <<set>>
+    + ClientFire(position:Position)
+    + ClientFire(position:Position, intensity:int)
+}
+ClientSupport <|-- ClientFire
+class ClientPassenger {
+    + NbPassenger : int <<get>> <<set>>
+    + ClientPassenger(destination:Airport)
+    + ClientPassenger(destination:Airport, nbPassenger:int)
+    + <<override>> Split(size:double) : ClientTransport
+    + <<override>> ToString() : String
+}
+ClientTransport <|-- ClientPassenger
+class ClientRecon {
+    + ClientRecon(position:Position)
+}
+ClientSupport <|-- ClientRecon
+class ClientRescue {
+    + ClientRescue(position:Position)
+}
+ClientSupport <|-- ClientRescue
+abstract class ClientSupport {
+    # ClientSupport(position:Position)
+}
+Client <|-- ClientSupport
+class ClientSupportFactory {
+    - {static} _instance : ClientSupportFactory?
+    + {static} Instance : ClientSupportFactory <<get>>
+    - <<readonly>> _size : Position
+    - <<readonly>> _random : Random
+    - ClientSupportFactory()
+    + CreateClientSupport(type:string) : ClientSupport
+}
+abstract class ClientTransport {
+    + Destination : Airport <<get>> <<set>>
+    + Size : double <<get>> <<set>>
+    + ClientTransport(destination:Airport)
+    + {abstract} Split(size:double) : ClientTransport
+}
+Client <|-- ClientTransport
+class ClientTransportFactory {
+    - {static} _instance : ClientTransportFactory?
+    + {static} Instance : ClientTransportFactory <<get>>
+    - <<readonly>> _size : Position
+    - ClientTransportFactory()
+    + CreateClientTransport(type:string, destination:Airport) : ClientTransport
+}
+class Deboarding {
+    - _timeToCompletion : int
+    - _client : ClientTransport
+    + Deboarding(plane:PlaneTransport, client:ClientTransport)
+    + <<override>> TimeStep() : void
+}
+State <|-- Deboarding
+abstract class Flying {
+    # _position : Position
+    # _client : Client
+    # _startPos : Position
+    # Flying(plane:Plane, position:Position)
+    # Flying(plane:Plane, position:Position, client:Client)
+    + <<override>> ToString() : String
+    + isAtDestination() : bool
+    + isAtStart() : bool
+    + isAtPos(pos:Position, errorRange:float) : bool
+}
+State <|-- Flying
+class FlyingFire {
+    - _client : ClientFire
+    - _handler : Step
+    + FlyingFire(plane:Plane, start:Position, client:ClientFire)
+    - Toward() : void
+    - Back() : void
+    + <<override>> TimeStep() : void
+}
+FlyingSupport <|-- FlyingFire
+class FlyingRecon {
+    - _circle : int = 0
+    - _handler : Step
+    + FlyingRecon(plane:Plane, start:Position, client:ClientRecon)
+    - Toward() : void
+    - Back() : void
+    - Circle() : void
+    + <<override>> TimeStep() : void
+}
+FlyingSupport <|-- FlyingRecon
+class FlyingRescue {
+    - _handler : Step
+    + FlyingRescue(plane:Plane, start:Position, client:ClientRescue)
+    - Toward() : void
+    - Back() : void
+    + <<override>> TimeStep() : void
+}
+FlyingSupport <|-- FlyingRescue
+abstract class FlyingSupport {
+    # _source : Airport
+    # FlyingSupport(plane:Plane, start:Position, client:ClientSupport)
+    # Toward() : void
+    # Back() : void
+}
+Flying <|-- FlyingSupport
+class FlyingTransport {
+    # _client : ClientTransport
+    + FlyingTransport(plane:Plane, start:Position, client:ClientTransport)
+    # Toward() : void
+    + <<override>> TimeStep() : void
+}
+Flying <|-- FlyingTransport
+class Maintenance {
+    - _timeToCompletion : int
+    + Maintenance(plane:Plane)
+    + <<override>> TimeStep() : void
+}
+State <|-- Maintenance
+abstract class Plane {
+    + State : State <<get>> <<set>>
+    # _name : string
+    + Name : string <<get>> <<set>>
+    # _speed : int
+    + Speed : int <<get>> <<set>>
+    # _maintenanceTime : int
+    + MaintenanceTime : int <<get>> <<set>>
+    # Plane()
+    + Airport : Airport? <<get>> <<set>>
+    + Plane(name:string, speed:int, maintenanceTime:int, airport:Airport)
+    + GetSchema() : XmlSchema?
+    + ReadXml(reader:XmlReader) : void
+    + <<override>> ToString() : string?
+    + {abstract} GetPossibleClients() : List<Client>
+    + TimeStep() : void
+    + {abstract} StartFlightProcess(client:Client) : void
+}
+class PlaneCargo {
+    + PlaneCargo(name:string, x:int, y:int, speed:int, maintenanceTime:int, airport:Airport, boardingTime:int, unboardTime:int)
+    - PlaneCargo()
+    + <<override>> GetPossibleClients() : List<Client>
+    + <<override>> StartFlightProcess(client:Client) : void
+}
+PlaneTransport <|-- PlaneCargo
+class PlaneFactory {
+    - {static} _instance : PlaneFactory?
+    + {static} Instance : PlaneFactory <<get>>
+    - PlaneFactory()
+    + CreatePlane(name:string, type:string, speed:int, maintenanceTime:int, airport:Airport, boardingTime:int, unboardingTime:int) : Plane
+}
+class PlaneFire {
+    + PlaneFire(name:string, x:int, y:int, speed:int, maintenanceTime:int, airport:Airport)
+    - PlaneFire()
+    + <<override>> GetPossibleClients() : List<Client>
+    + <<override>> StartFlightProcess(client:Client) : void
+}
+PlaneSupport <|-- PlaneFire
+class PlanePassenger {
+    + PlanePassenger(name:string, x:int, y:int, speed:int, maintenanceTime:int, airport:Airport, boardingTime:int, unboardTime:int)
+    + <<override>> GetPossibleClients() : List<Client>
+    + <<override>> StartFlightProcess(client:Client) : void
+}
+PlaneTransport <|-- PlanePassenger
+class PlaneRecon {
+    + PlaneRecon(name:string, x:int, y:int, speed:int, maintenanceTime:int, airport:Airport)
+    + <<override>> GetPossibleClients() : List<Client>
+    + <<override>> StartFlightProcess(client:Client) : void
+}
+PlaneSupport <|-- PlaneRecon
+class PlaneRescue {
+    + PlaneRescue(name:string, x:int, y:int, speed:int, maintenanceTime:int, airport:Airport)
+    + PlaneRescue()
+    + <<override>> GetPossibleClients() : List<Client>
+    + <<override>> StartFlightProcess(client:Client) : void
+}
+PlaneSupport <|-- PlaneRescue
+abstract class PlaneSupport {
+    + PlaneSupport(name:string, x:int, y:int, speed:int, maintenanceTime:int, airport:Airport)
+    # PlaneSupport()
+}
+Plane <|-- PlaneSupport
+abstract class PlaneTransport {
+    - _boardingTime : int
+    + BoardingTime : int <<get>> <<set>>
+    - _unboardTime : int
+    + UnboardTime : int <<get>> <<set>>
+    # PlaneTransport()
+    + Capacity : int <<get>> <<set>>
+    + PlaneTransport(name:string, x:int, y:int, speed:int, maintenanceTime:int, airport:Airport, boardingTime:int, unboardTime:int)
+    + <<override>> ToString() : string?
+}
+Plane <|-- PlaneTransport
+class Position {
+    - _x : int
+    + X : int <<get>> <<set>>
+    - _y : int
+    + Y : int <<get>> <<set>>
+    + Position(x:int, y:int)
+    - Position()
+    + GetSchema() : XmlSchema?
+    + ReadXml(reader:XmlReader) : void
+    + WriteXml(writer:XmlWriter) : void
+    + Clone() : object
+}
+IXmlSerializable <|-- Position
+ICloneable <|-- Position
+class Scenario {
+    -  <<event>> FlightUpdate : Flight 
+    -  <<event>> AirportUpdate : AirportDelegate 
+    - {static} _instance : Scenario
+    + {static} Instance : Scenario <<get>>
+    - _planes : List<Plane>
+    + Planes : List<Plane> <<get>>
+    - _airports : List<Airport>
+    + Airports : List<Airport> <<get>> <<set>>
+    - _clientsSupport : List<ClientSupport>
+    + ClientsSupport : List<ClientSupport> <<get>> <<set>>
+    + ClientsFire : List<ClientFire> <<get>>
+    + ClientsRecon : List<ClientRecon> <<get>>
+    + ClientsRescue : List<ClientRescue> <<get>>
+    - _frequencyFire : int
+    + FrequencyFire : int <<get>> <<set>>
+    - _frequencyRecon : int
+    + FrequencyRecon : int <<get>> <<set>>
+    - _frequencyRescue : int
+    + FrequencyRescue : int <<get>> <<set>>
+    + Scenario()
+    + Scenario(frequencyFire:int, frequencyRecon:int, frequencyRescue:int)
+    + GetSchema() : XmlSchema?
+    + ReadXml(reader:XmlReader) : void
+    + Load() : void
+    - GenerateFire() : void
+    - GenerateRecon() : void
+    - GenerateRescue() : void
+    - GenerateClients() : void
+    + TimeStep() : void
+    + updateView() : void
+    + SubscribeFlights(eventHandler:Flight) : void
+    + SubscribeAirports(eventHandler:AirportDelegate) : void
+    + GetRandomAirportExcluding(airport:Airport) : Airport
+    + RemoveClient(client:ClientSupport) : void
+    + GetAirportPlanes() : List<string>
+}
+abstract class State {
+    # _plane : Plane
+    # State(plane:Plane)
+    + {abstract} TimeStep() : void
+}
+class Waiting {
+    + Waiting(plane:Plane)
+    + <<override>> TimeStep() : void
+}
+State <|-- Waiting
+class Resources {
+    - {static} resourceMan : global::System.Resources.ResourceManager
+    - {static} resourceCulture : global::System.Globalization.CultureInfo
+    <<internal>> Resources()
+    <<internal>> {static} ResourceManager : global::System.Resources.ResourceManager <<get>>
+    <<internal>> {static} Culture : global::System.Globalization.CultureInfo <<get>> <<set>>
+    <<internal>> {static} world_map : System.Drawing.Bitmap <<get>>
+}
+@enduml

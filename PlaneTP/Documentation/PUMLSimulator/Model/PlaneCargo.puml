@@ -1,0 +1,9 @@
+@startuml
+class PlaneCargo {
+    + PlaneCargo(name:string, x:int, y:int, speed:int, maintenanceTime:int, airport:Airport, boardingTime:int, unboardTime:int)
+    - PlaneCargo()
+    + <<override>> GetPossibleClients() : List<Client>
+    + <<override>> StartFlightProcess(client:Client) : void
+}
+PlaneTransport <|-- PlaneCargo
+@enduml
