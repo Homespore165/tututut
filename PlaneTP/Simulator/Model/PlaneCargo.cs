@@ -2,6 +2,7 @@
 
 public class PlaneCargo : PlaneTransport
 {
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -19,6 +20,7 @@ public class PlaneCargo : PlaneTransport
     }
 	
     private PlaneCargo() {}
+
     /// <summary>
     /// Retourne la liste des clients potentiel pour l'avion
     /// </summary>
@@ -27,6 +29,7 @@ public class PlaneCargo : PlaneTransport
     {
         return Airport.ClientsCargo.Cast<Client>().ToList();
     }
+
     /// <summary>
     /// Commence le processus de vol 
     /// </summary>
