@@ -14,9 +14,9 @@ public class PlaneRescue : PlaneSupport
 	public PlaneRescue(string name, int x, int y, int speed, int maintenanceTime, Airport airport) : base(name, x, y, speed,
 		maintenanceTime, airport)
 	{
-		
 	}
 	public PlaneRescue() {}
+
 	/// <summary>
 	/// Retourne la liste des clients potentiel pour l'avion
 	/// </summary>
@@ -25,6 +25,7 @@ public class PlaneRescue : PlaneSupport
 	{
 		return Scenario.Instance.ClientsRescue.Cast<Client>().ToList();
 	}
+
 	/// <summary>
 	/// Commence le processus de vol 
 	/// </summary>

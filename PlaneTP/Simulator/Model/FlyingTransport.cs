@@ -3,6 +3,7 @@
 public class FlyingTransport : Flying
 {
     protected ClientTransport _client;
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -13,6 +14,7 @@ public class FlyingTransport : Flying
     {
         _client = client;
     }
+
     /// <summary>
     /// Faire avancer l'avion
     /// </summary>
@@ -27,6 +29,7 @@ public class FlyingTransport : Flying
         _position.X = (int)(_position.X + deltaX / length * speed);
         _position.Y = (int)(_position.Y + deltaY / length * speed);
     }
+
     /// <summary>
     /// Gestion d'avancer d'un seul pas
     /// </summary>
@@ -38,7 +41,6 @@ public class FlyingTransport : Flying
             _plane.Airport.RemoveClient(_client);
             _plane.State = new Deboarding((PlaneTransport)_plane,  _client);
             _plane.Airport = _client.Destination;
-            //_client.Destination.Planes.Add(_plane);
         }
     }
 }

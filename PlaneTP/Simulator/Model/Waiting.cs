@@ -7,6 +7,7 @@ public class Waiting : State
     /// </summary>
     /// <param name="plane">Avion possèdant cet état</param>
     public Waiting(Plane plane) : base(plane) {}
+
     /// <summary>
     /// Gestion d'avancer d'un seul pas
     /// </summary>

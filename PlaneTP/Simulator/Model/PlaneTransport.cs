@@ -22,6 +22,7 @@ public abstract class PlaneTransport : Plane
 		Capacity = new Random().Next(100, 300);
 	}
 	public int Capacity { get; set; }
+
 	/// <summary>
 	/// Constructeur
 	/// </summary>
@@ -39,6 +40,7 @@ public abstract class PlaneTransport : Plane
 		_unboardTime = unboardTime;
 		Capacity = new Random().Next(100, 300);
 	}
+
 	/// <summary>
 	/// Sérialise l'objet en String
 	/// </summary>

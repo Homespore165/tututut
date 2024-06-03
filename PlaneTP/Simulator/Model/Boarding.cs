@@ -5,6 +5,7 @@ public class Boarding : State
     private int _timeToCompletion;
     private ClientTransport _client;
     private Position _start;
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -16,6 +17,7 @@ public class Boarding : State
         _client = client;
         _start = start;
     }
+
     /// <summary>
     /// Gestion d'avancer d'un seul pas
     /// </summary>

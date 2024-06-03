@@ -7,6 +7,7 @@ public abstract class Flying: State
     protected Position _position;
     protected Client _client;
     protected Position _startPos;
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -17,6 +18,7 @@ public abstract class Flying: State
         _position = (Position)position.Clone();
         _startPos = (Position)position.Clone();
     }
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -29,6 +31,7 @@ public abstract class Flying: State
         _client = client;
         _startPos = (Position)position.Clone();
     }
+
     /// <summary>
     /// Sérilialiser en String l'état
     /// </summary>
@@ -55,6 +58,7 @@ public abstract class Flying: State
 
         return str;
     }
+
     /// <summary>
     /// L'avion est-il arrivé à destination
     /// </summary>
@@ -67,6 +71,7 @@ public abstract class Flying: State
 
         return dist < 5;
     }
+
     /// <summary>
     /// L'avion est-il à sa position de départ
     /// </summary>
@@ -80,6 +85,12 @@ public abstract class Flying: State
         return dist < 5;
     }
 
+    /// <summary>
+    /// L'avion est-il à la position demandée
+    /// </summary>
+    /// <param name="pos">La position à savoir</param>
+    /// <param name="errorRange">La rangée d'erreur</param>
+    /// <returns>Un booléen</returns>
     public bool isAtPos(Position pos, float errorRange = 5)
     {
         int deltaX = pos.X - _position.X;
@@ -88,5 +99,4 @@ public abstract class Flying: State
 
         return dist < errorRange;
     }
-
 }

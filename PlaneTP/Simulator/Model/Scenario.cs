@@ -66,6 +66,7 @@ public class Scenario
         get => _frequencyRescue;
         set => _frequencyRescue = value;
     }
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -79,6 +80,7 @@ public class Scenario
         _frequencyRecon = 0;
         _frequencyRescue = 0;
     }
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -99,6 +101,7 @@ public class Scenario
     {
         return null;
     }
+
     /// <summary>
     /// Lire le XML du scénario enregistré
     /// </summary>
@@ -123,6 +126,7 @@ public class Scenario
         }
         reader.Close();
     }
+
     /// <summary>
     /// Remplir le simulateur à l'aide du scénario déja enregistré
     /// </summary>
@@ -131,6 +135,7 @@ public class Scenario
         XmlReader reader = XmlReader.Create("../../../Scenario.xml");
         ReadXml(reader);
     }
+
     /// <summary>
     /// Génère un incident de type incendie
     /// </summary>
@@ -143,6 +148,7 @@ public class Scenario
             _clientsSupport.Add(factory.CreateClientSupport("Fire"));
         }
     }
+
     /// <summary>
     /// Génère un incident de type reconnaissance
     /// </summary>
@@ -155,6 +161,7 @@ public class Scenario
             _clientsSupport.Add(factory.CreateClientSupport("Recon"));
         }
     }
+
     /// <summary>
     /// Génère un incident de type sauvetage
     /// </summary>
@@ -167,6 +174,7 @@ public class Scenario
             _clientsSupport.Add(factory.CreateClientSupport("Rescue"));
         }
     }
+
     /// <summary>
     /// Génère un incident
     /// </summary>
@@ -176,6 +184,7 @@ public class Scenario
         GenerateRecon();
         GenerateRescue();
     }
+
     /// <summary>
     /// Gestion d'avancer d'un seul pas
     /// </summary>
@@ -186,6 +195,7 @@ public class Scenario
         Airports.ForEach(a => a.TimeStep());
         
     }
+
     /// <summary>
     /// Envoie des informations à la vue
     /// </summary>
@@ -195,6 +205,7 @@ public class Scenario
         AirportUpdate?.Invoke(Airports.Select(a => a.ToString()).ToList());
         PlaneUpdate?.Invoke(GetAirportPlanes());
     }
+
     /// <summary>
     /// S'abonner à l'événement modification d'un vol
     /// </summary>
@@ -203,6 +214,7 @@ public class Scenario
     {
         FlightUpdate += eventHandler;
     }
+
     /// <summary>
     /// S'abonner à l'événement modification d'un aéroport
     /// </summary>
@@ -211,6 +223,7 @@ public class Scenario
     {
         AirportUpdate += eventHandler;
     }
+
     /// <summary>
     /// Génère des destinations alétoires aux clients de transport
     /// </summary>
@@ -226,6 +239,7 @@ public class Scenario
         }
         return a;
     }
+
     /// <summary>
     /// Détruit un incident réglé
     /// </summary>
@@ -234,6 +248,7 @@ public class Scenario
     {
         _clientsSupport.Remove(client);
     }
+
     /// <summary>
     /// Retourne les avions par aéroport
     /// </summary>
@@ -254,6 +269,7 @@ public class Scenario
         }
         return info;
     }
+
     /// <summary>
     ///  S'abonner à l'événement modification d'un avion
     /// </summary>

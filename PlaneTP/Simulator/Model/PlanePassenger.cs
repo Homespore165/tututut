@@ -17,6 +17,7 @@ public class PlanePassenger : PlaneTransport
 		: base(name, x, y, speed, maintenanceTime, airport, boardingTime, unboardTime)
 	{
 	}
+
 	/// <summary>
 	/// Retourne la liste des clients potentiel pour l'avion
 	/// </summary>
@@ -25,6 +26,7 @@ public class PlanePassenger : PlaneTransport
 	{
 		return Airport.ClientsPassenger.Cast<Client>().ToList();
 	}
+
 	/// <summary>
 	/// Commence le processus de vol 
 	/// </summary>

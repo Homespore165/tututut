@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-
+﻿
 namespace Simulator.Model;
 
 public class FlyingRescue : FlyingSupport

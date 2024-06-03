@@ -15,7 +15,9 @@ public class PlaneFire : PlaneSupport
 		maintenanceTime, airport)
 	{
 	}
+
 	private PlaneFire() {}
+
 	/// <summary>
 	/// Retourne la liste des clients potentiel pour l'avion
 	/// </summary>
@@ -24,6 +26,7 @@ public class PlaneFire : PlaneSupport
 	{
 		return Scenario.Instance.ClientsFire.Cast<Client>().ToList();
 	}
+
 	/// <summary>
 	/// Commence le processus de vol 
 	/// </summary>

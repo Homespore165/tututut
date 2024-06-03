@@ -8,6 +8,7 @@ public class PlaneFactory
     private PlaneFactory()
     {
     }
+
     /// <summary>
     /// Constructeur d'avions
     /// </summary>
