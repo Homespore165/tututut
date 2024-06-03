@@ -180,7 +180,8 @@ public class Airport : IXmlSerializable
 
 	public void RemoveClient(ClientTransport clientTransport)
 	{
-		_clientsTransport.Remove(clientTransport);
+		if (_clientsTransport.Remove(clientTransport))
+			Console.WriteLine("Client removed");
 	}
 
 	public void RemovePlane(Plane plane)
