@@ -25,23 +25,25 @@ deactivate bob1
 activate SimForm
 
 
-SimForm -> ctrl1 : StepTimeButtonClick(t)
+SimForm -> ctrl1 : TimeStep(timeToAdvance)
 activate ctrl1
 
-ctrl1 -> scene1 : TimeStep(t)
+ctrl1 -> scene1 : TimeStep()
 activate scene1
 
-scene1 -> scene1 : GenerateClientsSupport()
+scene1 -> scene1 : GenerateClients();
+note left : We do TimeStep() {timeToAdvance} times
 activate scene1
 
-scene1 -> facto1 : createClient[...]()
-note right : [...] Meaning any of the 3 possible\n functions to create support clients
+scene1 -> facto1 : Add(factory.CreateClientSupport("{type}"));
+
 activate facto1
 
 create clisupp
+
 facto1 -> clisupp : new
 activate clisupp
-
+note right : [...] Meaning any of the 3 possible\n functions to create support clients
 create pos1
 clisupp -> pos1 : new
 activate pos1
@@ -49,12 +51,21 @@ activate pos1
 return Position
 return ClientSupport
 return ClientSupport
+
+
+scene1 -> plane1 : TimeStep()
+activate plane1
+
+plane1 -> state1 : TimeStep()
+activate state1
+
+return 
 return 
 
-scene1 -> port1 : TimeStep(t)
+scene1 -> port1 : TimeStep()
 activate port1
 
-port1 -> port1 : GenerateClientsTransport()
+port1 -> port1 : GenerateClients()
 activate port1
 
 port1 -> scene2 : GetRandomAirportExcluding(self)
@@ -62,12 +73,9 @@ activate scene2
 
 return Airport
 
-port1 -> facto2 : SetDestinationAirport(Airport)
-activate facto2
-
 return 
 
-port1 -> facto2 : createClient[...]()
+port1 -> facto2 : Add(factory.CreateClientTransport("Transport{Type}", destination)
 note left : [...] Meaning any of the 2 possible\nfunctions to create transport clients
 activate facto2
 
@@ -78,31 +86,20 @@ activate clitrsp
 return ClientTransport
 return ClientTransport
 return 
-
-port1 -> plane1 : TimeStep(t)
-note right : The planes in the airports
-activate plane1
-
-plane1 -> state1 : TimeStep(t)
-activate state1
-
-return 
 return 
 return 
 
-scene1 -> plane1 : TimeStep(t)
-note right : The planes in the sky
-activate plane1
 
-plane1 -> state1 : TimeStep(t)
-activate state1
-
-return 
-return 
-
-scene1 ->o form2 : (EVENT) MapUpdate.Invoke(string[] MapState)
+ctrl1 -> scene1 : UpdateView()
+deactivate 
+activate scene1
 activate form2
+scene1 ->o form2 : <Event> FlightUpdate
+scene1 ->o form2 : <Event> AiportUpdate
+scene1 ->o form2 : <Event> PlaneUpdate
+deactivate scene1
 
+activate form2
 form2 -> form2 : OnMapUpdate(string[] MapState)
 
 form2 -> bob2 : Displays updated map
@@ -111,7 +108,6 @@ activate bob2
 deactivate bob2
 deactivate form2
 
-return 
-return
-
 deactivate SimForm
+@enduml
+
